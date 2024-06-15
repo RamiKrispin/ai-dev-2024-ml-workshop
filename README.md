@@ -1,5 +1,7 @@
 # Deploy and Monitor ML Pipelines with Open Source and Free Applications
 
+WIP...pre-spell check
+
 Materials for the **Deploy and Monitor ML Pipelines with Open Source and Free Applications** workshop at the [AI_dev 2024](https://events.linuxfoundation.org/ai-dev-europe/) conference in Paris, France.
 
 When 📆: Wednesday, June 19th, 13:50 CEST
@@ -18,3 +20,69 @@ The workshop will focus on different deployment designs of machine learning pipe
 
 <br>
 <br />
+
+## Table of Content
+
+* Milestones
+* Scope
+* Set a Development Environment
+* Data Pipeline
+* Forecasting Models
+* Metadata
+* Dashboard
+* Deployment
+* License
+
+
+## Milestones
+To organize and track the project requirements, we will set up a GitHub Project, create general milestones, and use issues to define sub-milestone. For setting up a data/ML pipeline, we will define the following milestones:
+- Define scope and requirements:
+    - Pipeline scope
+    - Forecasting scope
+- General tools and requirements 
+    - Set a development environment:
+    - Set a Docker image
+    - Update the Dev Containers settings
+- Data pipeline prototype:
+    - Create pipeline schema/draft
+    - Build a prototype
+    - Test deployment on GitHub Actions
+- Set forecasting models:
+    - Create MLflow experiment
+    - Set backtesting function
+    - Define forecasting models
+    - Test and evaluate the models' performance
+    - Select the best model for deployment
+- Set a Quarto dashboard:
+    - Create a Quarto dashboard
+    - Track the data and forecast
+    - Monitor performance 
+- Productionize the pipeline:
+    - Clean the code
+    - Define unit tests
+- Deploy the pipeline and dashboard to GitHub Actions and GitHub Pages:
+    - Create a GitHub Actions workflow
+    - Refresh the data and forecast
+    - Update the dashboard 
+
+
+The milestones are available in the repository [issues section](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop/milestones), and you can track them on the [project tracker](https://github.com/users/RamiKrispin/projects/6/views/1).
+
+<figure>
+ <img src="images/github-project.png" width="100%" align="center"/></a>
+<figcaption> The project tracker</figcaption>
+</figure>
+
+<br>
+<br />
+
+## Scope
+
+
+## Set a Development Environment
+## Data Pipeline
+## Forecasting Models
+## Metadata
+## Dashboard
+## Deployment
+## License
