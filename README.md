@@ -15,7 +15,7 @@ The workshop will focus on different deployment designs of machine learning pipe
 
 <figure>
  <img src="images/paris.png" width="100%" align="center"/></a>
-<figcaption> The Seine river, Paris (created with Midjourney)</figcaption>
+<figcaption> The Seine River, Paris (created with Midjourney)</figcaption>
 </figure>
 
 <br>
@@ -23,15 +23,15 @@ The workshop will focus on different deployment designs of machine learning pipe
 
 ## Table of Content
 
-* Milestones
-* Scope
-* Set a Development Environment
-* Data Pipeline
-* Forecasting Models
-* Metadata
-* Dashboard
-* Deployment
-* License
+* [Milestones](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#milestones)
+* [Scope](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#scope)
+* [Set a Development Environment](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#set-a-development-environment)
+* [Data Pipeline](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#data-pipeline)
+* [Forecasting Models](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#forecasting-models)
+* [Metadata](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#metadata)
+* [Dashboard](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#dashboard)
+* [Deployment](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#deployment)
+* [License](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop?tab=readme-ov-file#license)
 
 
 ## Milestones
