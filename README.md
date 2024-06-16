@@ -117,3 +117,5 @@ The data is available on the [EIA API](https://www.eia.gov/opendata/), the API [
 ## Dashboard
 ## Deployment
 ## License
+
+This tutorial is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) License.
