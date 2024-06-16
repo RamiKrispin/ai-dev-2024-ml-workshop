@@ -1,0 +1,15 @@
+wheel
+pandas
+numpy==1.26.4
+matplotlib
+gensim
+ipykernel
+requests
+plotly
+nbformat
+ydata-profiling
+ipywidgets
+jupyter 
+optuna
+u8darts
+mlflow==2.10.2
