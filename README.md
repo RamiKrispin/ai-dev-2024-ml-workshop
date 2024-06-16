@@ -78,6 +78,37 @@ The milestones are available in the repository [issues section](https://github.c
 
 ## Scope
 
+**Goal:** Forecast the hourly demand for electricity in the California Independent System Operator subregion (CISO). 
+
+This includes the following four providers:
+- Pacific Gas and Electric (PGAE)
+- Southern California Edison (SCE)
+- San Diego Gas and Electric (SDGE)
+- Valley Electric Association (VEA)
+
+**Forecast Horizon:** 24 hours
+**Refresh:** Every 24 hours
+
+### Data 
+The data is available on the [EIA API](https://www.eia.gov/opendata/), the API [dashboard provides](https://www.eia.gov/opendata/browser/electricity/rto/region-sub-ba-data?frequency=hourly&data=value;&facets=parent;&parent=CISO;&sortColumn=period;&sortDirection=desc;) the GET setting to pull the above series.
+
+ 
+<figure>
+ <img src="images/get-request.png" width="100%" align="center"/></a>
+<figcaption> The GET request detials from the EIA API dashboard</figcaption>
+</figure>
+
+<br>
+<br />
+
+### General Requirements
+- The following functions:
+    - Data backfill function
+    - Data refresh function
+    - Forecast function
+    - Metadata function
+- Docker image
+- EIA API key
 
 ## Set a Development Environment
 ## Data Pipeline
