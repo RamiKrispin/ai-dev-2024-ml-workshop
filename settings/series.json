@@ -1,0 +1,43 @@
+{
+    "series": [
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "PGAE",
+            "subba_name": "Pacific Gas and Electric"
+        },
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "SCE",
+            "subba_name": "Southern California Edison"
+        },
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "SDGE",
+            "subba_name": "San Diego Gas and Electric"
+        },
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "VEA",
+            "subba_name": "Valley Electric Association"
+        }
+    ],
+    "api_path": "electricity/rto/region-sub-ba-data/",
+    "data_path": "../data/data.csv",
+    "meta_path": "../data/log.csv",
+    "start": {
+        "year": 2018,
+        "month": 7,
+        "day": 1,
+        "hour": 8
+    },
+    "end": {
+        "year": 2024,
+        "month": 6,
+        "day": 15,
+        "hour": 1
+    }
+}

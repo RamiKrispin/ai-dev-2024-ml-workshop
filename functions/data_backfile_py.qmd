@@ -1,0 +1,134 @@
+---
+title: "Data Backfill"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+The goal of the backfill process is to pull the historical data for the required series using the settings.json file. This includes the following steps:
+
+- Setting parameters and pulling the data
+- Data quality checks
+- Saving the data and creating a log file
+
+
+## Load Libraries
+
+```{python}
+import eia_api as api
+import eia_data 
+import pandas as pd
+import numpy as np
+import requests
+import json
+import os
+import datetime
+import plotly.express as px
+```
+
+
+
+```{python}
+raw_json = open("../settings/series.json")
+meta_json = json.load(raw_json)
+series = pd.DataFrame(meta_json["series"])
+api_path = meta_json["api_path"]
+```
+
+
+```{python}
+
+facets_template = {
+  "parent" : None,
+  "subba" : None
+}
+
+start = datetime.datetime(meta_json["start"]["year"],
+ meta_json["start"]["month"], 
+ meta_json["start"]["day"], 
+ meta_json["start"]["hour"])
+end = datetime.datetime(meta_json["end"]["year"],
+ meta_json["end"]["month"], 
+ meta_json["end"]["day"], 
+ meta_json["end"]["hour"])
+
+offset = 2250
+
+eia_api_key = os.getenv('EIA_API_KEY')
+
+meta_path = meta_json["meta_path"]
+data_path = meta_json["data_path"]
+```
+
+
+```{python}
+metadata = api.eia_metadata(api_key = eia_api_key, api_path = api_path)
+print(metadata.meta.keys())
+print(metadata.meta["startPeriod"])
+print(metadata.meta["endPeriod"])
+```
+
+
+```{python}
+for i in series.index:
+  facets = facets_template
+  facets["parent"] = series.at[i, "parent_id"]
+  facets["subba"] = series.at[i, "subba_id"]
+  print(facets)
+  temp = api.eia_backfill(api_key = eia_api_key, 
+        api_path = api_path+ "data", 
+        facets = facets, 
+        start = start,
+        end = end,
+        offset = offset) 
+  ts_obj = pd.DataFrame(np.arange(start = start, stop = end + datetime.timedelta(hours = 1), step = datetime.timedelta(hours = 1)).astype(datetime.datetime), columns=["index"])
+  ts_obj  = ts_obj.merge(temp.data, left_on = "index", right_on = "period", how="left")
+  ts_obj.drop("period", axis = 1, inplace= True)
+  ts_obj = ts_obj.rename(columns= {"index": "period"})
+
+  meta_temp = eia_data.create_metadata(data = ts_obj, start = start, end = end, type = "backfill")
+  meta_temp["index"] = 1
+  meta_df = pd.DataFrame([meta_temp])
+
+  if i == series.index.start:
+    data = ts_obj
+    meta = meta_df
+  else:
+    data = data._append(ts_obj)
+    meta = meta._append(meta_df)
+
+
+
+```
+
+
+```{python}
+print(meta)
+# The initial pull has some missing values
+
+data.head()
+```
+
+```{python}
+# Save the data
+d = eia_data.append_data(data_path = data_path, new_data = data, init = True, save = True)
+# Save the metadata
+meta["success"] = True
+meta["update"] = True
+m = eia_data.append_metadata(meta_path = meta_path, meta = meta, save = True, init = True)
+print(m)
+```
+
+
+### Plot the Series
+
+We will use Plotly to visualize the series:
+
+```{python}
+d = data.sort_values(by = ["subba", "period"])
+
+p = px.line(d, x="period", y="value", color="subba")
+
+p.show()
+```

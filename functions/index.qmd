@@ -1,0 +1,76 @@
+--- 
+title: "California Independent System Operator Hourly Demand"
+subtitle: "AI Dev Workshop"
+format: dashboard
+--- 
+
+```{python}
+import plotly.graph_objects as go
+import plotly.express as px
+import pandas as pd
+import requests
+import json
+import os
+import datetime
+import great_tables as gt
+```
+
+```{python}
+raw_json = open("../settings/series.json")
+meta_json = json.load(raw_json)
+meta_path = meta_json["meta_path"]
+data_path = meta_json["data_path"]
+
+data = pd.read_csv(data_path)
+data["period"] = pd.to_datetime(data["period"])
+
+end_date = data["period"].max()
+start_date = end_date -  datetime.timedelta(days = 30)
+meta = pd.read_csv(meta_path)
+```
+
+## row {.tabset}
+
+```{python}
+#| title: Hourly Demand By Provider 
+
+p = px.line(data, x="period", y="value", color="subba")
+p = p.update_layout(
+    xaxis=dict(
+        rangeselector=dict(
+            buttons=list([
+                dict(count=1,
+                     label="1m",
+                     step="month",
+                     stepmode="backward"),
+                dict(count=6,
+                     label="6m",
+                     step="month",
+                     stepmode="backward"),
+                dict(count=1,
+                     label="YTD",
+                     step="year",
+                     stepmode="todate"),
+                dict(count=1,
+                     label="1y",
+                     step="year",
+                     stepmode="backward"),
+                dict(step="all")
+            ])
+        ),
+        rangeslider=dict(
+            visible=True
+        ),
+        type="date",
+        range=[start_date,end_date]
+    )
+)
+
+p.show()
+```
+
+```{python}
+#| title: Metadata
+
+gt.GT(meta.tail(20))
+```
