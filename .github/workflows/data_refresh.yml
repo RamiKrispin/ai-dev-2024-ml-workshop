@@ -1,0 +1,21 @@
+name: Data Refresh - Python
+
+on:
+  schedule:
+    - cron: "0 */1 * * *"
+jobs:
+  refresh-the-dashboard:
+    runs-on: ubuntu-22.04
+    container:
+      image: docker.io/rkrispin/ai-dev:amd64.0.0.2
+    steps:
+      - name: checkout_repo
+        uses: actions/checkout@v3
+        with:
+          ref: "main"
+      - name: Data Refresh
+        run: bash ./functions/data_refresh_py.sh
+        env:
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_NAME: ${{ secrets.USER_NAME }}
