@@ -1,0 +1,151 @@
+---
+title: "Model Backtesting"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+
+```{python}
+import eia_backtesting
+import pandas as pd
+import plotly.graph_objects as go
+import os
+import datetime
+```
+
+
+```{python}
+input = pd.read_csv("./data/us48.csv")
+input["period"] = pd.to_datetime(input["period"])
+end = input["period"].max().floor(freq = "d")  - datetime.timedelta(hours = 1)
+input = input[input["period"] <= end]
+input.tail
+
+```
+
+
+```{python}
+p = go.Figure()
+p.add_trace(go.Scatter(x =input["period"], y = input["value"],
+                       mode='lines',
+                    name='data',
+                    line=dict(color='royalblue', width=2)))
+p.show()
+```
+
+
+```{python}
+freq = 24
+h = 24
+overlap = 0
+tags = {"type:": "backfill", "version": "0.0.0.9000"}
+experiment_name = "Forecast Testing"
+mlflow_path = "./metadata/"
+p = 30
+
+quantiles = [0.025, 0.1, 0.25, 0.5, 0.75, 0.9, 0.975]
+
+params1 = {
+    "model": "LinearRegressionModel",
+    "model_label": "model 1",
+    "comments": "LM model with lags, training with 2 years of history",
+    "h": h,
+    "freq": freq,
+    "num_samples": 500,
+    "lags": [ -freq, -7 * freq,  - 365 * freq],
+    "likelihood": "quantile",
+    "quantiles": quantiles,
+    "pi": 0.95,
+    "train": 24*365*2,
+    }
+
+params2 = {
+    "model": "LinearRegressionModel",
+    "model_label": "model 2",
+    "comments": "LM model with lags, training with 3 years of history",
+    "h": h,
+    "freq": freq,
+    "num_samples": 100,
+    "lags": [-freq, -7 * freq,  - 365 * freq],
+    "likelihood": "quantile",
+    "quantiles": quantiles,
+    "pi": 0.95,
+    "train": 24*365*3,
+    }
+
+params3 = {
+    "model": "LinearRegressionModel",
+    "model_label": "model 3",
+    "comments": "Model 2 with lag 1",
+    "h": h,
+    "freq": freq,
+    "num_samples": 100,
+    "lags": [ -1, -freq, -7 * freq,  - 365 * freq],
+    "likelihood": "quantile",
+    "quantiles": quantiles,
+    "pi": 0.95,
+    "train": 24*365*3,
+    }
+params4 = {
+    "model": "LinearRegressionModel",
+    "model_label": "model 4",
+    "comments": "Model 1 with lag 1",
+    "h": h,
+    "freq": freq,
+    "num_samples": 100,
+    "lags": [ -1, -2, -3, -4, -5, -6, -freq, -2 * freq, -7 * freq,  - 365 * freq],
+    "likelihood": "quantile",
+    "quantiles": quantiles,
+    "pi": 0.95,
+    "train": 24*365*2,
+    }
+
+params5 = {
+    "model": "LinearRegressionModel",
+    "model_label": "model 5",
+    "comments": "Model 2 with lag 1",
+    "h": h,
+    "freq": freq,
+    "num_samples": 100,
+    "lags": [ -freq, -2 * freq, -7 * freq, -14 * freq, - 365 * freq],
+    "likelihood": "quantile",
+    "quantiles": quantiles,
+    "pi": 0.95,
+    "train": 24*365*2,
+    }
+
+params = [params1, params2, params3, params4, params5]
+```
+
+
+
+```{python}
+bkt = eia_backtesting.backtesting(input = input, 
+            partitions=p, 
+            overlap = overlap, 
+            h = h, 
+            params = params,
+            experiment_name = experiment_name,
+            mlflow_path = mlflow_path,
+            overwrite = True,
+            tags = tags)
+
+
+```
+
+```{python}
+
+print(bkt.leaderboard)
+```
+
+```{python}
+eia_backtesting.plot_score(score = bkt.score, type = "box")
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = bkt.score, type = "line")
+```
+
