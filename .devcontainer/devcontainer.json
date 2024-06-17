@@ -1,6 +1,6 @@
 {
     "name": "AI-Dev Workshop",
-    "image": "docker.io/rkrispin/ai-dev:arm64.0.0.2",
+    "image": "docker.io/rkrispin/ai-dev:${localEnv:CPU}.0.0.2",
     "customizations": {
         "settings": {
             "python.defaultInterpreterPath": "/opt/ai_dev_workshop/bin/python3",
