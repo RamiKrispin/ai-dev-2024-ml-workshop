@@ -2,6 +2,10 @@
 
 echo "Build the docker"
 
+# Setting parameters
+QUARTO_VER="1.5.45"
+VENV_NAME="ai_dev_workshop"
+
 # Identify the CPU type (M1 vs Intel)
 if [[ $(uname -m) ==  "aarch64" ]] ; then
   CPU="arm64"
@@ -13,7 +17,7 @@ fi
 
 
 label="ai-dev"
-tag="$CPU.0.0.1"
+tag="$CPU.0.0.2"
 image="rkrispin/$label:$tag"
 
 docker build . -f Dockerfile \

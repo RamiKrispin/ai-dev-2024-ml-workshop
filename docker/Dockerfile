@@ -24,6 +24,8 @@ COPY --from=builder /opt/$VENV_NAME /opt/$VENV_NAME
 
 COPY install_requirements.sh install_quarto.sh install_dependencies.sh requirements/
 RUN bash ./requirements/install_dependencies.sh
-RUN bash ./requirements/install_quarto.sh $QUARTO_VER
-
 RUN echo "source /opt/$VENV_NAME/bin/activate" >> ~/.bashrc
+
+RUN bash ./requirements/install_quarto.sh $QUARTO_VER
+ENV QUARTO_PATH="/opt/ai_dev_workshop/bin/python3"
+ENV QUARTO_PYTHON="/opt/ai_dev_workshop/bin/python3"

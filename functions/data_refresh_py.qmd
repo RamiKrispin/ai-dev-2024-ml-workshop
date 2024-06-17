@@ -1,0 +1,143 @@
+---
+title: "EIA API - Data Refrsh (Python Version)"
+format:
+  html:
+    code-fold: false
+jupyter: python3
+---
+
+## Load libraries
+
+```{python}
+import eia_api as api
+import eia_data 
+import pandas as pd
+import numpy as np
+import requests
+import json
+import os
+import datetime
+import plotly.express as px
+import great_tables as gt
+```
+
+
+
+API Settings:
+```{python}
+raw_json = open("../settings/series.json")
+meta_json = json.load(raw_json)
+series = pd.DataFrame(meta_json["series"])
+api_path = meta_json["api_path"]
+
+facets_template = {
+  "parent" : None,
+  "subba" : None
+}
+
+offset = 2250
+
+eia_api_key = os.getenv('EIA_API_KEY')
+
+meta_path = meta_json["meta_path"]
+data_path = meta_json["data_path"]
+```
+
+
+```{python}
+meta_obj = eia_data.get_metadata(api_key = eia_api_key, api_path = api_path, meta_path = meta_path, series = series)
+
+gt.GT(meta_obj.request_meta,)
+```
+
+```{python}
+m = meta_obj.request_meta
+index = meta_obj.last_index + 1
+data = None
+for i in m.index:
+
+    facets = facets_template
+    facets["parent"] = m.at[i, "parent"]
+    facets["subba"] = m.at[i, "subba"]
+    start = m.at[i, "request_start"]
+    end = m.at[i, "end"]
+
+    print(facets)
+    if m.at[i, "updates_available"]:
+        temp = api.eia_backfill(api_key = eia_api_key, 
+            api_path = api_path+ "data", 
+            facets = facets, 
+            start = start.to_pydatetime(),
+            end = end.to_pydatetime(),
+            offset = offset) 
+
+        ts_obj = pd.DataFrame(np.arange(start = start, stop = end + datetime.timedelta(hours = 1), step = datetime.timedelta(hours = 1)).astype(datetime.datetime), columns=["index"])
+        ts_obj  = ts_obj.merge(temp.data, left_on = "index", right_on = "period", how="left")
+        ts_obj.drop("period", axis = 1, inplace= True)
+        ts_obj = ts_obj.rename(columns= {"index": "period"})
+    else:
+        ts_obj = None
+        print("No new data is available")
+
+    meta_temp = eia_data.create_metadata(data = ts_obj, start = start, end = end, type = "refresh")
+
+    if ts_obj is None:
+        meta_temp["parent"] =  m.at[i, "parent"]
+        meta_temp["subba"] =  m.at[i, "subba"]
+
+
+    if meta_temp["success"]:
+        print("Append the new data")
+        d = eia_data.append_data(data_path = data_path, new_data = ts_obj, save = True)
+        meta_temp["update"] = True
+    else:
+        meta_temp["update"] = False
+        meta_temp["comments"] = meta_temp["comments"] + "The data refresh failed, please check the log; "
+
+    meta_df = pd.DataFrame([meta_temp])
+    
+    if data is None:
+        data = ts_obj
+    else:
+        data = data._append(ts_obj)
+
+    if i == series.index.start:
+        meta_new = meta_df
+    else:
+        meta_new = meta_new._append(meta_df)
+
+```
+
+```{python}
+gt.GT(meta_new,rowname_col = "index")
+```
+
+
+```{python}
+meta_updated = eia_data.append_metadata(meta_path = meta_path, meta = meta_new, save = True, init = False)
+```
+
+### Plot the Series
+
+We will use Plotly to visualize the series:
+
+```{python}
+
+if data is not None:
+    d = data.sort_values(by = ["subba", "period"])
+    p = px.line(data, x="period", y="value", color="subba")
+    p.show()
+else: 
+    print("No new data is available")
+```
+
+
+
+```{python}
+full_data = pd.read_csv(data_path)
+full_data.head()
+
+full_data["period"] = pd.to_datetime(full_data["period"])
+p = px.line(full_data, x="period", y="value", color="subba")
+p.show()
+```

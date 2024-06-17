@@ -240,6 +240,25 @@ If you want to learn more about setting up a dockerized development environment 
 
 
 ## Data Pipeline
+
+Once we have a clear scope, we can move to the design process step. I typically start with drafting the process using paper and pencil (or the electronic version using iPad and Apple Pencil 😎). This helps me to understand better what functions I need to build:
+
+<figure>
+ <img src="images/pipeline-draft.jpg" width="100%" align="center"/></a>
+<figcaption> The data pipeline draft</figcaption>
+</figure>
+
+<br>
+<br />
+
+We can use the draft to derive the pipeline's components and required functions. For automating the data, we will build the following subprocess:
+- **Backfill function -** to initiate or reset the pipeline. This function should run locally.
+- **Refresh function -** manage the refresh process of the data once deployed on GitHub Actions
+
+In addition, we will use a `JSON` file to define the pipeline settings. The settings file should include all the pipeline parameters we want to avoid hard coding. This will enable us to make changes in the pipeline seamlessly.
+
+Last but not least, we will create two `CSV` files to store the data and the metadata. 
+
 ## Forecasting Models
 ## Metadata
 ## Dashboard
