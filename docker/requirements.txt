@@ -9,7 +9,8 @@ plotly
 nbformat
 ydata-profiling
 ipywidgets
-jupyter 
+jupyter
 optuna
 u8darts
-mlflow==2.10.2
+great-tables
+mlflow==2.13.2
