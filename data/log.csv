@@ -1,13 +1,17 @@
 index,parent,subba,time,start,end,start_act,end_act,start_match,end_match,n_obs,na,type,update,success,comments
-1,CISO,PGAE,2024-06-17 04:25:14.127866+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
-1,CISO,SCE,2024-06-17 04:25:40.000588+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
-1,CISO,SDGE,2024-06-17 04:25:56.750293+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
-1,CISO,VEA,2024-06-17 04:26:15.844556+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
-2,CISO,PGAE,2024-06-17 04:26:41.686967+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30,0,refresh,True,True,
-2,CISO,SCE,2024-06-17 04:26:43.080867+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30,0,refresh,True,True,
-2,CISO,SDGE,2024-06-17 04:26:44.997697+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30,0,refresh,True,True,
-2,CISO,VEA,2024-06-17 04:26:46.545032+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30,0,refresh,True,True,
+1,CISO,PGAE,2024-06-17 04:25:14.127866+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218.0,98.0,backfill,True,True,Missing values were found; 
+1,CISO,SCE,2024-06-17 04:25:40.000588+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218.0,98.0,backfill,True,True,Missing values were found; 
+1,CISO,SDGE,2024-06-17 04:25:56.750293+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218.0,98.0,backfill,True,True,Missing values were found; 
+1,CISO,VEA,2024-06-17 04:26:15.844556+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218.0,98.0,backfill,True,True,Missing values were found; 
+2,CISO,PGAE,2024-06-17 04:26:41.686967+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30.0,0.0,refresh,True,True,
+2,CISO,SCE,2024-06-17 04:26:43.080867+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30.0,0.0,refresh,True,True,
+2,CISO,SDGE,2024-06-17 04:26:44.997697+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30.0,0.0,refresh,True,True,
+2,CISO,VEA,2024-06-17 04:26:46.545032+00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,2024-06-15 02:00:00,2024-06-16 07:00:00,True,True,30.0,0.0,refresh,True,True,
 3,CISO,PGAE,2024-06-17 05:14:41.860217+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
 3,CISO,SCE,2024-06-17 05:14:41.860940+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
 3,CISO,SDGE,2024-06-17 05:14:41.861973+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
 3,CISO,VEA,2024-06-17 05:14:41.862802+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+4,CISO,PGAE,2024-06-17 05:16:05.215448+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+4,CISO,SCE,2024-06-17 05:16:05.216576+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+4,CISO,SDGE,2024-06-17 05:16:05.218118+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+4,CISO,VEA,2024-06-17 05:16:05.219257+00:00,2024-06-16 08:00:00,2024-06-16 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
