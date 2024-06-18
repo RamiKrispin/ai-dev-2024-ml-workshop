@@ -1,0 +1,9 @@
+artifact_location: file:///mlruns
+creation_time: 1718652709211
+experiment_id: '101188714789484048'
+last_update_time: 1718652771976
+lifecycle_stage: deleted
+name: backtesting
+tags:
+  type: backtesting
+  version: 0.0.1
