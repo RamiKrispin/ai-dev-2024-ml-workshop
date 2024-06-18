@@ -39,5 +39,142 @@
         "month": 6,
         "day": 15,
         "hour": 1
+    },
+    "backtesting": {
+        "seed": 12345,
+        "freq": 24,
+        "h": 24,
+        "overlap": 0,
+        "tags": {
+            "type": "backtesting",
+            "version": "0.0.1"
+        },
+        "mlflow_path": "file:///mlruns",
+        "p": 6,
+        "pi": 0.95,
+        "quantiles": [
+            0.025,
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            0.9,
+            0.975
+        ],
+        "experiment_name": "backtesting",
+        "models": {
+            "model1": {
+                "model": "LinearRegressionModel",
+                "model_label": "Model 1",
+                "comments": "LM model with lags, training with 2 years of history",
+                "num_samples": 100,
+                "lags": [
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model2": {
+                "model": "LinearRegressionModel",
+                "model_label": "Model 2",
+                "comments": "LM model with lags, training with 3 years of history",
+                "num_samples": 100,
+                "lags": [
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 26280
+            },
+            "model3": {
+                "model": "LinearRegressionModel",
+                "model_label": "Model 3",
+                "comments": "Model 2 with lag 1",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 26280
+            },
+            "model4": {
+                "model": "LinearRegressionModel",
+                "model_label": "Model 4",
+                "comments": "Model 1 with additional lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -4,
+                    -5,
+                    -6,
+                    -24,
+                    -48,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model5": {
+                "model": "LinearRegressionModel",
+                "model_label": "Model 5",
+                "comments": "Model 1 with additional lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168,
+                    -336,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model6": {
+                "model": "XGBModel",
+                "model_label": "Model 6",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168,
+                    -336,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model7": {
+                "model": "XGBModel",
+                "model_label": "Model 6",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            }
+        }
     }
 }
