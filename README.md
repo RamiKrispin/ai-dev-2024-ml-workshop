@@ -96,7 +96,7 @@ The data is available on the [EIA API](https://www.eia.gov/opendata/), the API [
  
 <figure>
  <img src="images/get-request.png" width="100%" align="center"/></a>
-<figcaption> The GET request detials from the EIA API dashboard</figcaption>
+<figcaption> The GET request details from the EIA API dashboard</figcaption>
 </figure>
 
 <br>
