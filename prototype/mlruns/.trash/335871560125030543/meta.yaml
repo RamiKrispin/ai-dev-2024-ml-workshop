@@ -1,0 +1,9 @@
+artifact_location: file:///mlruns
+creation_time: 1718764322780
+experiment_id: '335871560125030543'
+last_update_time: 1718767707672
+lifecycle_stage: deleted
+name: backtesting_PGAE
+tags:
+  type: backtesting
+  version: 0.0.1

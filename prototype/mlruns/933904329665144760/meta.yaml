@@ -1,0 +1,6 @@
+artifact_location: file:///mlruns
+creation_time: 1718971200517
+experiment_id: '933904329665144760'
+last_update_time: 1718971200517
+lifecycle_stage: active
+name: Forecast Dev VEA

@@ -1,0 +1,9 @@
+artifact_location: file:///mlruns
+creation_time: 1718759019594
+experiment_id: '387727279175172519'
+last_update_time: 1718762885721
+lifecycle_stage: deleted
+name: backtesting_SDGE
+tags:
+  type: backtesting
+  version: 0.0.1

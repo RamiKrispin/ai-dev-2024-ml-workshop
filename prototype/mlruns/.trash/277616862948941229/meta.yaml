@@ -1,0 +1,10 @@
+artifact_location: file:///mlruns
+creation_time: 1718885026942
+experiment_id: '277616862948941229'
+last_update_time: 1718897054676
+lifecycle_stage: deleted
+name: Forecast Dev SCE
+tags:
+  score: 'False'
+  type: forecast
+  version: 0.0.1

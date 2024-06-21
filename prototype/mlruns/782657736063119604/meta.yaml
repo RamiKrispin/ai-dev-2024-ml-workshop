@@ -1,0 +1,6 @@
+artifact_location: file:///mlruns
+creation_time: 1718771513779
+experiment_id: '782657736063119604'
+last_update_time: 1718771513779
+lifecycle_stage: active
+name: backtesting_VEA

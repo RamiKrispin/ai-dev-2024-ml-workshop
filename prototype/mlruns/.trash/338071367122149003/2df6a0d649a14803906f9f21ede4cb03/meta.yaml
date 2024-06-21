@@ -1,0 +1,16 @@
+artifact_uri: file:///mlruns/2df6a0d649a14803906f9f21ede4cb03/artifacts
+deleted_time: 1718770256520
+end_time: 1718764649863
+entry_point_name: ''
+experiment_id: '338071367122149003'
+lifecycle_stage: deleted
+run_id: 2df6a0d649a14803906f9f21ede4cb03
+run_name: '2024-06-14'
+run_uuid: 2df6a0d649a14803906f9f21ede4cb03
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718764649748
+status: 3
+tags: []
+user_id: root

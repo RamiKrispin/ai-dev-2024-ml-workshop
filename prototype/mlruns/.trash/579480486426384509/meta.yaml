@@ -1,0 +1,10 @@
+artifact_location: file:///mlruns
+creation_time: 1718884798156
+experiment_id: '579480486426384509'
+last_update_time: 1718884991316
+lifecycle_stage: deleted
+name: Forecast Dev PGAE
+tags:
+  score: 'False'
+  type: forecast
+  version: 0.0.1
