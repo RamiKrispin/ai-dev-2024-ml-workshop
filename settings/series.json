@@ -28,6 +28,10 @@
     "api_path": "electricity/rto/region-sub-ba-data/",
     "data_path": "../data/data.csv",
     "meta_path": "../data/log.csv",
+    "fc_meta_path": "../data/fc_log.csv",
+    "leaderboard_path": "../data/bkt_leader.csv",
+    "forecast_path": "../data/forecast.csv",
+    "forecast_log_path": "../data/forecast_log.csv",
     "start": {
         "year": 2018,
         "month": 7,
@@ -50,7 +54,7 @@
             "version": "0.0.1"
         },
         "mlflow_path": "file:///mlruns",
-        "p": 6,
+        "p": 10,
         "pi": 0.95,
         "quantiles": [
             0.025,
@@ -65,7 +69,7 @@
         "models": {
             "model1": {
                 "model": "LinearRegressionModel",
-                "model_label": "Model 1",
+                "model_label": "model1",
                 "comments": "LM model with lags, training with 2 years of history",
                 "num_samples": 100,
                 "lags": [
@@ -78,7 +82,7 @@
             },
             "model2": {
                 "model": "LinearRegressionModel",
-                "model_label": "Model 2",
+                "model_label": "model2",
                 "comments": "LM model with lags, training with 3 years of history",
                 "num_samples": 100,
                 "lags": [
@@ -91,7 +95,7 @@
             },
             "model3": {
                 "model": "LinearRegressionModel",
-                "model_label": "Model 3",
+                "model_label": "model3",
                 "comments": "Model 2 with lag 1",
                 "num_samples": 100,
                 "lags": [
@@ -105,7 +109,7 @@
             },
             "model4": {
                 "model": "LinearRegressionModel",
-                "model_label": "Model 4",
+                "model_label": "model4",
                 "comments": "Model 1 with additional lags",
                 "num_samples": 100,
                 "lags": [
@@ -125,7 +129,7 @@
             },
             "model5": {
                 "model": "LinearRegressionModel",
-                "model_label": "Model 5",
+                "model_label": "model5",
                 "comments": "Model 1 with additional lags",
                 "num_samples": 100,
                 "lags": [
@@ -143,7 +147,7 @@
             },
             "model6": {
                 "model": "XGBModel",
-                "model_label": "Model 6",
+                "model_label": "model6",
                 "comments": "XGBoost with lags",
                 "num_samples": 100,
                 "lags": [
@@ -161,7 +165,7 @@
             },
             "model7": {
                 "model": "XGBModel",
-                "model_label": "Model 6",
+                "model_label": "model7",
                 "comments": "XGBoost with lags",
                 "num_samples": 100,
                 "lags": [
