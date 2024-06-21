@@ -25,6 +25,7 @@ import json
 import os
 import datetime
 import plotly.express as px
+from ydata_profiling import ProfileReport
 ```
 
 
@@ -131,4 +132,10 @@ d = data.sort_values(by = ["subba", "period"])
 p = px.line(d, x="period", y="value", color="subba")
 
 p.show()
+```
+
+
+```{python}
+profile = ProfileReport(d, title="Profiling Report")
+profile
 ```
