@@ -24,11 +24,13 @@ Load data
 ```{python}
 raw_json = open("../settings/series.json")
 meta_json = json.load(raw_json)
+
 meta_path = meta_json["meta_path"]
 data_path = meta_json["data_path"]
-
+leaderboard_path = meta_json["leaderboard_path"]
 
 input = pd.read_csv(data_path)
+
 input["period"] = pd.to_datetime(input["period"])
 
 end = input.groupby(['subba'])['period'].max().min().floor(freq = "d") - datetime.timedelta(hours = 1)
@@ -42,7 +44,13 @@ input.head()
 
 
 ```{python}
-p = px.line(input, x="period", y="value", color="subba")
+p = px.line(input, x="period", y="value", color="subba",
+ labels={
+                     "period": "Time",
+                     "value": "MegaWattHours",
+                     "subba": "Sub-Region"
+                 },
+title = "California Hourly Demand By Operating Provider")
 p.show()
 ```
 
@@ -50,6 +58,7 @@ p.show()
 
 
 ```{python}
+
 freq = meta_json["backtesting"]["freq"]
 h = meta_json["backtesting"]["h"]
 overlap = meta_json["backtesting"]["overlap"]
@@ -71,6 +80,7 @@ params6 = meta_json["backtesting"]["models"]["model6"]
 params7 = meta_json["backtesting"]["models"]["model7"]
 
 params = [params1, params2, params3, params4, params5, params7]
+
 for i in range(len(params)):
     params[i]["h"] = h
     params[i]["freq"] = freq
@@ -81,6 +91,7 @@ for i in range(len(params)):
 
 
 ```{python}
+#| output: false
 series = pd.DataFrame(meta_json["series"])
 
 backtesting_output = {}
@@ -127,35 +138,62 @@ for index, row in series.iterrows():
         best = best._append(leader_subba[leader_subba["mape"] == leader_subba["mape"].min()])
 
     
+#best = best[["subba", "model","model_label" ,"mape", "rmse"]] 
+best.to_csv(leaderboard_path, index = False)   
+
+best
+```
+
+
+
+```{python}
+
+print(leaderboard)
+```
+
+
+
+## PGAE
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["PGAE"].leaderboard, type = "box")
     
 ```
 
 
 ```{python}
-bkt = eia_backtesting.backtesting(input = input, 
-            partitions=p, 
-            overlap = overlap, 
-            h = h, 
-            params = params,
-            experiment_name = experiment_name,
-            mlflow_path = mlflow_path,
-            overwrite = True,
-            tags = tags)
-
-
+eia_backtesting.plot_score(score = backtesting_output["PGAE"].score, type = "line")
 ```
 
+## SCE
 ```{python}
-
-print(bkt.leaderboard)
-```
-
-```{python}
-eia_backtesting.plot_score(score = bkt.score, type = "box")
+ eia_backtesting.plot_score(score = backtesting_output["SCE"].leaderboard, type = "box")
+    
 ```
 
 
 ```{python}
-eia_backtesting.plot_score(score = bkt.score, type = "line")
+eia_backtesting.plot_score(score = backtesting_output["SCE"].score, type = "line")
+```
+
+## SDGE
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["SDGE"].leaderboard, type = "box")
+    
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = backtesting_output["SDGE"].score, type = "line")
+```
+
+## VEA
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["VEA"].leaderboard, type = "box")
+    
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = backtesting_output["VEA"].score, type = "line")
 ```
 

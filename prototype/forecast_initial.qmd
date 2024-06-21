@@ -1,0 +1,170 @@
+---
+title: "Initial Forecast"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import requests
+import json
+import datetime
+import eia_forecast as fc_old
+import dev_fc as dev_fc
+import eia_forecast as fc
+```
+
+## Load the Settings
+
+```{python}
+raw_json = open("../settings/series.json")
+meta_json = json.load(raw_json)
+
+meta_path = meta_json["meta_path"]
+fc_meta_path = meta_json["fc_meta_path"]
+data_path = meta_json["data_path"]
+leaderboard_path = meta_json["leaderboard_path"]
+forecast_path = meta_json["forecast_path"]
+forecast_log_path = meta_json["forecast_log_path"]
+```
+
+
+## Load the Data
+
+```{python}
+input = pd.read_csv(data_path)
+
+input["period"] = pd.to_datetime(input["period"])
+
+end = input.groupby(['subba'])['period'].max().min().floor(freq = "d") - datetime.timedelta(hours = 1)
+
+end = end - datetime.timedelta(hours = 24)
+```
+
+
+
+## Load Metadata
+
+
+```{python}
+freq = meta_json["backtesting"]["freq"]
+h = meta_json["backtesting"]["h"]
+pi = meta_json["backtesting"]["pi"]
+quantiles = meta_json["backtesting"]["quantiles"]
+seed = meta_json["backtesting"]["seed"]
+mlflow_path = meta_json["backtesting"]["mlflow_path"]
+
+```
+
+```{python}
+fc_leaderboard = pd.read_csv(leaderboard_path)
+fc_leaderboard
+
+```
+
+
+
+```{python}
+# subba = "PGAE"
+# start = end - datetime.timedelta(hours = 365 * 24 * 2)
+# df = input[input["subba"] == subba]
+# ts_train = dev_fc.set_input(input = df, start = start, end = end)
+
+# params = meta_json["backtesting"]["models"]["model1"]
+# params["h"] = h
+# params["freq"] = freq
+# params["quantiles"] = quantiles
+# params["pi"] = pi
+# params["seed"] = seed
+
+# params_list = {}
+
+# for i in params.keys():
+#     params_list[i] = params[i]
+
+
+# mlflow_settings = dev_fc.mlflow_params(path = mlflow_path,
+#                                 experiment_name = "Forecast Dev " + subba,
+#                                 type = "forecast",
+#                                 score = False,
+#                                 append = False,
+#                                 version = "0.0.1")
+```
+
+
+```{python}
+forecast_df = None
+fc_log = None
+init = True
+for index, row in fc_leaderboard.iterrows():
+    subba = row["subba"]
+    print(subba)
+    model_label = row["model_label"]
+    params = meta_json["backtesting"]["models"][model_label]
+    params["h"] = h
+    params["freq"] = freq
+    params["quantiles"] = quantiles
+    params["pi"] = pi
+    params["seed"] = seed
+    d = None
+    d = input[input["subba"] == subba]
+    d = d[d["period"]<= end]
+    
+    if d["period"].isnull().sum() > 0:
+        m = d["period"].isnull().sum()
+        print("There are " + str(m) + " missing values in the series")
+        y = pd.DataFrame(d["period"].isnull())
+        n = y[y["period"] == True].index
+
+        for i in n:
+            if i > 24:
+                d.loc[i, "value"] = d.loc[i - 24, "value"]
+            else:
+                d.loc[i, "value"] = d.loc[i + 24, "value"]
+            d.loc[i, "period"] = d.loc[i, "index"]
+    d1 = d.sort_values(by = ["period"])
+    
+    # To FIX
+
+    mlflow_settings = dev_fc.mlflow_params(path = mlflow_path,
+                                experiment_name = "Forecast Dev " + subba,
+                                type = "forecast",
+                                score = False,
+                                append = False,
+                                version = "0.0.1")
+    start = end - datetime.timedelta(hours = params["train"])
+    ts_train = dev_fc.set_input(input = d, start = start, end = end)
+    f = dev_fc.forecast_object()
+    f.add_input(input = ts_train) 
+    f.add_model_params(model_params =  params)    
+    f.add_mlflow_settings(mlflow_settings = mlflow_settings)
+    f.create_forecast()
+    f.model_meta["subba"] = subba
+    f.forecast["subba"] = subba
+    print(subba)
+    log = dev_fc.append_log(log_path= forecast_log_path, new_log = f.model_meta, save = True, init = init)
+    new_fc = dev_fc.append_forecast(fc_path =  forecast_path, fc_new = f, save = True, init = init)
+
+    if init:
+        init = False
+ 
+```
+
+
+# Forecast Refresh
+
+```{python}
+fc_log = pd.read_csv(forecast_log_path)
+fc_log
+
+fc_start = get_last_fc_start(log_path = forecast_log_path, subba = subba)
+
+
+
+
+```
+

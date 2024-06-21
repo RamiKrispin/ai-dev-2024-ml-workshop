@@ -152,7 +152,7 @@ def model_register(model_params, mlflow_settings):
     with mlflow.start_run(run_name = mlflow_settings.label,
                           experiment_id=meta.experiment_id,
                           tags = tags) as run:
-                mlflow.log_params(params = model_params.__dict__)
+                mlflow.log_params(params = model_params)
                 
     output = mlflow_metadata(meta = meta, run = run)
     return output
@@ -169,15 +169,16 @@ def train_model(input, model_params, mlflow_settings):
 
     mlflow_settings.label = str(input.start.date())
     
-    if model_params.model == "LinearRegressionModel":
-        md = fc.train_lm(input = input, 
-                         lags = model_params.lags, 
-                         likelihood = model_params.likelihood,  
-                         quantiles = model_params.quantiles, 
-                         h = model_params.h, 
-                         num_samples = model_params.num_samples, 
-                         seed = model_params.seed, 
-                         pi = model_params.pi)
+    if model_params["model"] == "LinearRegressionModel":
+        md = fc.train_ml(input = input, 
+                         model = model_params["model"],
+                         lags = model_params["lags"], 
+                         likelihood = model_params["likelihood"],  
+                         quantiles = model_params["quantiles"], 
+                         h = model_params["h"], 
+                         num_samples = model_params["num_samples"], 
+                         seed = model_params["seed"], 
+                         pi = model_params["pi"])
         
         md_reg = model_register(model_params= model_params, 
                    mlflow_settings = mlflow_settings)
@@ -209,6 +210,20 @@ def set_input(input, start, end):
     ts_raw  = ts_raw.merge(d, left_on = "index", right_on = "period", how="left")
     forecast_start = end + datetime.timedelta(hours = 1)
     forecast_label =  str(forecast_start.date())
+
+    if ts_raw["period"].isnull().sum() > 0:
+        m = ts_raw["period"].isnull().sum()
+        print("There are " + str(m) + " missing values in the series")
+        y = pd.DataFrame(ts_raw["period"].isnull())
+        n = y[y["period"] == True].index
+
+        for i in n:
+            if i > 24:
+                ts_raw.loc[i, "value"] = ts_raw.loc[i - 24, "value"]
+            else:
+                ts_raw.loc[i, "value"] = ts_raw.loc[i + 24, "value"]
+            ts_raw.loc[i, "period"] = ts_raw.loc[i, "index"]
+    ts_raw = ts_raw.sort_values(by = ["period"])
     ts_obj = TimeSeries.from_dataframe(ts_raw,time_col= "period", value_cols= "value")
     output = ts(ts = ts_obj,
                 start = start,
@@ -282,7 +297,7 @@ def append_forecast(fc_path, fc_new, save = False, init = False):
         fc_archive = pd.read_csv(fc_path)
         fc_archive["period"] = pd.to_datetime(fc_archive["period"])
         print("Append the new forecast")
-        fc["label"] = fc_new.log["label"]
+        # fc["label"] = fc_new.log["label"]
         fc_new = fc_archive._append(fc)
     else:
         fc_new = fc
@@ -293,16 +308,36 @@ def append_forecast(fc_path, fc_new, save = False, init = False):
     
     return fc_new
 
-def get_last_fc_start(log_path):
+def get_last_fc_start(log_path, subba):
+    class forecast_metadata:
+        def __init__(self, start, end, start_new, experiment_id, run_id, subba):
+            self.start = start
+            self.end = end
+            self.start_new = start_new
+            self.experiment_id = experiment_id
+            self.run_id = run_id
+            self.subba = subba
     
     fc_log = pd.read_csv(log_path)
-    fc_log = fc_log[fc_log["success"] == True]
+    fc_log = fc_log[(fc_log["success"] == True) & (fc_log["subba"] == subba) ]
     fc_log = fc_log[fc_log["index"] == fc_log["index"].max()]
     fc_log["start_act"] = pd.to_datetime(fc_log["start_act"])
     fc_log["end_act"] = pd.to_datetime(fc_log["end_act"])
-    last_start = fc_log["start_act"].iloc[0]
+    start = fc_log["start_act"].iloc[0]
+    end = fc_log["end_act"].iloc[0]
+    experiment_id = fc_log["experiment_id"].iloc[0]
+    run_id = fc_log["run_id"].iloc[0]
+    start_new = end  + datetime.timedelta(hours = 1) 
+
+    output = forecast_metadata(start = start,
+                               end = end,
+                               start_new = start_new,
+                               experiment_id = experiment_id,
+                               run_id = run_id,
+                               subba = subba)
+
     
-    return last_start
+    return output
 
 
 

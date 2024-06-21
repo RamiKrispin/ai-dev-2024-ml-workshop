@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from darts import TimeSeries
-from darts.models import LinearRegressionModel, XGBModel, RandomForest
+from darts.models import LinearRegressionModel, XGBModel
 from zoneinfo import ZoneInfo
 from statistics import mean
 
@@ -159,28 +159,43 @@ def append_forecast(fc_path, fc_new, save = False, init = False):
     return fc_new
 
 
-def score_forecast(log_path, actual, forecast, save = False):
-    
-    log = pd.read_csv(log_path)
-    log["start_act"] = pd.to_datetime(log["start_act"])
-    log["end_act"] = pd.to_datetime(log["end_act"])
+def score_forecast(data_path, forecast_path, forecast_log_path, save = False):
+    input = pd.read_csv(data_path)
+    input["period"] = pd.to_datetime(input["period"])
 
-    act_max = actual["period"].max()
-    for index, row in log.iterrows():
-        if row["start_act"] < act_max and row["score"] == False:
-            
+    fc = pd.read_csv(forecast_path)
+    fc["period"] = pd.to_datetime(fc["period"])
+    fc_log = pd.read_csv(forecast_log_path)
+    fc_log["start_act"] = pd.to_datetime(fc_log["start_act"])
+    fc_log["end_act"] = pd.to_datetime(fc_log["end_act"])
+
+    for index, row in fc_log.iterrows():
+        if row["score"] == False:
+            subba = row["subba"]
             label = row["label"]
-            n_obs = row["n_obs"]
-            f = forecast[(forecast["label"] == label) & (forecast["period"] <= act_max)].merge(actual[["period", "value"]], on = "period", how = "left")
-            log.at[index, "mape"] = mean(abs(f["value"] - f["mean"]) / f["value"])
-            log.at[index, "rmse"] = (mean((f["value"] - f["mean"]) ** 2 )) ** 0.5
-            log.at[index, "coverage"] =sum((f["value"] <= f["upper"]) & (f["value"] >= f["lower"])) / len(f)
-            if len(f) == n_obs: 
-                log.at[index, "score"] = True
-    if save:
-        log.to_csv(log_path, index = False)
+            start = row["start_act"]
+            end = row["end_act"]
+            h = row["h"]
+            
+            d = input[(input["period"] >= start) & (input["period"] <= end) & (input["subba"] == subba)]
 
-    return log
+            if len(d) > 0:
+                d = d[["period", "subba", "value"]]
+                f = fc[(fc["label"] == label) & (fc["subba"] == subba)]
+                d = d.merge(f, left_on = "period", right_on = "period", how="left")
+
+                fc_log.at[index, "mape"] = mean(abs(d["value"] - d["mean"]) / d["value"])
+                fc_log.at[index, "rmse"] = (mean((d["value"] - d["mean"]) ** 2 )) ** 0.5
+                fc_log.at[index, "coverage"] =  sum((d["value"] <= d["upper"]) & (d["value"] >= d["lower"])) / len(d)
+
+                if len(d) == h:
+                    fc_log.at[index, "score"] = True
+
+
+    if save:
+        fc_log.to_csv(forecast_log_path, index = False)
+
+    return fc_log
 
 
 def get_last_fc_start(log_path):
