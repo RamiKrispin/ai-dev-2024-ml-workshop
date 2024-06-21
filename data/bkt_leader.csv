@@ -1,0 +1,5 @@
+forecast_label,model_label,model,mape,rmse,coverage,comments,subba
+2024-06-14,model1,LinearRegressionModel,0.0893344151219585,1365.539585572911,0.7250000000000001,"LM model with lags, training with 2 years of history",PGAE
+2024-06-14,model2,LinearRegressionModel,0.05187752561435044,817.2627346832787,0.9291666666666668,"LM model with lags, training with 3 years of history",SCE
+2024-06-14,model2,LinearRegressionModel,0.08314095961167955,188.65714984757642,0.9333333333333333,"LM model with lags, training with 3 years of history",SDGE
+2024-06-14,model1,LinearRegressionModel,0.10061477333505128,18.513912925378154,0.8875,"LM model with lags, training with 2 years of history",VEA
