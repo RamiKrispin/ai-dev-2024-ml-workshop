@@ -1,6 +1,0 @@
-artifact_location: file:///mlruns
-creation_time: 1718991194521
-experiment_id: '451625188672175860'
-last_update_time: 1718991194521
-lifecycle_stage: active
-name: Forecast Dev PGAE

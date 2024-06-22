@@ -14,7 +14,7 @@ import requests
 import json
 import datetime
 import dev_fc as dev_fc
-
+import plot_fc as pfc
 ```
 
 ## Load the Settings
@@ -154,3 +154,12 @@ for index, row in fc_leaderboard.iterrows():
 ```
 
 
+
+
+```{python}
+subba = "PGAE"
+f = new_fc[new_fc["subba"] == subba]
+a = input[input["subba"] == subba]
+pfc.plot_fc(actual = a,forecast = f, actual_length = 24 * 4)
+
+```

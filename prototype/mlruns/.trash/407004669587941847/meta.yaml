@@ -1,0 +1,10 @@
+artifact_location: file:///mlruns
+creation_time: 1718993293503
+experiment_id: '407004669587941847'
+last_update_time: 1718993542928
+lifecycle_stage: deleted
+name: Forecast Dev SDGE
+tags:
+  score: 'False'
+  type: forecast
+  version: 0.0.1
