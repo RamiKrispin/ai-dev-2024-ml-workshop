@@ -2,3 +2,4 @@
 *.dtmp
 *.bkp
 prototype/mlruns/*.*
+prototype/mlruns/
