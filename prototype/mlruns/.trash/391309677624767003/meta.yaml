@@ -1,0 +1,10 @@
+artifact_location: file:///mlruns
+creation_time: 1718989662733
+experiment_id: '391309677624767003'
+last_update_time: 1718990014007
+lifecycle_stage: deleted
+name: Forecast Dev VEA
+tags:
+  score: 'False'
+  type: forecast
+  version: 0.0.1

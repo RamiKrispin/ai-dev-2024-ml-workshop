@@ -13,9 +13,8 @@ import numpy as np
 import requests
 import json
 import datetime
-import eia_forecast as fc_old
 import dev_fc as dev_fc
-import eia_forecast as fc
+
 ```
 
 ## Load the Settings
@@ -154,17 +153,4 @@ for index, row in fc_leaderboard.iterrows():
  
 ```
 
-
-# Forecast Refresh
-
-```{python}
-fc_log = pd.read_csv(forecast_log_path)
-fc_log
-
-fc_start = get_last_fc_start(log_path = forecast_log_path, subba = subba)
-
-
-
-
-```
 

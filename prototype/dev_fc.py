@@ -1,10 +1,83 @@
 import mlflow
-import eia_forecast as fc
 import eia_mlflow
 import pandas as pd
 import numpy as np
 import datetime
+import json
 from darts import TimeSeries
+from darts.models import LinearRegressionModel, XGBModel
+from zoneinfo import ZoneInfo
+from statistics import mean
+
+
+
+def train_ml(input, 
+             lags, 
+             likelihood, 
+             quantiles, 
+             h, 
+             num_samples, 
+             model,
+             seed = 12345,
+             pi = 0.95):
+    
+    class forecast:
+        def __init__(output, model, forecast, log):
+            output.model = model
+            output.forecast = forecast
+            output.log = log
+    
+    start = input.forecast_start
+    ts = input.ts
+    lower = (1-pi) /2
+    upper = 1 - lower
+    if model == "LinearRegressionModel":
+        md = LinearRegressionModel(lags= lags,
+                                 likelihood= likelihood, 
+                                 random_state = seed,
+                                 quantiles = quantiles)
+    elif model == "XGBModel":
+                md = XGBModel(lags= lags,
+                                 likelihood= likelihood, 
+                                 random_state = seed,
+                                 quantiles = quantiles)
+    md.fit(ts)
+    md_preds = md.predict(series = ts, 
+                                n = h,
+                                num_samples = num_samples)
+    
+    pred = md_preds.pd_dataframe()
+    fc = pred.quantile(axis = 1, q = [lower, 0.5, upper]).transpose().reset_index()
+    fc = fc.rename(columns = {lower: "lower", 0.5: "mean", upper: "upper"})
+    
+    log = {
+        "index": None,
+        "model": model,
+        "time": datetime.datetime.now(tz=ZoneInfo("UTC")).strftime('%Y-%m-%d %H:%M:%S'),
+        "label": str(start.date()),
+        "start": start,
+        "start_act": fc["period"].min(),
+        "end_act": fc["period"].max(),
+        "h": h,
+        "n_obs": len(fc),
+        "start_flag": fc["period"].min() == start,
+        "n_obs_flag": h == len(fc),
+        "model": "LinearRegressionModel",
+        "pi":  0.95,
+        "score": False,
+        "mape": None,
+        "rmse": None,
+        "coverage": None
+    }
+
+    log["success"] = log["start_flag"] and log["n_obs_flag"]
+
+    output = forecast(model = md, forecast = fc, log = log)
+
+    return output
+
+
+
 
 
 def check_args(self, args):
@@ -170,7 +243,7 @@ def train_model(input, model_params, mlflow_settings):
     mlflow_settings.label = str(input.start.date())
     
     if model_params["model"] == "LinearRegressionModel":
-        md = fc.train_ml(input = input, 
+        md = train_ml(input = input, 
                          model = model_params["model"],
                          lags = model_params["lags"], 
                          likelihood = model_params["likelihood"],  
@@ -338,6 +411,129 @@ def get_last_fc_start(log_path, subba):
 
     
     return output
+
+
+def score_forecast(data_path, forecast_path, forecast_log_path, save = False):
+    input = pd.read_csv(data_path)
+    input["period"] = pd.to_datetime(input["period"])
+
+    fc = pd.read_csv(forecast_path)
+    fc["period"] = pd.to_datetime(fc["period"])
+    fc_log = pd.read_csv(forecast_log_path)
+    fc_log["start_act"] = pd.to_datetime(fc_log["start_act"])
+    fc_log["end_act"] = pd.to_datetime(fc_log["end_act"])
+
+    for index, row in fc_log.iterrows():
+        if row["score"] == False:
+            subba = row["subba"]
+            label = row["label"]
+            start = row["start_act"]
+            end = row["end_act"]
+            h = row["h"]
+            
+            d = input[(input["period"] >= start) & (input["period"] <= end) & (input["subba"] == subba)]
+
+            if len(d) > 0:
+                d = d[["period", "subba", "value"]]
+                f = fc[(fc["label"] == label) & (fc["subba"] == subba)]
+                d = d.merge(f, left_on = "period", right_on = "period", how="left")
+
+                fc_log.at[index, "mape"] = mean(abs(d["value"] - d["mean"]) / d["value"])
+                fc_log.at[index, "rmse"] = (mean((d["value"] - d["mean"]) ** 2 )) ** 0.5
+                fc_log.at[index, "coverage"] =  sum((d["value"] <= d["upper"]) & (d["value"] >= d["lower"])) / len(d)
+
+                if len(d) == h:
+                    fc_log.at[index, "score"] = True
+
+
+    if save:
+        fc_log.to_csv(forecast_log_path, index = False)
+
+    return fc_log
+
+
+
+def forecast_refresh(settings_path):
+    raw_json = open(settings_path)
+    meta_json = json.load(raw_json)
+
+    meta_path = meta_json["meta_path"]
+    fc_meta_path = meta_json["fc_meta_path"]
+    data_path = meta_json["data_path"]
+    leaderboard_path = meta_json["leaderboard_path"]
+    forecast_path = meta_json["forecast_path"]
+    forecast_log_path = meta_json["forecast_log_path"]
+    freq = meta_json["backtesting"]["freq"]
+    h = meta_json["backtesting"]["h"]
+    pi = meta_json["backtesting"]["pi"]
+    quantiles = meta_json["backtesting"]["quantiles"]
+    seed = meta_json["backtesting"]["seed"]
+    mlflow_path = meta_json["backtesting"]["mlflow_path"]
+    
+    fc_leaderboard = pd.read_csv(leaderboard_path)
+    input = pd.read_csv(data_path)
+    input["period"] = pd.to_datetime(input["period"])
+
+    for index, row in fc_leaderboard.iterrows():
+        subba = row["subba"]
+        print(subba)
+        fc_start = get_last_fc_start(log_path = forecast_log_path, subba = subba)
+        model_label = row["model_label"]
+        params = meta_json["backtesting"]["models"][model_label]
+        params["h"] = h
+        params["freq"] = freq
+        params["quantiles"] = quantiles
+        params["pi"] = pi
+        params["seed"] = seed
+        d = None
+        d = input[input["subba"] == subba]
+
+
+        end_series = d['period'].max().floor(freq = "d") - datetime.timedelta(hours = 1)
+
+        if end_series >= fc_start.end:
+
+            end = max(end_series,fc_start.end)
+
+            print("New observations are available, starting to refreshthe forecast")
+            d = d[d["period"] <= end]
+            if d["period"].isnull().sum() > 0:
+                m = d["period"].isnull().sum()
+                print("There are " + str(m) + " missing values in the series")
+                y = pd.DataFrame(d["period"].isnull())
+                n = y[y["period"] == True].index
+
+                for i in n:
+                    if i > 24:
+                        d.loc[i, "value"] = d.loc[i - 24, "value"]
+                    else:
+                        d.loc[i, "value"] = d.loc[i + 24, "value"]
+                    d.loc[i, "period"] = d.loc[i, "index"]
+            d1 = d.sort_values(by = ["period"])
+
+
+            mlflow_settings = mlflow_params(path = mlflow_path,
+                                        experiment_name = "Forecast Dev " + subba,
+                                        type = "forecast",
+                                        score = False,
+                                        append = False,
+                                        version = "0.0.1")
+            start = end - datetime.timedelta(hours = params["train"])
+            ts_train = set_input(input = d, start = start, end = end)
+            f = forecast_object()
+            f.add_input(input = ts_train) 
+            f.add_model_params(model_params =  params)    
+            f.add_mlflow_settings(mlflow_settings = mlflow_settings)
+            f.create_forecast()
+            f.model_meta["subba"] = subba
+            f.forecast["subba"] = subba
+            print(subba)
+            log = append_log(log_path= forecast_log_path, new_log = f.model_meta, save = True, init = False)
+            new_fc = append_forecast(fc_path =  forecast_path, fc_new = f, save = True, init = False)
+        else:
+            print("There are no new observations, skipping forecast refresh")
+
+
 
 
 
