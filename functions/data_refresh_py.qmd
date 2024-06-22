@@ -19,6 +19,8 @@ import os
 import datetime
 import plotly.express as px
 import great_tables as gt
+import dev_fc as dev_fc
+import plot_fc as pfc
 ```
 
 
@@ -40,7 +42,11 @@ offset = 2250
 eia_api_key = os.getenv('EIA_API_KEY')
 
 meta_path = meta_json["meta_path"]
+fc_meta_path = meta_json["fc_meta_path"]
 data_path = meta_json["data_path"]
+leaderboard_path = meta_json["leaderboard_path"]
+forecast_path = meta_json["forecast_path"]
+forecast_log_path = meta_json["forecast_log_path"]
 ```
 
 
@@ -124,20 +130,41 @@ We will use Plotly to visualize the series:
 ```{python}
 
 if data is not None:
-    d = data.sort_values(by = ["subba", "period"])
-    p = px.line(data, x="period", y="value", color="subba")
+    input = data.sort_values(by = ["subba", "period"])
+    p = px.line(input, x="period", y="value", color="subba")
     p.show()
 else: 
+    input = None
     print("No new data is available")
 ```
 
 
+## Forecast Refresh
+
+
+Check if new observations are available to refresh the forecast 
 
 ```{python}
-full_data = pd.read_csv(data_path)
-full_data.head()
+if input is not None:
+    new_fc = dev_fc.forecast_refresh(settings_path = "../settings/series.json", 
+                save = True, 
+                init = True)
+else:
+    print("No new data is available, skipping the forecast refresh process")
+```
 
-full_data["period"] = pd.to_datetime(full_data["period"])
-p = px.line(full_data, x="period", y="value", color="subba")
-p.show()
+
+
+
+## Score the Forecast
+
+```{python}
+if input is not None:
+    score = score_forecast(data_path = data_path,
+    forecast_log_path = forecast_log_path, 
+    forecast_path = forecast_path, 
+    save = False)
+else:
+    print("No new data is available, skipping the scoring process")
+
 ```

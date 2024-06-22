@@ -1,0 +1,199 @@
+---
+title: "Model Backtesting"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+
+```{python}
+import eia_backtesting
+import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
+import os
+import datetime
+import requests
+import json
+```
+
+
+Load data
+
+```{python}
+raw_json = open("../settings/series.json")
+meta_json = json.load(raw_json)
+
+meta_path = meta_json["meta_path"]
+data_path = meta_json["data_path"]
+leaderboard_path = meta_json["leaderboard_path"]
+
+input = pd.read_csv(data_path)
+
+input["period"] = pd.to_datetime(input["period"])
+
+end = input.groupby(['subba'])['period'].max().min().floor(freq = "d") - datetime.timedelta(hours = 1)
+
+print(end)
+
+
+input.head()
+```
+
+
+
+```{python}
+p = px.line(input, x="period", y="value", color="subba",
+ labels={
+                     "period": "Time",
+                     "value": "MegaWattHours",
+                     "subba": "Sub-Region"
+                 },
+title = "California Hourly Demand By Operating Provider")
+p.show()
+```
+
+
+
+
+```{python}
+
+freq = meta_json["backtesting"]["freq"]
+h = meta_json["backtesting"]["h"]
+overlap = meta_json["backtesting"]["overlap"]
+tags = meta_json["backtesting"]["tags"]
+experiment_name = meta_json["backtesting"]["experiment_name"]
+mlflow_path = meta_json["backtesting"]["mlflow_path"]
+p = meta_json["backtesting"]["p"]
+pi = meta_json["backtesting"]["pi"]
+quantiles = meta_json["backtesting"]["quantiles"]
+seed = meta_json["backtesting"]["seed"]
+
+
+params1 = meta_json["backtesting"]["models"]["model1"]
+params2 = meta_json["backtesting"]["models"]["model2"]
+params3 = meta_json["backtesting"]["models"]["model3"]
+params4 = meta_json["backtesting"]["models"]["model4"]
+params5 = meta_json["backtesting"]["models"]["model5"]
+params6 = meta_json["backtesting"]["models"]["model6"]
+params7 = meta_json["backtesting"]["models"]["model7"]
+
+params = [params1, params2, params3, params4, params5, params6, params7]
+
+for i in range(len(params)):
+    params[i]["h"] = h
+    params[i]["freq"] = freq
+    params[i]["quantiles"] = quantiles
+    params[i]["pi"] = pi
+    params[i]["seed"] = seed
+```
+
+
+```{python}
+#| output: false
+series = pd.DataFrame(meta_json["series"])
+
+backtesting_output = {}
+for index, row in series.iterrows():
+    print("Start backtesting for " + row['subba_id'])
+    df = None
+    df = input[input["subba"] == row['subba_id']]
+    df = df.sort_values(by = ["period"])
+    par = params
+    for i in range(len(par)):
+        par[i]["subba"] = row['subba_id']
+
+    backtesting_output[row['subba_id']] = eia_backtesting.backtesting(input = df, 
+            partitions=p, 
+            overlap = overlap, 
+            h = h, 
+            params = par,
+            experiment_name = experiment_name + "_" + row['subba_id'],
+            mlflow_path = mlflow_path,
+            overwrite = True,
+            tags = tags)
+
+
+```
+
+```{python}
+
+leaderboard = None
+best = None
+
+for index, row in series.iterrows():
+    subba = row["subba_id"]
+    print(subba)
+    print(backtesting_output[subba].leaderboard)
+    leader_subba = backtesting_output[subba].leaderboard
+    leader_subba["subba"] = subba
+
+    if leaderboard is None:
+        leaderboard = backtesting_output[subba].leaderboard
+        best =  leader_subba[leader_subba["mape"] == leader_subba["mape"].min()]
+    else:
+        leaderboard_temp = backtesting_output[subba].leaderboard
+        leaderboard = leaderboard._append(leaderboard_temp)
+        best = best._append(leader_subba[leader_subba["mape"] == leader_subba["mape"].min()])
+
+    
+#best = best[["subba", "model","model_label" ,"mape", "rmse"]] 
+best.to_csv(leaderboard_path, index = False)   
+
+best
+```
+
+
+
+```{python}
+
+print(leaderboard)
+```
+
+
+
+## PGAE
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["PGAE"].leaderboard, type = "box")
+    
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = backtesting_output["PGAE"].score, type = "line")
+```
+
+## SCE
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["SCE"].leaderboard, type = "box")
+    
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = backtesting_output["SCE"].score, type = "line")
+```
+
+## SDGE
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["SDGE"].leaderboard, type = "box")
+    
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = backtesting_output["SDGE"].score, type = "line")
+```
+
+## VEA
+```{python}
+ eia_backtesting.plot_score(score = backtesting_output["VEA"].leaderboard, type = "box")
+    
+```
+
+
+```{python}
+eia_backtesting.plot_score(score = backtesting_output["VEA"].score, type = "line")
+```
+

@@ -1,0 +1,5 @@
+index,model,time,label,start,start_act,end_act,h,n_obs,start_flag,n_obs_flag,pi,score,mape,rmse,coverage,success,experiment_id,run_id,subba
+1,LinearRegressionModel,2024-06-22 19:19:50,2024-06-14,2024-06-14,2024-06-14,2024-06-14 23:00:00,24,24,True,True,0.95,False,,,,True,504970859451206506,01120a307aa94b5086f5701513f4cf45,PGAE
+2,LinearRegressionModel,2024-06-22 19:20:50,2024-06-14,2024-06-14 00:00:00,2024-06-14,2024-06-14 23:00:00,24,24,True,True,0.95,False,,,,True,756903848376544124,13cec3f675f847c18b14348a5a7d755d,SCE
+3,LinearRegressionModel,2024-06-22 19:21:27,2024-06-14,2024-06-14 00:00:00,2024-06-14,2024-06-14 23:00:00,24,24,True,True,0.95,False,,,,True,355493594048925323,a14906f0711548e7a0fc28c0f98226ae,SDGE
+4,LinearRegressionModel,2024-06-22 19:21:54,2024-06-14,2024-06-14 00:00:00,2024-06-14,2024-06-14 23:00:00,24,24,True,True,0.95,False,,,,True,994385196336988398,0802533abb0f49c3b3b30cf1f33f1f5a,VEA

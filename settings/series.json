@@ -28,6 +28,10 @@
     "api_path": "electricity/rto/region-sub-ba-data/",
     "data_path": "../data/data.csv",
     "meta_path": "../data/log.csv",
+    "fc_meta_path": "../data/fc_log.csv",
+    "leaderboard_path": "../data/bkt_leader.csv",
+    "forecast_path": "../data/forecast.csv",
+    "forecast_log_path": "../data/forecast_log.csv",
     "start": {
         "year": 2018,
         "month": 7,
@@ -39,5 +43,176 @@
         "month": 6,
         "day": 15,
         "hour": 1
+    },
+    "backtesting": {
+        "seed": 12345,
+        "freq": 24,
+        "h": 24,
+        "overlap": 0,
+        "tags": {
+            "type": "backtesting",
+            "version": "0.0.1"
+        },
+        "mlflow_path": "file:///mlruns",
+        "p": 20,
+        "pi": 0.95,
+        "quantiles": [
+            0.025,
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            0.9,
+            0.975
+        ],
+        "experiment_name": "backtesting",
+        "models": {
+            "model1": {
+                "model": "LinearRegressionModel",
+                "model_label": "model1",
+                "comments": "LM model with lags, training with 2 years of history",
+                "num_samples": 100,
+                "lags": [
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model2": {
+                "model": "LinearRegressionModel",
+                "model_label": "model2",
+                "comments": "LM model with lags, training with 3 years of history",
+                "num_samples": 100,
+                "lags": [
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 26280
+            },
+            "model3": {
+                "model": "LinearRegressionModel",
+                "model_label": "model3",
+                "comments": "Model 2 with lag 1",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -24,
+                    -25,
+                    -26,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 26280
+            },
+            "model4": {
+                "model": "LinearRegressionModel",
+                "model_label": "model4",
+                "comments": "Model 1 with additional lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -4,
+                    -23,
+                    -24,
+                    -25,
+                    -48
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model5": {
+                "model": "LinearRegressionModel",
+                "model_label": "model5",
+                "comments": "Model 1 with additional lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168,
+                    -336,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model6": {
+                "model": "XGBModel",
+                "model_label": "model6",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168,
+                    -336,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model7": {
+                "model": "XGBModel",
+                "model_label": "model7",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model8": {
+                "model": "XGBModel",
+                "model_label": "model8",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model9": {
+                "model": "XGBModel",
+                "model_label": "model9",
+                "comments": "Model 1 with additional lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -4,
+                    -23,
+                    -24,
+                    -25,
+                    -48
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            }
+        }
     }
 }

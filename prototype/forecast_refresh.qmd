@@ -1,0 +1,65 @@
+---
+title: "Refresh Forecast"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import requests
+import json
+import datetime
+import dev_fc as dev_fc
+```
+
+## Load the Settings
+
+```{python}
+raw_json = open("../settings/series.json")
+meta_json = json.load(raw_json)
+
+meta_path = meta_json["meta_path"]
+fc_meta_path = meta_json["fc_meta_path"]
+data_path = meta_json["data_path"]
+leaderboard_path = meta_json["leaderboard_path"]
+forecast_path = meta_json["forecast_path"]
+forecast_log_path = meta_json["forecast_log_path"]
+```
+
+
+## Load the Data
+
+```{python}
+input = pd.read_csv(data_path)
+
+input["period"] = pd.to_datetime(input["period"])
+
+```
+
+
+
+## Refresh Forecast
+
+```{python}
+dev_fc.forecast_refresh(settings_path = "../settings/series.json")
+
+```
+
+## Score the forecast
+
+```{python}
+if input is not None:
+    score = dev_fc.score_forecast(data_path = data_path,
+    forecast_log_path = forecast_log_path, 
+    forecast_path = forecast_path, 
+    save = True)
+else:
+    print("No new data is available, skipping the scoring process")
+
+```
+
+
