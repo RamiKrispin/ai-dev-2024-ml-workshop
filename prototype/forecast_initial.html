@@ -70,6 +70,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.32.0.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
 
 
 </head>
@@ -99,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="017c43e6" class="cell" data-execution_count="1">
+<div id="d7abb3ea" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -107,7 +123,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dev_fc <span class="im">as</span> dev_fc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dev_fc <span class="im">as</span> dev_fc</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plot_fc <span class="im">as</span> pfc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Support for Torch based models not available. To enable them, install "darts", "u8darts[torch]" or "u8darts[all]" (with pip); or "u8darts-torch" or "u8darts-all" (with conda).
@@ -119,7 +136,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </div>
 <section id="load-the-settings" class="level2">
 <h2 class="anchored" data-anchor-id="load-the-settings">Load the Settings</h2>
-<div id="e32dcacc" class="cell" data-execution_count="2">
+<div id="369755b1" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>raw_json <span class="op">=</span> <span class="bu">open</span>(<span class="st">"../settings/series.json"</span>)</span>
@@ -136,7 +153,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </section>
 <section id="load-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-the-data">Load the Data</h2>
-<div id="c22ca2b1" class="cell" data-execution_count="3">
+<div id="0df56419" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> pd.read_csv(data_path)</span>
@@ -151,7 +168,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </section>
 <section id="load-metadata" class="level2">
 <h2 class="anchored" data-anchor-id="load-metadata">Load Metadata</h2>
-<div id="c6fc7742" class="cell" data-execution_count="4">
+<div id="30e23d79" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> meta_json[<span class="st">"backtesting"</span>][<span class="st">"freq"</span>]</span>
@@ -162,7 +179,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mlflow_path <span class="op">=</span> meta_json[<span class="st">"backtesting"</span>][<span class="st">"mlflow_path"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cd712954" class="cell" data-execution_count="5">
+<div id="fa7c0ccb" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fc_leaderboard <span class="op">=</span> pd.read_csv(leaderboard_path)</span>
@@ -190,23 +207,23 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>2024-06-14</td>
-<td>model1</td>
+<td>model3</td>
 <td>LinearRegressionModel</td>
-<td>0.089334</td>
-<td>1365.539586</td>
-<td>0.725000</td>
-<td>LM model with lags, training with 2 years of h...</td>
+<td>0.057233</td>
+<td>816.260224</td>
+<td>0.829167</td>
+<td>Model 2 with lag 1</td>
 <td>PGAE</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>2024-06-14</td>
-<td>model2</td>
+<td>model4</td>
 <td>LinearRegressionModel</td>
-<td>0.051878</td>
-<td>817.262735</td>
-<td>0.929167</td>
-<td>LM model with lags, training with 3 years of h...</td>
+<td>0.044686</td>
+<td>653.597728</td>
+<td>0.904167</td>
+<td>Model 1 with additional lags</td>
 <td>SCE</td>
 </tr>
 <tr class="odd">
@@ -214,21 +231,21 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td>2024-06-14</td>
 <td>model2</td>
 <td>LinearRegressionModel</td>
-<td>0.083141</td>
-<td>188.657150</td>
-<td>0.933333</td>
+<td>0.082176</td>
+<td>173.083759</td>
+<td>0.956250</td>
 <td>LM model with lags, training with 3 years of h...</td>
 <td>SDGE</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>2024-06-14</td>
-<td>model1</td>
+<td>model2</td>
 <td>LinearRegressionModel</td>
-<td>0.100615</td>
-<td>18.513913</td>
-<td>0.887500</td>
-<td>LM model with lags, training with 2 years of h...</td>
+<td>0.105227</td>
+<td>18.476149</td>
+<td>0.841667</td>
+<td>LM model with lags, training with 3 years of h...</td>
 <td>VEA</td>
 </tr>
 </tbody>
@@ -237,7 +254,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </div>
 </div>
 </div>
-<div id="79ab4dd3" class="cell" data-execution_count="6">
+<div id="44b277f0" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subba = "PGAE"</span></span>
@@ -266,7 +283,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 version = "0.0.1")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="01529aa5" class="cell" data-execution_count="7">
+<div id="37c02fd2" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>forecast_df <span class="op">=</span> <span class="va">None</span></span>
@@ -326,28 +343,28 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>PGAE
-There are 50 missing values in the series</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Experiment Forecast Dev PGAE exists
-Deleting previous experiment: 119249886348457927
-Set a new experiment Forecast Dev PGAE
-Pulling the metadata
-PGAE
-Save the forecast into CSV file
-Save the updated forecast as CSV file
-SCE
 There are 58 missing values in the series</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev PGAE exists
+Deleting previous experiment: 121934667010290782
+Set a new experiment Forecast Dev PGAE
+Pulling the metadata
+PGAE
+Save the forecast into CSV file
+Save the updated forecast as CSV file
+SCE
+There are 50 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Experiment Forecast Dev SCE exists
-Deleting previous experiment: 480971731047309229
+Deleting previous experiment: 536752551172401859
 Set a new experiment Forecast Dev SCE
 Pulling the metadata
 SCE
@@ -363,7 +380,7 @@ There are 58 missing values in the series</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Experiment Forecast Dev SDGE exists
-Deleting previous experiment: 701543311094046444
+Deleting previous experiment: 844000694751676802
 Set a new experiment Forecast Dev SDGE
 Pulling the metadata
 SDGE
@@ -372,14 +389,14 @@ Save the forecast into CSV file
 Append the new forecast
 Save the updated forecast as CSV file
 VEA
-There are 50 missing values in the series</code></pre>
+There are 58 missing values in the series</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Experiment Forecast Dev VEA exists
-Deleting previous experiment: 918766704278150435
+Deleting previous experiment: 415353294325110106
 Set a new experiment Forecast Dev VEA
 Pulling the metadata
 VEA
@@ -387,6 +404,42 @@ Update the forecast metadata
 Save the forecast into CSV file
 Append the new forecast
 Save the updated forecast as CSV file</code></pre>
+</div>
+</div>
+<div id="d9dbbe69" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>subba <span class="op">=</span> <span class="st">"PGAE"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> new_fc[new_fc[<span class="st">"subba"</span>] <span class="op">==</span> subba]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">input</span>[<span class="bu">input</span>[<span class="st">"subba"</span>] <span class="op">==</span> subba]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>pfc.plot_fc(actual <span class="op">=</span> a,forecast <span class="op">=</span> f, actual_length <span class="op">=</span> <span class="dv">24</span> <span class="op">*</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>                            <div id="a3f30fce-b639-427f-b1ee-763118219aa0" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a3f30fce-b639-427f-b1ee-763118219aa0")) {                    Plotly.newPlot(                        "a3f30fce-b639-427f-b1ee-763118219aa0",                        [{"line":{"color":"royalblue"},"mode":"lines","name":"Actual","x":["2024-06-11T02:00:00","2024-06-11T03:00:00","2024-06-11T04:00:00","2024-06-11T05:00:00","2024-06-11T06:00:00","2024-06-11T07:00:00","2024-06-11T08:00:00","2024-06-11T09:00:00","2024-06-11T10:00:00","2024-06-11T11:00:00","2024-06-11T12:00:00","2024-06-11T13:00:00","2024-06-11T14:00:00","2024-06-11T15:00:00","2024-06-11T16:00:00","2024-06-11T17:00:00","2024-06-11T18:00:00","2024-06-11T19:00:00","2024-06-11T20:00:00","2024-06-11T21:00:00","2024-06-11T22:00:00","2024-06-11T23:00:00","2024-06-12T00:00:00","2024-06-12T01:00:00","2024-06-12T02:00:00","2024-06-12T03:00:00","2024-06-12T04:00:00","2024-06-12T05:00:00","2024-06-12T06:00:00","2024-06-12T07:00:00","2024-06-12T08:00:00","2024-06-12T09:00:00","2024-06-12T10:00:00","2024-06-12T11:00:00","2024-06-12T12:00:00","2024-06-12T13:00:00","2024-06-12T14:00:00","2024-06-12T15:00:00","2024-06-12T16:00:00","2024-06-12T17:00:00","2024-06-12T18:00:00","2024-06-12T19:00:00","2024-06-12T20:00:00","2024-06-12T21:00:00","2024-06-12T22:00:00","2024-06-12T23:00:00","2024-06-13T00:00:00","2024-06-13T01:00:00","2024-06-13T02:00:00","2024-06-13T03:00:00","2024-06-13T04:00:00","2024-06-13T05:00:00","2024-06-13T06:00:00","2024-06-13T07:00:00","2024-06-13T08:00:00","2024-06-13T09:00:00","2024-06-13T10:00:00","2024-06-13T11:00:00","2024-06-13T12:00:00","2024-06-13T13:00:00","2024-06-13T14:00:00","2024-06-13T15:00:00","2024-06-13T16:00:00","2024-06-13T17:00:00","2024-06-13T18:00:00","2024-06-13T19:00:00","2024-06-13T20:00:00","2024-06-13T21:00:00","2024-06-13T22:00:00","2024-06-13T23:00:00","2024-06-14T00:00:00","2024-06-14T01:00:00","2024-06-14T02:00:00","2024-06-14T03:00:00","2024-06-14T04:00:00","2024-06-14T05:00:00","2024-06-14T06:00:00","2024-06-14T07:00:00","2024-06-14T08:00:00","2024-06-14T09:00:00","2024-06-14T10:00:00","2024-06-14T11:00:00","2024-06-14T12:00:00","2024-06-14T13:00:00","2024-06-14T14:00:00","2024-06-14T15:00:00","2024-06-14T16:00:00","2024-06-14T17:00:00","2024-06-14T18:00:00","2024-06-14T19:00:00","2024-06-14T20:00:00","2024-06-14T21:00:00","2024-06-14T22:00:00","2024-06-14T23:00:00","2024-06-15T00:00:00","2024-06-15T01:00:00"],"y":[14244.0,15279.0,15548.0,15286.0,14849.0,13763.0,12612.0,11970.0,11384.0,10919.0,10630.0,10706.0,10991.0,11453.0,11735.0,11875.0,12162.0,11914.0,12510.0,12743.0,13502.0,14383.0,15308.0,16146.0,17177.0,17984.0,18110.0,17624.0,16858.0,15467.0,14128.0,13214.0,12502.0,11893.0,11494.0,11368.0,11572.0,12159.0,12665.0,13039.0,13217.0,12887.0,13089.0,13121.0,13655.0,13864.0,14093.0,14763.0,15436.0,15951.0,16045.0,15614.0,15037.0,13989.0,12985.0,12186.0,11460.0,10938.0,10692.0,10654.0,11003.0,11493.0,11731.0,12217.0,12012.0,11520.0,11142.0,10808.0,10786.0,11039.0,11445.0,12240.0,13181.0,13993.0,14410.0,14268.0,14045.0,13267.0,12253.0,11769.0,11132.0,10680.0,10593.0,10477.0,10679.0,11217.0,11884.0,11809.0,11152.0,10879.0,10495.0,10229.0,10685.0,11082.0,11672.0,12255.0],"type":"scatter"},{"line":{"color":"black","dash":"dash"},"mode":"lines","name":"Forecast","x":["2024-06-14T00:00:00","2024-06-14T01:00:00","2024-06-14T02:00:00","2024-06-14T03:00:00","2024-06-14T04:00:00","2024-06-14T05:00:00","2024-06-14T06:00:00","2024-06-14T07:00:00","2024-06-14T08:00:00","2024-06-14T09:00:00","2024-06-14T10:00:00","2024-06-14T11:00:00","2024-06-14T12:00:00","2024-06-14T13:00:00","2024-06-14T14:00:00","2024-06-14T15:00:00","2024-06-14T16:00:00","2024-06-14T17:00:00","2024-06-14T18:00:00","2024-06-14T19:00:00","2024-06-14T20:00:00","2024-06-14T21:00:00","2024-06-14T22:00:00","2024-06-14T23:00:00"],"y":[11345.469554706837,12062.471238569991,12716.344820971875,13324.846856899156,13561.167481260496,13340.428594110826,12932.620504929564,12161.096565151984,11333.016960480672,10660.216059359296,10033.77863673486,9692.405836183312,9481.07238588632,9440.650371853288,9849.68230511472,10338.130438046654,10713.3219851366,11257.902211580986,11190.3808576288,10905.394892158894,10594.50353710149,10335.438614543436,10285.145725653896,10550.243639893672],"type":"scatter"},{"line":{"width":0},"marker":{"color":"#444"},"mode":"lines","name":"Prediction Intervals","showlegend":true,"x":["2024-06-14T00:00:00","2024-06-14T01:00:00","2024-06-14T02:00:00","2024-06-14T03:00:00","2024-06-14T04:00:00","2024-06-14T05:00:00","2024-06-14T06:00:00","2024-06-14T07:00:00","2024-06-14T08:00:00","2024-06-14T09:00:00","2024-06-14T10:00:00","2024-06-14T11:00:00","2024-06-14T12:00:00","2024-06-14T13:00:00","2024-06-14T14:00:00","2024-06-14T15:00:00","2024-06-14T16:00:00","2024-06-14T17:00:00","2024-06-14T18:00:00","2024-06-14T19:00:00","2024-06-14T20:00:00","2024-06-14T21:00:00","2024-06-14T22:00:00","2024-06-14T23:00:00"],"y":[11725.972981039777,12466.91806893049,13378.480831522553,14216.31093099192,14438.589564415764,14231.412289270063,13772.604383626567,13159.994964540325,12343.244445613322,11723.821813750365,11181.915832866996,10602.53968523265,10505.917343106988,10520.567953396763,10863.954267403287,11402.116455987776,11758.4984226926,12119.398881150695,12137.863114383905,11953.781415690117,11559.085776878585,11369.57458457743,11452.41336617226,11892.339815307256],"type":"scatter"},{"fill":"tonexty","fillcolor":"rgba(68, 68, 68, 0.3)","line":{"width":0},"marker":{"color":"#444"},"mode":"lines","name":"Prediction Intervals","showlegend":false,"x":["2024-06-14T00:00:00","2024-06-14T01:00:00","2024-06-14T02:00:00","2024-06-14T03:00:00","2024-06-14T04:00:00","2024-06-14T05:00:00","2024-06-14T06:00:00","2024-06-14T07:00:00","2024-06-14T08:00:00","2024-06-14T09:00:00","2024-06-14T10:00:00","2024-06-14T11:00:00","2024-06-14T12:00:00","2024-06-14T13:00:00","2024-06-14T14:00:00","2024-06-14T15:00:00","2024-06-14T16:00:00","2024-06-14T17:00:00","2024-06-14T18:00:00","2024-06-14T19:00:00","2024-06-14T20:00:00","2024-06-14T21:00:00","2024-06-14T22:00:00","2024-06-14T23:00:00"],"y":[11016.183551697928,11472.379834305955,12093.98250727887,12568.05037089915,12712.485290079045,12472.8437527181,12122.387459131867,11349.099084644296,10533.59550408318,9937.50729805876,9351.6174448448,8902.334457977866,8750.923426303967,8556.905194716264,8850.313224645884,9497.454113075171,9774.895487869142,10209.692035804956,10186.293808379363,9940.580122543048,9553.525583553232,9405.896800738774,9432.619135069785,9510.267259373337],"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a3f30fce-b639-427f-b1ee-763118219aa0');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
 </div>
 </div>
 </section>

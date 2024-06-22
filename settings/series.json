@@ -54,7 +54,7 @@
             "version": "0.0.1"
         },
         "mlflow_path": "file:///mlruns",
-        "p": 10,
+        "p": 20,
         "pi": 0.95,
         "quantiles": [
             0.025,
@@ -101,6 +101,8 @@
                 "lags": [
                     -1,
                     -24,
+                    -25,
+                    -26,
                     -168,
                     -8760
                 ],
@@ -117,12 +119,10 @@
                     -2,
                     -3,
                     -4,
-                    -5,
-                    -6,
+                    -23,
                     -24,
-                    -48,
-                    -168,
-                    -8760
+                    -25,
+                    -48
                 ],
                 "likelihood": "quantile",
                 "train": 17520
@@ -175,6 +175,40 @@
                     -24,
                     -48,
                     -168
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model8": {
+                "model": "XGBModel",
+                "model_label": "model8",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model9": {
+                "model": "XGBModel",
+                "model_label": "model9",
+                "comments": "Model 1 with additional lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -4,
+                    -23,
+                    -24,
+                    -25,
+                    -48
                 ],
                 "likelihood": "quantile",
                 "train": 17520
