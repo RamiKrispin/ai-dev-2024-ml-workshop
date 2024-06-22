@@ -239,9 +239,13 @@ We will use the following `devcontainer.json` file to set the development enviro
 If you want to learn more about setting up a dockerized development environment with the Dev Containers extension, please check the [Python](https://github.com/RamiKrispin/vscode-python) and [R](https://github.com/RamiKrispin/vscode-python) tutorials.
 
 
-## Data Pipeline
+## Pipeline Design
 
-Once we have a clear scope, we can move to the design process step. I typically start with drafting the process using paper and pencil (or the electronic version using iPad and Apple Pencil 😎). This helps me to understand better what functions I need to build:
+Once we have a clear scope, we can start designing the pipeline. The pipeline has the following two main components:
+- Data refresh
+- Forecasting model
+
+I typically start with drafting the process using paper and pencil (or the electronic version using iPad and Apple Pencil 😎). This helps me to understand better what functions I need to build:
 
 <figure>
  <img src="images/pipeline-draft.jpg" width="100%" align="center"/></a>
@@ -251,15 +255,182 @@ Once we have a clear scope, we can move to the design process step. I typically 
 <br>
 <br />
 
-We can use the draft to derive the pipeline's components and required functions. For automating the data, we will build the following subprocess:
-- **Backfill function -** to initiate or reset the pipeline. This function should run locally.
-- **Refresh function -** manage the refresh process of the data once deployed on GitHub Actions
+Drawing the pipeline components and sub-components helps us plan the required functions that we need to build.
 
-In addition, we will use a `JSON` file to define the pipeline settings. The settings file should include all the pipeline parameters we want to avoid hard coding. This will enable us to make changes in the pipeline seamlessly.
+
+Drawing the pipeline components and sub-components helps us plan the required functions that we need to build. Once the pipeline is ready, I usually create a  design blueprint to document the process:
+
+<figure>
+ <img src="images/pipeline-diagram.png" width="100%" align="center"/></a>
+<figcaption> The pipeline final design</figcaption>
+</figure>
+
+<br>
+<br />
+
+
+The pipeline will have the following two components:
+- Data refresh function to keep the data up-to-date
+- Forecast refresh to keep the forecast up-to-date
+
+In addition, we will use the following two functions locally to prepare the data and models:
+- Backfill function to initiate (or reset) the data pipeline
+- Backtesting function to train, test, and evaluate time series models
+
+We will set the pipeline to render and deploy a dashboard on GitHub pages whenever we refresh the data or the forecast. 
+
+We will use a [JSON file](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop/blob/main/settings/series.json) to define the pipeline settings. This will enable us to seamlessly modify or update the pipeline without changing the functions. For example, we will define the required series from the EIA API under the series section:
+
+```JSON
+"series": [
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "PGAE",
+            "subba_name": "Pacific Gas and Electric"
+        },
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "SCE",
+            "subba_name": "Southern California Edison"
+        },
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "SDGE",
+            "subba_name": "San Diego Gas and Electric"
+        },
+        {
+            "parent_id": "CISO",
+            "parent_name": "California Independent System Operator",
+            "subba_id": "VEA",
+            "subba_name": "Valley Electric Association"
+        }
+    ]
+```
 
 Last but not least, we will create two `CSV` files to store the data and the metadata. 
 
-## Forecasting Models
+### Data
+
+To pull the data from the EIA API, we will use Python libraries such as `requests`, `datetime`, and `pandas` to send GET requests to the API and process the data.
+
+All the supporting functions to call the API and process the data are under the [eia_api.py](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop/blob/main/functions/eia_api.py) and [eia_data.py](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop/blob/main/functions/eia_data.py) files.
+
+### Forecasting Models
+
+The second component of the pipeline is setting up the forecasting models, this includes:
+- Create a backtesting framework to test and evaluate models performance
+- Set an experiment with MLflow. This includes the following steps:
+    - Define models
+    - Define backtesting settings
+    - Run the models and Log their performance
+    - Log for each series the best model
+- For the demonstration, we will use the following two models from the [Darts](https://unit8co.github.io/darts/) library:
+    - [Linear Regresion](https://unit8co.github.io/darts/generated_api/darts.models.forecasting.linear_regression_model.html#darts.models.forecasting.linear_regression_model.LinearRegressionModel)
+    - [XGBoost](https://unit8co.github.io/darts/generated_api/darts.models.forecasting.xgboost.html)
+
+
+We will use different flavors of those models, create a "horse race" between them, and select the one that performs best.
+
+**Note:** We will run the backtesting process locally to avoid unnecessary compute time.
+
+We will run an experiment with MLflow using different flavors of those models and evaluate which one performs best for each series. We will use the settings.json file to store the model's settings and backtesting parameters:
+
+``` JSON
+
+"models": {
+            "model1": {
+                "model": "LinearRegressionModel",
+                "model_label": "model1",
+                "comments": "LM model with lags, training with 2 years of history",
+                "num_samples": 100,
+                "lags": [
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model2": {
+                "model": "LinearRegressionModel",
+                "model_label": "model2",
+                "comments": "LM model with lags, training with 3 years of history",
+                "num_samples": 100,
+                "lags": [
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 26280
+            },
+            "model3": {
+                "model": "LinearRegressionModel",
+                "model_label": "model3",
+                "comments": "Model 2 with lag 1",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -24,
+                    -168,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 26280
+            },
+           .
+           .
+           .
+            "model6": {
+                "model": "XGBModel",
+                "model_label": "model6",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168,
+                    -336,
+                    -8760
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            },
+            "model7": {
+                "model": "XGBModel",
+                "model_label": "model7",
+                "comments": "XGBoost with lags",
+                "num_samples": 100,
+                "lags": [
+                    -1,
+                    -2,
+                    -3,
+                    -24,
+                    -48,
+                    -168
+                ],
+                "likelihood": "quantile",
+                "train": 17520
+            }
+```
+
+
+
+We will use MLflow to track the backtesting results and compare between the models:
+
+<figure>
+ <img src="images/mlflow.png" width="100%" align="center"/></a>
+<figcaption> The pipeline final design</figcaption>
+</figure>
+
+By default, the backtesting process logged the best model for each series by the MAPE error matric. We will use this log for the model selection during the deployment.
+
 ## Metadata
 ## Dashboard
 ## Deployment
