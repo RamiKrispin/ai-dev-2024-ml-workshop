@@ -453,7 +453,7 @@ def score_forecast(data_path, forecast_path, forecast_log_path, save = False):
 
 
 
-def forecast_refresh(settings_path):
+def forecast_refresh(settings_path, save, init):
     raw_json = open(settings_path)
     meta_json = json.load(raw_json)
 
@@ -519,7 +519,7 @@ def forecast_refresh(settings_path):
                                         append = False,
                                         version = "0.0.1")
             start = end - datetime.timedelta(hours = params["train"])
-            ts_train = set_input(input = d, start = start, end = end)
+            ts_train = set_input(input = d1, start = start, end = end)
             f = forecast_object()
             f.add_input(input = ts_train) 
             f.add_model_params(model_params =  params)    
@@ -528,15 +528,8 @@ def forecast_refresh(settings_path):
             f.model_meta["subba"] = subba
             f.forecast["subba"] = subba
             print(subba)
-            log = append_log(log_path= forecast_log_path, new_log = f.model_meta, save = True, init = False)
-            new_fc = append_forecast(fc_path =  forecast_path, fc_new = f, save = True, init = False)
+            log = append_log(log_path= forecast_log_path, new_log = f.model_meta, save = save, init = init)
+            new_fc = append_forecast(fc_path =  forecast_path, fc_new = f, save = save, init = init)
+            return new_fc
         else:
             print("There are no new observations, skipping forecast refresh")
-
-
-
-
-
-
-
-
