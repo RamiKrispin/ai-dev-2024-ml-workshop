@@ -1,0 +1,6 @@
+artifact_location: file:///mlruns
+creation_time: 1719030997204
+experiment_id: '997564570796270309'
+last_update_time: 1719030997204
+lifecycle_stage: active
+name: backtesting_SCE

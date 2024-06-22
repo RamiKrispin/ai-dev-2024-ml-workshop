@@ -1,0 +1,15 @@
+artifact_uri: file:///mlruns/facacf468ff74bc9bc6055540fe2e495/artifacts
+end_time: 1719030929540
+entry_point_name: ''
+experiment_id: '450090625447327264'
+lifecycle_stage: active
+run_id: facacf468ff74bc9bc6055540fe2e495
+run_name: '2024-06-13'
+run_uuid: facacf468ff74bc9bc6055540fe2e495
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1719030929322
+status: 3
+tags: []
+user_id: root
