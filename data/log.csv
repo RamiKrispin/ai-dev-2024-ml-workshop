@@ -3,3 +3,11 @@ index,parent,subba,time,start,end,start_act,end_act,start_match,end_match,n_obs,
 1,CISO,SCE,2024-06-18 23:49:55.166774+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
 1,CISO,SDGE,2024-06-18 23:50:26.367370+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
 1,CISO,VEA,2024-06-18 23:51:01.997605+00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,2018-07-01 08:00:00,2024-06-15 01:00:00,True,True,52218,98,backfill,True,True,Missing values were found; 
+2,CISO,PGAE,2024-06-22 19:07:33.961975+00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,True,True,174,0,refresh,True,True,
+2,CISO,SCE,2024-06-22 19:07:35.402260+00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,True,True,174,0,refresh,True,True,
+2,CISO,SDGE,2024-06-22 19:07:36.867278+00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,True,True,174,0,refresh,True,True,
+2,CISO,VEA,2024-06-22 19:07:38.373791+00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,2024-06-15 02:00:00,2024-06-22 07:00:00,True,True,174,0,refresh,True,True,
+3,CISO,PGAE,2024-06-22 19:10:15.346466+00:00,2024-06-22 08:00:00,2024-06-22 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+3,CISO,SCE,2024-06-22 19:10:15.347544+00:00,2024-06-22 08:00:00,2024-06-22 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+3,CISO,SDGE,2024-06-22 19:10:15.349122+00:00,2024-06-22 08:00:00,2024-06-22 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+3,CISO,VEA,2024-06-22 19:10:15.350489+00:00,2024-06-22 08:00:00,2024-06-22 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
