@@ -148,7 +148,7 @@ Check if new observations are available to refresh the forecast
 if input is not None:
     new_fc = dev_fc.forecast_refresh(settings_path = "../settings/series.json", 
                 save = True, 
-                init = True)
+                init = False)
 else:
     print("No new data is available, skipping the forecast refresh process")
 ```
