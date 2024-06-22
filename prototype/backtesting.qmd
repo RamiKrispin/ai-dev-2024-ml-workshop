@@ -79,7 +79,7 @@ params5 = meta_json["backtesting"]["models"]["model5"]
 params6 = meta_json["backtesting"]["models"]["model6"]
 params7 = meta_json["backtesting"]["models"]["model7"]
 
-params = [params1, params2, params3, params4, params5, params7]
+params = [params1, params2, params3, params4, params5, params6, params7]
 
 for i in range(len(params)):
     params[i]["h"] = h
