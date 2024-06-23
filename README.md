@@ -428,10 +428,41 @@ We will use MLflow to track the backtesting results and compare between the mode
  <img src="images/mlflow.png" width="100%" align="center"/></a>
 <figcaption> The pipeline final design</figcaption>
 </figure>
-
+<br>
+<br />
 By default, the backtesting process logged the best model for each series by the MAPE error matric. We will use this log for the model selection during the deployment.
 
 ## Metadata
+Setting logs and metadata collection enables us to monitor the health of the pipeline and identify problems when they occur. Here are some of the metrics we will collect:
+
+- **Data refresh log:** Track the data refresh process and log critical metrics such as the time of the refresh, the time range of the data points, unit test results, etc.
+
+
+<figure>
+ <img src="images/data-log.png" width="100%" align="center"/></a>
+<figcaption> The data pipeline log</figcaption>
+</figure>
+<br>
+<br />
+
+- **Forecasting models:** Define the selected model per series based on the backtesting evaluation results
+
+<figure>
+ <img src="images/models-log.png" width="100%" align="center"/></a>
+<figcaption> The selected forecasting models</figcaption>
+</figure>
+
+<br>
+<br />
+
+- **Forecast refresh log:** Track the forecasting models refresh. This includes the time of refresh, forecast label and performance metrics
+<figure>
+ <img src="images/forecast-log.png" width="100%" align="center"/></a>
+<figcaption> The forecasting models log</figcaption>
+</figure>
+<br>
+<br />
+
 ## Dashboard
 ## Deployment
 ## Resources
