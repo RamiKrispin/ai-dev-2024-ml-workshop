@@ -1,0 +1,6 @@
+artifact_location: file:///mlruns
+creation_time: 1719153779799
+experiment_id: '924197851462697054'
+last_update_time: 1719153779799
+lifecycle_stage: active
+name: Forecast Dev SDGE

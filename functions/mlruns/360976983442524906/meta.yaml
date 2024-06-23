@@ -1,0 +1,6 @@
+artifact_location: file:///mlruns
+creation_time: 1719153743255
+experiment_id: '360976983442524906'
+last_update_time: 1719153743255
+lifecycle_stage: active
+name: Forecast Dev SCE

@@ -530,6 +530,6 @@ def forecast_refresh(settings_path, save, init):
             print(subba)
             log = append_log(log_path= forecast_log_path, new_log = f.model_meta, save = save, init = init)
             new_fc = append_forecast(fc_path =  forecast_path, fc_new = f, save = save, init = init)
-            return new_fc
         else:
             print("There are no new observations, skipping forecast refresh")
+

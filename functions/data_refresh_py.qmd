@@ -160,7 +160,7 @@ else:
 
 ```{python}
 if input is not None:
-    score = score_forecast(data_path = data_path,
+    score = dev_fc.score_forecast(data_path = data_path,
     forecast_log_path = forecast_log_path, 
     forecast_path = forecast_path, 
     save = False)
