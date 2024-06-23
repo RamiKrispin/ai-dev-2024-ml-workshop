@@ -163,7 +163,7 @@ if input is not None:
     score = dev_fc.score_forecast(data_path = data_path,
     forecast_log_path = forecast_log_path, 
     forecast_path = forecast_path, 
-    save = False)
+    save = True)
 else:
     print("No new data is available, skipping the scoring process")
 
