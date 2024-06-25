@@ -464,7 +464,97 @@ Setting logs and metadata collection enables us to monitor the health of the pip
 <br />
 
 ## Dashboard
+
+After we set the pipeline's data and forecast refresh functions, the last step is to set a dashboard that presents the outputs (e.g., data, forecast, metadata, etc.). For this task, we will use a [Quarto dashboard](https://quarto.org/docs/dashboards/) to set a simple dashboard that presents the most recent forecast and the pipeline metadata:
+
+<figure>
+ <img src="images/dashboard.png" width="100%" align="center"/></a>
+<figcaption> The pipeline Quarto dashboard</figcaption>
+</figure>
+<br>
+<br />
+
+The dashboard is static, so we can deploy it on [GitHub Pages](https://pages.github.com/) as a static website. We will set the pipeline to rerender the dashboard and deploy it on GitHub Pages every time new data is available. The dashboard code and website are available [here](https://github.com/RamiKrispin/ai-dev-2024-ml-workshop/blob/main/functions/index.qmd) and [here](https://ramikrispin.github.io/ai-dev-2024-ml-workshop/), respectively.
+
 ## Deployment
+
+The last step of this pipeline setting process is to deploy it to GitHub Actions. We will use the following workflow to deploy the pipeline:
+
+`data_refresh.yml`
+```yaml
+name: Data Refresh  
+
+on:
+  schedule:
+    - cron: "0 */1 * * *"
+jobs:
+  refresh-the-dashboard:
+    runs-on: ubuntu-22.04
+    container:
+      image: docker.io/rkrispin/ai-dev:amd64.0.0.2
+    steps:
+      - name: checkout_repo
+        uses: actions/checkout@v3
+        with:
+          ref: "main"
+      - name: Data Refresh
+        run: bash ./functions/data_refresh_py.sh
+        env:
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+```
+
+This simple workflow is set to run every hour. It uses the project image - `docker.io/rkrispin/ai-dev:amd64.0.0.2` as the environment. We use the built-in action - `actions/checkout@v3`to check out the repo, access it, commit chnages and write it back to the repo.
+
+
+Last but not least, we will execute the following bash script:
+
+`data_refresh_py.sh`
+``` bash
+#!/usr/bin/env bash
+source /opt/$VENV_NAME/bin/activate 
+
+rm -rf ./functions/data_refresh_py_files
+rm ./functions/data_refresh_py.html
+quarto render ./functions/data_refresh_py.qmd --to html
+
+rm -rf docs/data_refresh/
+mkdir docs/data_refresh
+cp ./functions/data_refresh_py.html ./docs/data_refresh/
+cp -R ./functions/data_refresh_py_files ./docs/data_refresh/
+
+echo "Finish"
+p=$(pwd)
+git config --global --add safe.directory $p
+
+
+# Render the Quarto dashboard
+if [[ "$(git status --porcelain)" != "" ]]; then
+    quarto render functions/index.qmd
+    cp functions/index.html docs/index.html
+    rm -rf docs/index_files
+    cp -R functions/index_files/ docs/
+    rm functions/index.html
+    rm -rf functions/index_files
+    git config --global user.name $USER_NAME
+    git config --global user.email $USER_EMAIL
+    git add data/*
+    git add docs/*
+    git commit -m "Auto update of the data"
+    git push origin main
+else
+echo "Nothing to commit..."
+fi
+```
+
+This bash script render the quarto doc with the data and forecast refresh functions. It than check if new data points are available, and if so, it will render the dashboard and commit the chnages (e.g., append changes to the CSV files).
+
+Note that you will need to set the following three secrets:
+- `EIA_API_KEY` - the EIA API key
+- `USER_EMAIL` - the email address that associated with the GitHub account
+- `USER_NAME` - the GitHub account user name
+
 ## Resources
 
 - Docker documentation: https://docs.docker.com/
