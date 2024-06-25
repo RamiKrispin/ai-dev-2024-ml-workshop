@@ -70,6 +70,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.32.0.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
 
 
 </head>
@@ -101,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="load-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="load-libraries">Load libraries</h2>
-<div id="a80077cf" class="cell" data-execution_count="1">
+<div id="f547fc3d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eia_api <span class="im">as</span> api</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eia_data </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -123,7 +139,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </div>
 </div>
 <p>API Settings:</p>
-<div id="3a1fe335" class="cell" data-execution_count="2">
+<div id="5573e627" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>raw_json <span class="op">=</span> <span class="bu">open</span>(<span class="st">"../settings/series.json"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>meta_json <span class="op">=</span> json.load(raw_json)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> pd.DataFrame(meta_json[<span class="st">"series"</span>])</span>
@@ -145,56 +161,56 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>forecast_path <span class="op">=</span> meta_json[<span class="st">"forecast_path"</span>]</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>forecast_log_path <span class="op">=</span> meta_json[<span class="st">"forecast_log_path"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e56593ad" class="cell" data-execution_count="3">
+<div id="78f0650e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meta_obj <span class="op">=</span> eia_data.get_metadata(api_key <span class="op">=</span> eia_api_key, api_path <span class="op">=</span> api_path, meta_path <span class="op">=</span> meta_path, series <span class="op">=</span> series)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_obj.request_meta,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<div id="axwrdrrgem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="avziucpfzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#axwrdrrgem table {
+#avziucpfzu table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#axwrdrrgem thead, tbody, tfoot, tr, td, th { border-style: none; }
+#avziucpfzu thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#axwrdrrgem p { margin: 0; padding: 0; }
- #axwrdrrgem .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #axwrdrrgem .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #axwrdrrgem .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #axwrdrrgem .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #axwrdrrgem .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #axwrdrrgem .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #axwrdrrgem .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #axwrdrrgem .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #axwrdrrgem .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #axwrdrrgem .gt_column_spanner_outer:first-child { padding-left: 0; }
- #axwrdrrgem .gt_column_spanner_outer:last-child { padding-right: 0; }
- #axwrdrrgem .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #axwrdrrgem .gt_spanner_row { border-bottom-style: hidden; }
- #axwrdrrgem .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #axwrdrrgem .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #axwrdrrgem .gt_from_md> :first-child { margin-top: 0; }
- #axwrdrrgem .gt_from_md> :last-child { margin-bottom: 0; }
- #axwrdrrgem .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #axwrdrrgem .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #axwrdrrgem .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #axwrdrrgem .gt_row_group_first td { border-top-width: 2px; }
- #axwrdrrgem .gt_row_group_first th { border-top-width: 2px; }
- #axwrdrrgem .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #axwrdrrgem .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #axwrdrrgem .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #axwrdrrgem .gt_left { text-align: left; }
- #axwrdrrgem .gt_center { text-align: center; }
- #axwrdrrgem .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #axwrdrrgem .gt_font_normal { font-weight: normal; }
- #axwrdrrgem .gt_font_bold { font-weight: bold; }
- #axwrdrrgem .gt_font_italic { font-style: italic; }
- #axwrdrrgem .gt_super { font-size: 65%; }
- #axwrdrrgem .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #axwrdrrgem .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#avziucpfzu p { margin: 0; padding: 0; }
+ #avziucpfzu .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #avziucpfzu .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #avziucpfzu .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #avziucpfzu .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #avziucpfzu .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #avziucpfzu .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #avziucpfzu .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #avziucpfzu .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #avziucpfzu .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #avziucpfzu .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #avziucpfzu .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #avziucpfzu .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #avziucpfzu .gt_spanner_row { border-bottom-style: hidden; }
+ #avziucpfzu .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #avziucpfzu .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #avziucpfzu .gt_from_md> :first-child { margin-top: 0; }
+ #avziucpfzu .gt_from_md> :last-child { margin-bottom: 0; }
+ #avziucpfzu .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #avziucpfzu .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #avziucpfzu .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #avziucpfzu .gt_row_group_first td { border-top-width: 2px; }
+ #avziucpfzu .gt_row_group_first th { border-top-width: 2px; }
+ #avziucpfzu .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #avziucpfzu .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #avziucpfzu .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #avziucpfzu .gt_left { text-align: left; }
+ #avziucpfzu .gt_center { text-align: center; }
+ #avziucpfzu .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #avziucpfzu .gt_font_normal { font-weight: normal; }
+ #avziucpfzu .gt_font_bold { font-weight: bold; }
+ #avziucpfzu .gt_font_italic { font-style: italic; }
+ #avziucpfzu .gt_super { font-size: 65%; }
+ #avziucpfzu .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #avziucpfzu .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -215,32 +231,32 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_left">PGAE</td>
 <td class="gt_row gt_right">2024-06-24 07:00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_center">False</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SCE</td>
 <td class="gt_row gt_right">2024-06-24 07:00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_center">False</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SDGE</td>
 <td class="gt_row gt_right">2024-06-24 07:00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_center">False</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">VEA</td>
 <td class="gt_row gt_right">2024-06-24 07:00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_center">False</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
 </tr>
 </tbody>
 </table>
@@ -250,7 +266,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
         
 </div>
 </div>
-<div id="1680e06f" class="cell" data-execution_count="4">
+<div id="6dea6d93" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> meta_obj.request_meta</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> meta_obj.last_index <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="va">None</span></span>
@@ -307,63 +323,67 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        meta_new <span class="op">=</span> meta_new._append(meta_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'parent': 'CISO', 'subba': 'PGAE'}
-No new data is available
+Append the new data
+Save the data to CSV file
 {'parent': 'CISO', 'subba': 'SCE'}
-No new data is available
+Append the new data
+Save the data to CSV file
 {'parent': 'CISO', 'subba': 'SDGE'}
-No new data is available
+Append the new data
+Save the data to CSV file
 {'parent': 'CISO', 'subba': 'VEA'}
-No new data is available</code></pre>
+Append the new data
+Save the data to CSV file</code></pre>
 </div>
 </div>
-<div id="09695d07" class="cell" data-execution_count="5">
+<div id="a83c85ff" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_new,rowname_col <span class="op">=</span> <span class="st">"index"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<div id="dckcqsecmq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="dztlsersny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#dckcqsecmq table {
+#dztlsersny table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#dckcqsecmq thead, tbody, tfoot, tr, td, th { border-style: none; }
+#dztlsersny thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#dckcqsecmq p { margin: 0; padding: 0; }
- #dckcqsecmq .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #dckcqsecmq .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #dckcqsecmq .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #dckcqsecmq .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #dckcqsecmq .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #dckcqsecmq .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #dckcqsecmq .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #dckcqsecmq .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #dckcqsecmq .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #dckcqsecmq .gt_column_spanner_outer:first-child { padding-left: 0; }
- #dckcqsecmq .gt_column_spanner_outer:last-child { padding-right: 0; }
- #dckcqsecmq .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #dckcqsecmq .gt_spanner_row { border-bottom-style: hidden; }
- #dckcqsecmq .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #dckcqsecmq .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #dckcqsecmq .gt_from_md> :first-child { margin-top: 0; }
- #dckcqsecmq .gt_from_md> :last-child { margin-bottom: 0; }
- #dckcqsecmq .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #dckcqsecmq .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #dckcqsecmq .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #dckcqsecmq .gt_row_group_first td { border-top-width: 2px; }
- #dckcqsecmq .gt_row_group_first th { border-top-width: 2px; }
- #dckcqsecmq .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #dckcqsecmq .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #dckcqsecmq .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #dckcqsecmq .gt_left { text-align: left; }
- #dckcqsecmq .gt_center { text-align: center; }
- #dckcqsecmq .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #dckcqsecmq .gt_font_normal { font-weight: normal; }
- #dckcqsecmq .gt_font_bold { font-weight: bold; }
- #dckcqsecmq .gt_font_italic { font-style: italic; }
- #dckcqsecmq .gt_super { font-size: 65%; }
- #dckcqsecmq .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #dckcqsecmq .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#dztlsersny p { margin: 0; padding: 0; }
+ #dztlsersny .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #dztlsersny .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #dztlsersny .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #dztlsersny .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #dztlsersny .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #dztlsersny .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #dztlsersny .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #dztlsersny .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #dztlsersny .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #dztlsersny .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #dztlsersny .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #dztlsersny .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #dztlsersny .gt_spanner_row { border-bottom-style: hidden; }
+ #dztlsersny .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #dztlsersny .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #dztlsersny .gt_from_md> :first-child { margin-top: 0; }
+ #dztlsersny .gt_from_md> :last-child { margin-bottom: 0; }
+ #dztlsersny .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #dztlsersny .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #dztlsersny .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #dztlsersny .gt_row_group_first td { border-top-width: 2px; }
+ #dztlsersny .gt_row_group_first th { border-top-width: 2px; }
+ #dztlsersny .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #dztlsersny .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #dztlsersny .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #dztlsersny .gt_left { text-align: left; }
+ #dztlsersny .gt_center { text-align: center; }
+ #dztlsersny .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #dztlsersny .gt_font_normal { font-weight: normal; }
+ #dztlsersny .gt_font_bold { font-weight: bold; }
+ #dztlsersny .gt_font_italic { font-style: italic; }
+ #dztlsersny .gt_super { font-size: 65%; }
+ #dztlsersny .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #dztlsersny .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -377,14 +397,14 @@ No new data is available</code></pre>
 <td id="end" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">end</td>
 <td id="start_act" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">start_act</td>
 <td id="end_act" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">end_act</td>
-<td id="start_match" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">start_match</td>
-<td id="end_match" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">end_match</td>
+<td id="start_match" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">start_match</td>
+<td id="end_match" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">end_match</td>
 <td id="n_obs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n_obs</td>
 <td id="na" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">na</td>
 <td id="type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">type</td>
 <td id="update" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">update</td>
 <td id="success" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">success</td>
-<td id="comments" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">comments</td>
+<td id="comments" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">comments</td>
 <td></td>
 </tr>
 </tbody>
@@ -393,73 +413,73 @@ No new data is available</code></pre>
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">PGAE</td>
-<td class="gt_row gt_right">2024-06-25 13:19:23.683115+00:00</td>
+<td class="gt_row gt_right">2024-06-25 14:17:01.960062+00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_right">2024-06-24 08:00:00</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">No new data is available; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SCE</td>
-<td class="gt_row gt_right">2024-06-25 13:19:23.684232+00:00</td>
+<td class="gt_row gt_right">2024-06-25 14:17:03.214858+00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_right">2024-06-24 08:00:00</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">No new data is available; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SDGE</td>
-<td class="gt_row gt_right">2024-06-25 13:19:23.685879+00:00</td>
+<td class="gt_row gt_right">2024-06-25 14:17:04.546976+00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_right">2024-06-24 08:00:00</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">No new data is available; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">VEA</td>
-<td class="gt_row gt_right">2024-06-25 13:19:23.687310+00:00</td>
+<td class="gt_row gt_right">2024-06-25 14:17:06.099547+00:00</td>
 <td class="gt_row gt_right">2024-06-24 08:00:00</td>
-<td class="gt_row gt_right">2024-06-24 07:00:00</td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_right">2024-06-24 08:00:00</td>
+<td class="gt_row gt_right">2024-06-25 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">No new data is available; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 </tbody>
 </table>
@@ -469,28 +489,46 @@ No new data is available</code></pre>
         
 </div>
 </div>
-<div id="1776cf55" class="cell" data-execution_count="6">
+<div id="e7a23942" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meta_updated <span class="op">=</span> eia_data.append_metadata(meta_path <span class="op">=</span> meta_path, meta <span class="op">=</span> meta_new, save <span class="op">=</span> <span class="va">True</span>, init <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/eia_data.py:63: FutureWarning:
-
-The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
-</code></pre>
-</div>
 </div>
 <section id="plot-the-series" class="level3">
 <h3 class="anchored" data-anchor-id="plot-the-series">Plot the Series</h3>
 <p>We will use Plotly to visualize the series:</p>
-<div id="dc07c49d" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> data.sort_values(by <span class="op">=</span> [<span class="st">"subba"</span>, <span class="st">"period"</span>])</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> px.line(<span class="bu">input</span>, x<span class="op">=</span><span class="st">"period"</span>, y<span class="op">=</span><span class="st">"value"</span>, color<span class="op">=</span><span class="st">"subba"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    p.show()</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>No new data is available</code></pre>
+<div id="fd8bd975" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> data.sort_values(by <span class="op">=</span> [<span class="st">"subba"</span>, <span class="st">"period"</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> px.line(<span class="bu">input</span>, x<span class="op">=</span><span class="st">"period"</span>, y<span class="op">=</span><span class="st">"value"</span>, color<span class="op">=</span><span class="st">"subba"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    p.show()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>                            <div id="3347b575-9045-40ff-9d80-6996c2e83a0c" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("3347b575-9045-40ff-9d80-6996c2e83a0c")) {                    Plotly.newPlot(                        "3347b575-9045-40ff-9d80-6996c2e83a0c",                        [{"hovertemplate":"subba=PGAE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"PGAE","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"PGAE","orientation":"v","showlegend":true,"x":["2024-06-24T08:00:00","2024-06-24T09:00:00","2024-06-24T10:00:00","2024-06-24T11:00:00","2024-06-24T12:00:00","2024-06-24T13:00:00","2024-06-24T14:00:00","2024-06-24T15:00:00","2024-06-24T16:00:00","2024-06-24T17:00:00","2024-06-24T18:00:00","2024-06-24T19:00:00","2024-06-24T20:00:00","2024-06-24T21:00:00","2024-06-24T22:00:00","2024-06-24T23:00:00","2024-06-25T00:00:00","2024-06-25T01:00:00","2024-06-25T02:00:00","2024-06-25T03:00:00","2024-06-25T04:00:00","2024-06-25T05:00:00","2024-06-25T06:00:00","2024-06-25T07:00:00"],"xaxis":"x","y":[13181,12339,11574,11009,10779,10801,11120,11784,12630,12968,12526,12923,13168,13877,14206,14677,15220,15356,15959,16629,16663,16333,15797,14738],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SCE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SCE","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SCE","orientation":"v","showlegend":true,"x":["2024-06-24T08:00:00","2024-06-24T09:00:00","2024-06-24T10:00:00","2024-06-24T11:00:00","2024-06-24T12:00:00","2024-06-24T13:00:00","2024-06-24T14:00:00","2024-06-24T15:00:00","2024-06-24T16:00:00","2024-06-24T17:00:00","2024-06-24T18:00:00","2024-06-24T19:00:00","2024-06-24T20:00:00","2024-06-24T21:00:00","2024-06-24T22:00:00","2024-06-24T23:00:00","2024-06-25T00:00:00","2024-06-25T01:00:00","2024-06-25T02:00:00","2024-06-25T03:00:00","2024-06-25T04:00:00","2024-06-25T05:00:00","2024-06-25T06:00:00","2024-06-25T07:00:00"],"xaxis":"x","y":[13919,12810,12000,11542,10921,10981,11300,11917,13902,16130,17074,17046,17039,17365,17798,18460,19438,19498,19133,18695,17869,17105,16523,15382],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SDGE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SDGE","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SDGE","orientation":"v","showlegend":true,"x":["2024-06-24T08:00:00","2024-06-24T09:00:00","2024-06-24T10:00:00","2024-06-24T11:00:00","2024-06-24T12:00:00","2024-06-24T13:00:00","2024-06-24T14:00:00","2024-06-24T15:00:00","2024-06-24T16:00:00","2024-06-24T17:00:00","2024-06-24T18:00:00","2024-06-24T19:00:00","2024-06-24T20:00:00","2024-06-24T21:00:00","2024-06-24T22:00:00","2024-06-24T23:00:00","2024-06-25T00:00:00","2024-06-25T01:00:00","2024-06-25T02:00:00","2024-06-25T03:00:00","2024-06-25T04:00:00","2024-06-25T05:00:00","2024-06-25T06:00:00","2024-06-25T07:00:00"],"xaxis":"x","y":[2658,2583,2537,2310,2246,2326,2235,2327,2521,2474,2360,2139,2061,2089,2141,2308,2451,2607,2884,3189,3268,3210,3113,2892],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=VEA\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"VEA","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"VEA","orientation":"v","showlegend":true,"x":["2024-06-24T08:00:00","2024-06-24T09:00:00","2024-06-24T10:00:00","2024-06-24T11:00:00","2024-06-24T12:00:00","2024-06-24T13:00:00","2024-06-24T14:00:00","2024-06-24T15:00:00","2024-06-24T16:00:00","2024-06-24T17:00:00","2024-06-24T18:00:00","2024-06-24T19:00:00","2024-06-24T20:00:00","2024-06-24T21:00:00","2024-06-24T22:00:00","2024-06-24T23:00:00","2024-06-25T00:00:00","2024-06-25T01:00:00","2024-06-25T02:00:00","2024-06-25T03:00:00","2024-06-25T04:00:00","2024-06-25T05:00:00","2024-06-25T06:00:00","2024-06-25T07:00:00"],"xaxis":"x","y":[88,81,75,71,69,69,67,75,218,232,238,159,145,136,126,131,135,139,140,165,134,123,112,102],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"period"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}},"legend":{"title":{"text":"subba"},"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('3347b575-9045-40ff-9d80-6996c2e83a0c');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
 </div>
 </div>
 </section>
@@ -498,31 +536,113 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <section id="forecast-refresh" class="level2">
 <h2 class="anchored" data-anchor-id="forecast-refresh">Forecast Refresh</h2>
 <p>Check if new observations are available to refresh the forecast</p>
-<div id="df4ec7cd" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    new_fc <span class="op">=</span> dev_fc.forecast_refresh(settings_path <span class="op">=</span> <span class="st">"../settings/series.json"</span>, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                save <span class="op">=</span> <span class="va">True</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                init <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the forecast refresh process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="60918431" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    new_fc <span class="op">=</span> dev_fc.forecast_refresh(settings_path <span class="op">=</span> <span class="st">"../settings/series.json"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                save <span class="op">=</span> <span class="va">True</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                init <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the forecast refresh process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>No new data is available, skipping the forecast refresh process</code></pre>
+<pre><code>PGAE
+New observations are available, starting to refreshthe forecast
+There are 58 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev PGAE exists
+Deleting previous experiment: 658684304568846825
+Set a new experiment Forecast Dev PGAE
+Pulling the metadata
+PGAE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
+SCE
+New observations are available, starting to refreshthe forecast
+There are 50 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev SCE exists
+Deleting previous experiment: 360976983442524906
+Set a new experiment Forecast Dev SCE
+Pulling the metadata
+SCE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
+SDGE
+New observations are available, starting to refreshthe forecast
+There are 58 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev SDGE exists
+Deleting previous experiment: 924197851462697054
+Set a new experiment Forecast Dev SDGE
+Pulling the metadata
+SDGE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
+VEA
+New observations are available, starting to refreshthe forecast
+There are 58 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev VEA exists
+Deleting previous experiment: 577170290632978098
+Set a new experiment Forecast Dev VEA
+Pulling the metadata
+VEA
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
 </div>
 </div>
 </section>
 <section id="score-the-forecast" class="level2">
 <h2 class="anchored" data-anchor-id="score-the-forecast">Score the Forecast</h2>
-<div id="8a68a1b0" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> dev_fc.score_forecast(data_path <span class="op">=</span> data_path,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    forecast_log_path <span class="op">=</span> forecast_log_path, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    forecast_path <span class="op">=</span> forecast_path, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    save <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the scoring process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>No new data is available, skipping the scoring process</code></pre>
-</div>
+<div id="e98355ba" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> dev_fc.score_forecast(data_path <span class="op">=</span> data_path,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    forecast_log_path <span class="op">=</span> forecast_log_path, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    forecast_path <span class="op">=</span> forecast_path, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    save <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the scoring process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
