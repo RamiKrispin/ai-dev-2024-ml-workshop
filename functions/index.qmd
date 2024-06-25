@@ -13,6 +13,7 @@ import json
 import os
 import datetime
 import great_tables as gt
+import plot_fc
 ```
 
 ```{python}
@@ -34,37 +35,7 @@ meta = pd.read_csv(meta_path)
 ```{python}
 #| title: Hourly Demand By Provider 
 
-p = px.line(data, x="period", y="value", color="subba")
-p = p.update_layout(
-    xaxis=dict(
-        rangeselector=dict(
-            buttons=list([
-                dict(count=1,
-                     label="1m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=6,
-                     label="6m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=1,
-                     label="YTD",
-                     step="year",
-                     stepmode="todate"),
-                dict(count=1,
-                     label="1y",
-                     step="year",
-                     stepmode="backward"),
-                dict(step="all")
-            ])
-        ),
-        rangeslider=dict(
-            visible=True
-        ),
-        type="date",
-        range=[start_date,end_date]
-    )
-)
+p = plot_fc.plot_forecast()
 
 p.show()
 ```
