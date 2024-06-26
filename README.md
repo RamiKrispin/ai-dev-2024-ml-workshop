@@ -1,7 +1,5 @@
 # Deploy and Monitor ML Pipelines with Open Source and Free Applications
 
-WIP...pre-spell check
-
 Materials for the **Deploy and Monitor ML Pipelines with Open Source and Free Applications** workshop at the [AI_dev 2024](https://events.linuxfoundation.org/ai-dev-europe/) conference in Paris, France.
 
 When 📆: Wednesday, June 19th, 13:50 CEST
@@ -49,7 +47,7 @@ To organize and track the project requirements, we will set up a GitHub Project,
     - Build a prototype
     - Test deployment on GitHub Actions
 - Set forecasting models:
-    - Create MLflow experiment
+    - Create an MLflow experiment
     - Set backtesting function
     - Define forecasting models
     - Test and evaluate the models' performance
@@ -113,7 +111,7 @@ The data is available on the [EIA API](https://www.eia.gov/opendata/), the API [
 
 ## Set a Development Environment
 
-To make the deployment to GitHub Actions seamless, we will use Docker. In addition, we will set a development environment using VScode and the Dev Containers extension.
+To make the deployment to GitHub Actions seamless, we will use Docker. In addition, we will set up a development environment using VScode and the Dev Containers extension.
 
 ### Docker Settings
 
@@ -455,7 +453,7 @@ Setting logs and metadata collection enables us to monitor the health of the pip
 <br>
 <br />
 
-- **Forecast refresh log:** Track the forecasting models refresh. This includes the time of refresh, forecast label and performance metrics
+- **Forecast refresh log:** Track the forecasting models refresh. This includes the time of refresh, forecast label, and performance metrics
 <figure>
  <img src="images/forecast-log.png" width="100%" align="center"/></a>
 <figcaption> The forecasting models log</figcaption>
@@ -548,11 +546,11 @@ echo "Nothing to commit..."
 fi
 ```
 
-This bash script render the quarto doc with the data and forecast refresh functions. It than check if new data points are available, and if so, it will render the dashboard and commit the chnages (e.g., append changes to the CSV files).
+This bash script renders the quarto doc with the data and forecast refresh functions. It then checks if new data points are available, and if so, it will render the dashboard and commit the changes (e.g., append changes to the CSV files).
 
 Note that you will need to set the following three secrets:
 - `EIA_API_KEY` - the EIA API key
-- `USER_EMAIL` - the email address that associated with the GitHub account
+- `USER_EMAIL` - the email address associated with the GitHub account
 - `USER_NAME` - the GitHub account user name
 
 ## Resources
