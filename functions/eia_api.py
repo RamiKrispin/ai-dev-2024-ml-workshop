@@ -138,7 +138,7 @@ def eia_get(api_key,
 
 
 
-def eia_backfile(start, end, offset, api_key, api_path, facets):
+def eia_backfill(start, end, offset, api_key, api_path, facets):
     
     class response:
         def __init__(output, data, parameters):

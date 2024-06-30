@@ -1,5 +1,5 @@
 ---
-title: "EIA API - Data Refrsh (Python Version)"
+title: "EIA API - Data Refrsh"
 format:
   html:
     code-fold: false
@@ -73,9 +73,11 @@ for i in m.index:
         temp = api.eia_backfill(api_key = eia_api_key, 
             api_path = api_path+ "data", 
             facets = facets, 
-            start = start.to_pydatetime(),
-            end = end.to_pydatetime(),
+            start = start.to_pydatetime()- datetime.timedelta(hours = 24),
+            end = end.to_pydatetime() + datetime.timedelta(hours = 24),
             offset = offset) 
+
+        temp.data = temp.data[(temp.data["period"] <= end.to_pydatetime()) & (temp.data["period"] >= start.to_pydatetime())]
 
         ts_obj = pd.DataFrame(np.arange(start = start, stop = end + datetime.timedelta(hours = 1), step = datetime.timedelta(hours = 1)).astype(datetime.datetime), columns=["index"])
         ts_obj  = ts_obj.merge(temp.data, left_on = "index", right_on = "period", how="left")
