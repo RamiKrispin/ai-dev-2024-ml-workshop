@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EIA API - Data Refrsh (Python Version)</title>
+<title>EIA API - Data Refrsh</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,7 +98,7 @@ require(['plotly'], function(Plotly) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EIA API - Data Refrsh (Python Version)</h1>
+<h1 class="title">EIA API - Data Refrsh</h1>
 </div>
 
 
@@ -117,7 +117,7 @@ require(['plotly'], function(Plotly) {
 
 <section id="load-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="load-libraries">Load libraries</h2>
-<div id="cf3a035b" class="cell" data-execution_count="1">
+<div id="17249ec7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eia_api <span class="im">as</span> api</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eia_data </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -139,7 +139,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </div>
 </div>
 <p>API Settings:</p>
-<div id="750d8e32" class="cell" data-execution_count="2">
+<div id="362f53e2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>raw_json <span class="op">=</span> <span class="bu">open</span>(<span class="st">"../settings/series.json"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>meta_json <span class="op">=</span> json.load(raw_json)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> pd.DataFrame(meta_json[<span class="st">"series"</span>])</span>
@@ -161,56 +161,56 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>forecast_path <span class="op">=</span> meta_json[<span class="st">"forecast_path"</span>]</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>forecast_log_path <span class="op">=</span> meta_json[<span class="st">"forecast_log_path"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c245ee0d" class="cell" data-execution_count="3">
+<div id="f610d6fd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meta_obj <span class="op">=</span> eia_data.get_metadata(api_key <span class="op">=</span> eia_api_key, api_path <span class="op">=</span> api_path, meta_path <span class="op">=</span> meta_path, series <span class="op">=</span> series)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_obj.request_meta,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<div id="qxpyasmroh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qaddaaaecb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#qxpyasmroh table {
+#qaddaaaecb table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#qxpyasmroh thead, tbody, tfoot, tr, td, th { border-style: none; }
+#qaddaaaecb thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#qxpyasmroh p { margin: 0; padding: 0; }
- #qxpyasmroh .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #qxpyasmroh .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #qxpyasmroh .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #qxpyasmroh .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #qxpyasmroh .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #qxpyasmroh .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #qxpyasmroh .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #qxpyasmroh .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #qxpyasmroh .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #qxpyasmroh .gt_column_spanner_outer:first-child { padding-left: 0; }
- #qxpyasmroh .gt_column_spanner_outer:last-child { padding-right: 0; }
- #qxpyasmroh .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #qxpyasmroh .gt_spanner_row { border-bottom-style: hidden; }
- #qxpyasmroh .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #qxpyasmroh .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #qxpyasmroh .gt_from_md> :first-child { margin-top: 0; }
- #qxpyasmroh .gt_from_md> :last-child { margin-bottom: 0; }
- #qxpyasmroh .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #qxpyasmroh .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #qxpyasmroh .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #qxpyasmroh .gt_row_group_first td { border-top-width: 2px; }
- #qxpyasmroh .gt_row_group_first th { border-top-width: 2px; }
- #qxpyasmroh .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #qxpyasmroh .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #qxpyasmroh .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #qxpyasmroh .gt_left { text-align: left; }
- #qxpyasmroh .gt_center { text-align: center; }
- #qxpyasmroh .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #qxpyasmroh .gt_font_normal { font-weight: normal; }
- #qxpyasmroh .gt_font_bold { font-weight: bold; }
- #qxpyasmroh .gt_font_italic { font-style: italic; }
- #qxpyasmroh .gt_super { font-size: 65%; }
- #qxpyasmroh .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #qxpyasmroh .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#qaddaaaecb p { margin: 0; padding: 0; }
+ #qaddaaaecb .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #qaddaaaecb .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #qaddaaaecb .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #qaddaaaecb .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #qaddaaaecb .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #qaddaaaecb .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #qaddaaaecb .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #qaddaaaecb .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #qaddaaaecb .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #qaddaaaecb .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #qaddaaaecb .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #qaddaaaecb .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #qaddaaaecb .gt_spanner_row { border-bottom-style: hidden; }
+ #qaddaaaecb .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #qaddaaaecb .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #qaddaaaecb .gt_from_md> :first-child { margin-top: 0; }
+ #qaddaaaecb .gt_from_md> :last-child { margin-bottom: 0; }
+ #qaddaaaecb .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #qaddaaaecb .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #qaddaaaecb .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #qaddaaaecb .gt_row_group_first td { border-top-width: 2px; }
+ #qaddaaaecb .gt_row_group_first th { border-top-width: 2px; }
+ #qaddaaaecb .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #qaddaaaecb .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #qaddaaaecb .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #qaddaaaecb .gt_left { text-align: left; }
+ #qaddaaaecb .gt_center { text-align: center; }
+ #qaddaaaecb .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #qaddaaaecb .gt_font_normal { font-weight: normal; }
+ #qaddaaaecb .gt_font_bold { font-weight: bold; }
+ #qaddaaaecb .gt_font_italic { font-style: italic; }
+ #qaddaaaecb .gt_super { font-size: 65%; }
+ #qaddaaaecb .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #qaddaaaecb .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -266,7 +266,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
         
 </div>
 </div>
-<div id="d46cee03" class="cell" data-execution_count="4">
+<div id="e5c20fba" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> meta_obj.request_meta</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> meta_obj.last_index <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="va">None</span></span>
@@ -283,99 +283,109 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> api.eia_backfill(api_key <span class="op">=</span> eia_api_key, </span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            api_path <span class="op">=</span> api_path<span class="op">+</span> <span class="st">"data"</span>, </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            facets <span class="op">=</span> facets, </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> start.to_pydatetime(),</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            end <span class="op">=</span> end.to_pydatetime(),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> start.to_pydatetime()<span class="op">-</span> datetime.timedelta(hours <span class="op">=</span> <span class="dv">24</span>),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            end <span class="op">=</span> end.to_pydatetime() <span class="op">+</span> datetime.timedelta(hours <span class="op">=</span> <span class="dv">24</span>),</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            offset <span class="op">=</span> offset) </span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        ts_obj <span class="op">=</span> pd.DataFrame(np.arange(start <span class="op">=</span> start, stop <span class="op">=</span> end <span class="op">+</span> datetime.timedelta(hours <span class="op">=</span> <span class="dv">1</span>), step <span class="op">=</span> datetime.timedelta(hours <span class="op">=</span> <span class="dv">1</span>)).astype(datetime.datetime), columns<span class="op">=</span>[<span class="st">"index"</span>])</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        ts_obj  <span class="op">=</span> ts_obj.merge(temp.data, left_on <span class="op">=</span> <span class="st">"index"</span>, right_on <span class="op">=</span> <span class="st">"period"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        ts_obj.drop(<span class="st">"period"</span>, axis <span class="op">=</span> <span class="dv">1</span>, inplace<span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        ts_obj <span class="op">=</span> ts_obj.rename(columns<span class="op">=</span> {<span class="st">"index"</span>: <span class="st">"period"</span>})</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        ts_obj <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    meta_temp <span class="op">=</span> eia_data.create_metadata(data <span class="op">=</span> ts_obj, start <span class="op">=</span> start, end <span class="op">=</span> end, <span class="bu">type</span> <span class="op">=</span> <span class="st">"refresh"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        temp.data <span class="op">=</span> temp.data[(temp.data[<span class="st">"period"</span>] <span class="op">&lt;=</span> end.to_pydatetime()) <span class="op">&amp;</span> (temp.data[<span class="st">"period"</span>] <span class="op">&gt;=</span> start.to_pydatetime())]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        ts_obj <span class="op">=</span> pd.DataFrame(np.arange(start <span class="op">=</span> start, stop <span class="op">=</span> end <span class="op">+</span> datetime.timedelta(hours <span class="op">=</span> <span class="dv">1</span>), step <span class="op">=</span> datetime.timedelta(hours <span class="op">=</span> <span class="dv">1</span>)).astype(datetime.datetime), columns<span class="op">=</span>[<span class="st">"index"</span>])</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        ts_obj  <span class="op">=</span> ts_obj.merge(temp.data, left_on <span class="op">=</span> <span class="st">"index"</span>, right_on <span class="op">=</span> <span class="st">"period"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        ts_obj.drop(<span class="st">"period"</span>, axis <span class="op">=</span> <span class="dv">1</span>, inplace<span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        ts_obj <span class="op">=</span> ts_obj.rename(columns<span class="op">=</span> {<span class="st">"index"</span>: <span class="st">"period"</span>})</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        ts_obj <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ts_obj <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"parent"</span>] <span class="op">=</span>  m.at[i, <span class="st">"parent"</span>]</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"subba"</span>] <span class="op">=</span>  m.at[i, <span class="st">"subba"</span>]</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> meta_temp[<span class="st">"success"</span>]:</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Append the new data"</span>)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> eia_data.append_data(data_path <span class="op">=</span> data_path, new_data <span class="op">=</span> ts_obj, save <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"update"</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"update"</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"comments"</span>] <span class="op">=</span> meta_temp[<span class="st">"comments"</span>] <span class="op">+</span> <span class="st">"The data refresh failed, please check the log; "</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    meta_df <span class="op">=</span> pd.DataFrame([meta_temp])</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> data <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> ts_obj</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> data._append(ts_obj)</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> series.index.start:</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        meta_new <span class="op">=</span> meta_df</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        meta_new <span class="op">=</span> meta_new._append(meta_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    meta_temp <span class="op">=</span> eia_data.create_metadata(data <span class="op">=</span> ts_obj, start <span class="op">=</span> start, end <span class="op">=</span> end, <span class="bu">type</span> <span class="op">=</span> <span class="st">"refresh"</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ts_obj <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"parent"</span>] <span class="op">=</span>  m.at[i, <span class="st">"parent"</span>]</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"subba"</span>] <span class="op">=</span>  m.at[i, <span class="st">"subba"</span>]</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> meta_temp[<span class="st">"success"</span>]:</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Append the new data"</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> eia_data.append_data(data_path <span class="op">=</span> data_path, new_data <span class="op">=</span> ts_obj, save <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"update"</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"update"</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        meta_temp[<span class="st">"comments"</span>] <span class="op">=</span> meta_temp[<span class="st">"comments"</span>] <span class="op">+</span> <span class="st">"The data refresh failed, please check the log; "</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    meta_df <span class="op">=</span> pd.DataFrame([meta_temp])</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> data <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> ts_obj</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> data._append(ts_obj)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> series.index.start:</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        meta_new <span class="op">=</span> meta_df</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>        meta_new <span class="op">=</span> meta_new._append(meta_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'parent': 'CISO', 'subba': 'PGAE'}
+Append the new data
+Save the data to CSV file
 {'parent': 'CISO', 'subba': 'SCE'}
+Append the new data
+Save the data to CSV file
 {'parent': 'CISO', 'subba': 'SDGE'}
-{'parent': 'CISO', 'subba': 'VEA'}</code></pre>
+Append the new data
+Save the data to CSV file
+{'parent': 'CISO', 'subba': 'VEA'}
+Append the new data
+Save the data to CSV file</code></pre>
 </div>
 </div>
-<div id="2bba0572" class="cell" data-execution_count="5">
+<div id="3e452c99" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_new,rowname_col <span class="op">=</span> <span class="st">"index"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<div id="swcjnbyoil" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hkhxrkxgpb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#swcjnbyoil table {
+#hkhxrkxgpb table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#swcjnbyoil thead, tbody, tfoot, tr, td, th { border-style: none; }
+#hkhxrkxgpb thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#swcjnbyoil p { margin: 0; padding: 0; }
- #swcjnbyoil .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #swcjnbyoil .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #swcjnbyoil .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #swcjnbyoil .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #swcjnbyoil .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #swcjnbyoil .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #swcjnbyoil .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #swcjnbyoil .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #swcjnbyoil .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #swcjnbyoil .gt_column_spanner_outer:first-child { padding-left: 0; }
- #swcjnbyoil .gt_column_spanner_outer:last-child { padding-right: 0; }
- #swcjnbyoil .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #swcjnbyoil .gt_spanner_row { border-bottom-style: hidden; }
- #swcjnbyoil .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #swcjnbyoil .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #swcjnbyoil .gt_from_md> :first-child { margin-top: 0; }
- #swcjnbyoil .gt_from_md> :last-child { margin-bottom: 0; }
- #swcjnbyoil .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #swcjnbyoil .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #swcjnbyoil .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #swcjnbyoil .gt_row_group_first td { border-top-width: 2px; }
- #swcjnbyoil .gt_row_group_first th { border-top-width: 2px; }
- #swcjnbyoil .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #swcjnbyoil .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #swcjnbyoil .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #swcjnbyoil .gt_left { text-align: left; }
- #swcjnbyoil .gt_center { text-align: center; }
- #swcjnbyoil .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #swcjnbyoil .gt_font_normal { font-weight: normal; }
- #swcjnbyoil .gt_font_bold { font-weight: bold; }
- #swcjnbyoil .gt_font_italic { font-style: italic; }
- #swcjnbyoil .gt_super { font-size: 65%; }
- #swcjnbyoil .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #swcjnbyoil .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#hkhxrkxgpb p { margin: 0; padding: 0; }
+ #hkhxrkxgpb .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #hkhxrkxgpb .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #hkhxrkxgpb .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #hkhxrkxgpb .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #hkhxrkxgpb .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #hkhxrkxgpb .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #hkhxrkxgpb .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #hkhxrkxgpb .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #hkhxrkxgpb .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #hkhxrkxgpb .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #hkhxrkxgpb .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #hkhxrkxgpb .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #hkhxrkxgpb .gt_spanner_row { border-bottom-style: hidden; }
+ #hkhxrkxgpb .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #hkhxrkxgpb .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #hkhxrkxgpb .gt_from_md> :first-child { margin-top: 0; }
+ #hkhxrkxgpb .gt_from_md> :last-child { margin-bottom: 0; }
+ #hkhxrkxgpb .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #hkhxrkxgpb .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #hkhxrkxgpb .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #hkhxrkxgpb .gt_row_group_first td { border-top-width: 2px; }
+ #hkhxrkxgpb .gt_row_group_first th { border-top-width: 2px; }
+ #hkhxrkxgpb .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #hkhxrkxgpb .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #hkhxrkxgpb .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #hkhxrkxgpb .gt_left { text-align: left; }
+ #hkhxrkxgpb .gt_center { text-align: center; }
+ #hkhxrkxgpb .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #hkhxrkxgpb .gt_font_normal { font-weight: normal; }
+ #hkhxrkxgpb .gt_font_bold { font-weight: bold; }
+ #hkhxrkxgpb .gt_font_italic { font-style: italic; }
+ #hkhxrkxgpb .gt_super { font-size: 65%; }
+ #hkhxrkxgpb .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #hkhxrkxgpb .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -396,7 +406,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td id="type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">type</td>
 <td id="update" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">update</td>
 <td id="success" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">success</td>
-<td id="comments" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">comments</td>
+<td id="comments" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">comments</td>
 <td></td>
 </tr>
 </tbody>
@@ -405,7 +415,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">PGAE</td>
-<td class="gt_row gt_right">2024-06-30 18:24:51.230900+00:00</td>
+<td class="gt_row gt_right">2024-06-30 21:09:38.342798+00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
 <td class="gt_row gt_right">2024-06-30 07:00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
@@ -413,17 +423,17 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_right">96</td>
-<td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">Missing values were found; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SCE</td>
-<td class="gt_row gt_right">2024-06-30 18:24:52.501469+00:00</td>
+<td class="gt_row gt_right">2024-06-30 21:09:40.535772+00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
 <td class="gt_row gt_right">2024-06-30 07:00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
@@ -431,17 +441,17 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_right">96</td>
-<td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">Missing values were found; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SDGE</td>
-<td class="gt_row gt_right">2024-06-30 18:24:53.737711+00:00</td>
+<td class="gt_row gt_right">2024-06-30 21:09:42.793667+00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
 <td class="gt_row gt_right">2024-06-30 07:00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
@@ -449,17 +459,17 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_right">96</td>
-<td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">Missing values were found; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">VEA</td>
-<td class="gt_row gt_right">2024-06-30 18:24:55.036239+00:00</td>
+<td class="gt_row gt_right">2024-06-30 21:09:45.319900+00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
 <td class="gt_row gt_right">2024-06-30 07:00:00</td>
 <td class="gt_row gt_right">2024-06-26 08:00:00</td>
@@ -467,11 +477,11 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_center">True</td>
 <td class="gt_row gt_right">96</td>
-<td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">Missing values were found; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right"></td>
 </tr>
 </tbody>
 </table>
@@ -481,13 +491,13 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
         
 </div>
 </div>
-<div id="ac3368b6" class="cell" data-execution_count="6">
+<div id="5ceb94d7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meta_updated <span class="op">=</span> eia_data.append_metadata(meta_path <span class="op">=</span> meta_path, meta <span class="op">=</span> meta_new, save <span class="op">=</span> <span class="va">True</span>, init <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="plot-the-series" class="level3">
 <h3 class="anchored" data-anchor-id="plot-the-series">Plot the Series</h3>
 <p>We will use Plotly to visualize the series:</p>
-<div id="47f6db34" class="cell" data-execution_count="7">
+<div id="5e1cae58" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> data.sort_values(by <span class="op">=</span> [<span class="st">"subba"</span>, <span class="st">"period"</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> px.line(<span class="bu">input</span>, x<span class="op">=</span><span class="st">"period"</span>, y<span class="op">=</span><span class="st">"value"</span>, color<span class="op">=</span><span class="st">"subba"</span>)</span>
@@ -496,9 +506,9 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>                            <div id="e46d23ba-3bfe-40be-b7a1-ffae03e6c757" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("e46d23ba-3bfe-40be-b7a1-ffae03e6c757")) {                    Plotly.newPlot(                        "e46d23ba-3bfe-40be-b7a1-ffae03e6c757",                        [{"hovertemplate":"subba=PGAE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"PGAE","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"PGAE","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00"],"xaxis":"x","y":[13522.0,12854.0,12017.0,11608.0,11250.0,11217.0,11467.0,11969.0,12284.0,12849.0,12310.0,11715.0,11477.0,11092.0,11296.0,11570.0,12323.0,13109.0,14122.0,14984.0,15418.0,15187.0,14943.0,13897.0,12908.0,12319.0,11645.0,11547.0,10885.0,10958.0,11244.0,11750.0,12606.0,12621.0,12087.0,11544.0,11140.0,11351.0,11531.0,12068.0,12608.0,12972.0,13954.0,14855.0,15262.0,15086.0,14792.0,13754.0,12751.0,12257.0,11675.0,11243.0,10949.0,10911.0,11093.0,11569.0,12035.0,12530.0,12237.0,11550.0,11368.0,11507.0,12058.0,12544.0,12959.0,13976.0,15064.0,15798.0,16104.0,15810.0,15347.0,14264.0,13254.0,12573.0,11775.0,11218.0,10877.0,10695.0,10658.0,10766.0,11369.0,11371.0,10991.0,10693.0,10631.0,10860.0,11373.0,11859.0,12180.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SCE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SCE","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SCE","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00"],"xaxis":"x","y":[14066.0,12850.0,11973.0,11436.0,11152.0,11034.0,11266.0,11960.0,13946.0,15000.0,16113.0,16587.0,16707.0,16794.0,16855.0,16982.0,17279.0,17618.0,18198.0,17869.0,16968.0,16290.0,15774.0,14701.0,13752.0,12638.0,11914.0,11367.0,11270.0,11151.0,11418.0,11892.0,13431.0,15343.0,16075.0,16198.0,16581.0,16613.0,16362.0,16826.0,17239.0,17460.0,17822.0,17625.0,16833.0,16181.0,15706.0,14677.0,13546.0,12629.0,11825.0,11397.0,11142.0,10961.0,11197.0,11825.0,13733.0,15588.0,15993.0,16146.0,15967.0,15573.0,15412.0,15649.0,16055.0,16272.0,16590.0,16403.0,15749.0,15186.0,14767.0,13845.0,13169.0,12061.0,11311.0,10811.0,10460.0,10346.0,10429.0,10692.0,11925.0,13771.0,14020.0,13762.0,13722.0,13699.0,14104.0,14006.0,14670.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SDGE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SDGE","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SDGE","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00"],"xaxis":"x","y":[2548.0,2500.0,2379.0,2280.0,2183.0,2160.0,2187.0,2238.0,2514.0,2390.0,2059.0,1897.0,1690.0,1697.0,1705.0,1804.0,2027.0,2225.0,2487.0,2795.0,2906.0,2923.0,2839.0,2636.0,2417.0,2402.0,2296.0,2185.0,2136.0,2121.0,2133.0,2173.0,2274.0,2101.0,1824.0,1570.0,1475.0,1523.0,1560.0,1681.0,1871.0,2133.0,2478.0,2798.0,2908.0,2924.0,2859.0,2675.0,2480.0,2437.0,2275.0,2314.0,2254.0,2086.0,2124.0,2158.0,2243.0,2002.0,1728.0,1554.0,1471.0,1430.0,1422.0,1465.0,1633.0,1893.0,2227.0,2542.0,2693.0,2716.0,2653.0,2480.0,2312.0,2285.0,2176.0,2071.0,1988.0,1973.0,1919.0,1855.0,1895.0,1650.0,1360.0,1103.0,986.0,1080.0,1175.0,1306.0,1557.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=VEA\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"VEA","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"VEA","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00"],"xaxis":"x","y":[94.0,86.0,81.0,77.0,74.0,73.0,73.0,81.0,178.0,231.0,237.0,243.0,239.0,189.0,146.0,133.0,135.0,136.0,138.0,136.0,128.0,119.0,109.0,98.0,89.0,81.0,76.0,72.0,69.0,68.0,68.0,78.0,186.0,226.0,220.0,176.0,154.0,130.0,122.0,129.0,130.0,134.0,139.0,134.0,123.0,115.0,104.0,91.0,80.0,72.0,66.0,62.0,60.0,58.0,58.0,65.0,198.0,151.0,158.0,141.0,109.0,128.0,105.0,110.0,116.0,120.0,123.0,120.0,111.0,101.0,91.0,81.0,73.0,67.0,62.0,59.0,56.0,54.0,54.0,60.0,182.0,183.0,219.0,207.0,160.0,178.0,105.0,109.0,114.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"period"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}},"legend":{"title":{"text":"subba"},"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="bc6ae59d-9622-431a-a430-bb1425b49072" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("bc6ae59d-9622-431a-a430-bb1425b49072")) {                    Plotly.newPlot(                        "bc6ae59d-9622-431a-a430-bb1425b49072",                        [{"hovertemplate":"subba=PGAE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"PGAE","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"PGAE","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00","2024-06-30T01:00:00","2024-06-30T02:00:00","2024-06-30T03:00:00","2024-06-30T04:00:00","2024-06-30T05:00:00","2024-06-30T06:00:00","2024-06-30T07:00:00"],"xaxis":"x","y":[13522,12854,12017,11608,11250,11217,11467,11969,12284,12849,12310,11715,11477,11092,11296,11570,12323,13109,14122,14984,15418,15187,14943,13897,12908,12319,11645,11547,10885,10958,11244,11750,12606,12621,12087,11544,11140,11351,11531,12068,12608,12972,13954,14855,15262,15086,14792,13754,12751,12257,11675,11243,10949,10911,11093,11569,12035,12530,12237,11550,11368,11507,12058,12544,12959,13976,15064,15798,16104,15810,15347,14264,13254,12573,11775,11218,10877,10695,10658,10766,11369,11371,10991,10693,10631,10860,11373,11859,12180,13175,14371,15422,15743,15565,15123,14111],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SCE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SCE","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SCE","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00","2024-06-30T01:00:00","2024-06-30T02:00:00","2024-06-30T03:00:00","2024-06-30T04:00:00","2024-06-30T05:00:00","2024-06-30T06:00:00","2024-06-30T07:00:00"],"xaxis":"x","y":[14066,12850,11973,11436,11152,11034,11266,11960,13946,15000,16113,16587,16707,16794,16855,16982,17279,17618,18198,17869,16968,16290,15774,14701,13752,12638,11914,11367,11270,11151,11418,11892,13431,15343,16075,16198,16581,16613,16362,16826,17239,17460,17822,17625,16833,16181,15706,14677,13546,12629,11825,11397,11142,10961,11197,11825,13733,15588,15993,16146,15967,15573,15412,15649,16055,16272,16590,16403,15749,15186,14767,13845,13169,12061,11311,10811,10460,10346,10429,10692,11925,13771,14020,13762,13722,13699,14104,14006,14670,15368,15980,16048,15585,14904,14335,13506],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SDGE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SDGE","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SDGE","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00","2024-06-30T01:00:00","2024-06-30T02:00:00","2024-06-30T03:00:00","2024-06-30T04:00:00","2024-06-30T05:00:00","2024-06-30T06:00:00","2024-06-30T07:00:00"],"xaxis":"x","y":[2548,2500,2379,2280,2183,2160,2187,2238,2514,2390,2059,1897,1690,1697,1705,1804,2027,2225,2487,2795,2906,2923,2839,2636,2417,2402,2296,2185,2136,2121,2133,2173,2274,2101,1824,1570,1475,1523,1560,1681,1871,2133,2478,2798,2908,2924,2859,2675,2480,2437,2275,2314,2254,2086,2124,2158,2243,2002,1728,1554,1471,1430,1422,1465,1633,1893,2227,2542,2693,2716,2653,2480,2312,2285,2176,2071,1988,1973,1919,1855,1895,1650,1360,1103,986,1080,1175,1306,1557,1805,2199,2573,2735,2767,2701,2536],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=VEA\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"VEA","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"VEA","orientation":"v","showlegend":true,"x":["2024-06-26T08:00:00","2024-06-26T09:00:00","2024-06-26T10:00:00","2024-06-26T11:00:00","2024-06-26T12:00:00","2024-06-26T13:00:00","2024-06-26T14:00:00","2024-06-26T15:00:00","2024-06-26T16:00:00","2024-06-26T17:00:00","2024-06-26T18:00:00","2024-06-26T19:00:00","2024-06-26T20:00:00","2024-06-26T21:00:00","2024-06-26T22:00:00","2024-06-26T23:00:00","2024-06-27T00:00:00","2024-06-27T01:00:00","2024-06-27T02:00:00","2024-06-27T03:00:00","2024-06-27T04:00:00","2024-06-27T05:00:00","2024-06-27T06:00:00","2024-06-27T07:00:00","2024-06-27T08:00:00","2024-06-27T09:00:00","2024-06-27T10:00:00","2024-06-27T11:00:00","2024-06-27T12:00:00","2024-06-27T13:00:00","2024-06-27T14:00:00","2024-06-27T15:00:00","2024-06-27T16:00:00","2024-06-27T17:00:00","2024-06-27T18:00:00","2024-06-27T19:00:00","2024-06-27T20:00:00","2024-06-27T21:00:00","2024-06-27T22:00:00","2024-06-27T23:00:00","2024-06-28T00:00:00","2024-06-28T01:00:00","2024-06-28T02:00:00","2024-06-28T03:00:00","2024-06-28T04:00:00","2024-06-28T05:00:00","2024-06-28T06:00:00","2024-06-28T07:00:00","2024-06-28T08:00:00","2024-06-28T09:00:00","2024-06-28T10:00:00","2024-06-28T11:00:00","2024-06-28T12:00:00","2024-06-28T13:00:00","2024-06-28T14:00:00","2024-06-28T15:00:00","2024-06-28T16:00:00","2024-06-28T17:00:00","2024-06-28T18:00:00","2024-06-28T19:00:00","2024-06-28T20:00:00","2024-06-28T21:00:00","2024-06-28T22:00:00","2024-06-28T23:00:00","2024-06-29T00:00:00","2024-06-29T01:00:00","2024-06-29T02:00:00","2024-06-29T03:00:00","2024-06-29T04:00:00","2024-06-29T05:00:00","2024-06-29T06:00:00","2024-06-29T07:00:00","2024-06-29T08:00:00","2024-06-29T09:00:00","2024-06-29T10:00:00","2024-06-29T11:00:00","2024-06-29T12:00:00","2024-06-29T13:00:00","2024-06-29T14:00:00","2024-06-29T15:00:00","2024-06-29T16:00:00","2024-06-29T17:00:00","2024-06-29T18:00:00","2024-06-29T19:00:00","2024-06-29T20:00:00","2024-06-29T21:00:00","2024-06-29T22:00:00","2024-06-29T23:00:00","2024-06-30T00:00:00","2024-06-30T01:00:00","2024-06-30T02:00:00","2024-06-30T03:00:00","2024-06-30T04:00:00","2024-06-30T05:00:00","2024-06-30T06:00:00","2024-06-30T07:00:00"],"xaxis":"x","y":[94,86,81,77,74,73,73,81,178,231,237,243,239,189,146,133,135,136,138,136,128,119,109,98,89,81,76,72,69,68,68,78,186,226,220,176,154,130,122,129,130,134,139,134,123,115,104,91,80,72,66,62,60,58,58,65,198,151,158,141,109,128,105,110,116,120,123,120,111,101,91,81,73,67,62,59,56,54,54,60,182,183,219,207,160,178,105,109,114,118,120,118,110,100,90,79],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"period"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}},"legend":{"title":{"text":"subba"},"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('e46d23ba-3bfe-40be-b7a1-ffae03e6c757');
+var gd = document.getElementById('bc6ae59d-9622-431a-a430-bb1425b49072');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -528,7 +538,7 @@ if (outputEl) {{
 <section id="forecast-refresh" class="level2">
 <h2 class="anchored" data-anchor-id="forecast-refresh">Forecast Refresh</h2>
 <p>Check if new observations are available to refresh the forecast</p>
-<div id="5aace284" class="cell" data-execution_count="8">
+<div id="665f65df" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    new_fc <span class="op">=</span> dev_fc.forecast_refresh(settings_path <span class="op">=</span> <span class="st">"../settings/series.json"</span>, </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                save <span class="op">=</span> <span class="va">True</span>, </span>
@@ -537,26 +547,104 @@ if (outputEl) {{
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the forecast refresh process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>PGAE
-There are no new observations, skipping forecast refresh
+New observations are available, starting to refreshthe forecast
+There are 58 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev PGAE exists
+Deleting previous experiment: 658684304568846825
+Set a new experiment Forecast Dev PGAE
+Pulling the metadata
+PGAE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
 SCE
-There are no new observations, skipping forecast refresh
+New observations are available, starting to refreshthe forecast
+There are 50 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev SCE exists
+Deleting previous experiment: 360976983442524906
+Set a new experiment Forecast Dev SCE
+Pulling the metadata
+SCE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
 SDGE
-There are no new observations, skipping forecast refresh
+New observations are available, starting to refreshthe forecast
+There are 58 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev SDGE exists
+Deleting previous experiment: 924197851462697054
+Set a new experiment Forecast Dev SDGE
+Pulling the metadata
+SDGE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
 VEA
-There are no new observations, skipping forecast refresh</code></pre>
+New observations are available, starting to refreshthe forecast
+There are 58 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev VEA exists
+Deleting previous experiment: 577170290632978098
+Set a new experiment Forecast Dev VEA
+Pulling the metadata
+VEA
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
 </div>
 </div>
 </section>
 <section id="score-the-forecast" class="level2">
 <h2 class="anchored" data-anchor-id="score-the-forecast">Score the Forecast</h2>
-<div id="311b1a57" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> dev_fc.score_forecast(data_path <span class="op">=</span> data_path,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    forecast_log_path <span class="op">=</span> forecast_log_path, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    forecast_path <span class="op">=</span> forecast_path, </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    save <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the scoring process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9e35b27e" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> dev_fc.score_forecast(data_path <span class="op">=</span> data_path,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    forecast_log_path <span class="op">=</span> forecast_log_path, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    forecast_path <span class="op">=</span> forecast_path, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    save <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the scoring process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
