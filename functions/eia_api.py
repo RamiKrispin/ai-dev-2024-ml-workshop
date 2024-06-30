@@ -52,12 +52,12 @@ def eia_get(api_key,
         fc = ""
     else:
         fc = ""
-    for i in facets.keys():
-        if type(facets[i]) is list:
-            for n in facets[i]:
-                fc = fc + "&facets[" + i + "][]=" + n
-        elif type(facets[i]) is str:
-            fc = fc + "&facets[" + i + "][]=" + facets[i]
+        for i in facets.keys():
+            if type(facets[i]) is list:
+                for n in facets[i]:
+                    fc = fc + "&facets[" + i + "][]=" + n
+            elif type(facets[i]) is str:
+                fc = fc + "&facets[" + i + "][]=" + facets[i]
     
     if start is None:
         s = ""
@@ -95,7 +95,7 @@ def eia_get(api_key,
     if frequency is None:
         fr = ""
     else:
-        fr = "&frequency=" + str(frequency)
+        fr = "&frequency=" + str(fr)
 
     url = "https://api.eia.gov/v2/" + api_path + "?data[]=value" + fc + s + e + l + o + fr          
 
@@ -103,10 +103,21 @@ def eia_get(api_key,
     d = requests.get(url + "&api_key=" + api_key).json()
 
     df = pd.DataFrame(d['response']['data'])
+    if len(df) > 0:
     # Reformating the output
-    df["period"] = pd.to_datetime(df["period"])
-    df["value"] = pd.to_numeric(df["value"])
-    df = df.sort_values(by = ["period"])
+        df["period"] = pd.to_datetime(df["period"])
+        df["value"] = pd.to_numeric(df["value"])
+        df = df.sort_values(by = ["period"])
+    # If start and end arguments are hourly
+        if df["period"].min() < start:
+            df = df[df["period"] >= start]
+        if df["period"].max() > end:
+            df = df[df["period"] <= end]
+
+        status = True
+    else:
+        status = False
+        print("The return object does not contain observations, check the end parameter settings")
 
     parameters = {
         "api_path": api_path,
@@ -116,7 +127,8 @@ def eia_get(api_key,
         "end": end, 
         "length": length, 
         "offset": offset, 
-        "frequency": frequency
+        "frequency": frequency,
+        "status": status
     }
     output = response(data = df, url = url + "&api_key=", parameters = parameters)
     return output
@@ -126,7 +138,7 @@ def eia_get(api_key,
 
 
 
-def eia_backfill(start, end, offset, api_key, api_path, facets):
+def eia_backfile(start, end, offset, api_key, api_path, facets):
     
     class response:
         def __init__(output, data, parameters):
