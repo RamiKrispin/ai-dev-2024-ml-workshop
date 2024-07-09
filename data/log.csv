@@ -503,3 +503,7 @@ index,parent,subba,time,start,end,start_act,end_act,start_match,end_match,n_obs,
 126,CISO,SCE,2024-07-09 16:25:05.754645+00:00,2024-07-08 08:00:00,2024-07-09 07:00:00,2024-07-08 08:00:00,2024-07-09 07:00:00,True,True,24.0,0.0,refresh,True,True,
 126,CISO,SDGE,2024-07-09 16:25:06.952141+00:00,2024-07-08 08:00:00,2024-07-09 07:00:00,2024-07-08 08:00:00,2024-07-09 07:00:00,True,True,24.0,0.0,refresh,True,True,
 126,CISO,VEA,2024-07-09 16:25:08.134126+00:00,2024-07-08 08:00:00,2024-07-09 07:00:00,2024-07-08 08:00:00,2024-07-09 07:00:00,True,True,24.0,0.0,refresh,True,True,
+127,CISO,PGAE,2024-07-09 20:20:40.305132+00:00,2024-07-09 08:00:00,2024-07-09 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+127,CISO,SCE,2024-07-09 20:20:40.306159+00:00,2024-07-09 08:00:00,2024-07-09 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+127,CISO,SDGE,2024-07-09 20:20:40.307666+00:00,2024-07-09 08:00:00,2024-07-09 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+127,CISO,VEA,2024-07-09 20:20:40.309126+00:00,2024-07-09 08:00:00,2024-07-09 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
