@@ -1655,3 +1655,7 @@ index,parent,subba,time,start,end,start_act,end_act,start_match,end_match,n_obs,
 414,CISO,SCE,2024-08-26 20:22:37.576643+00:00,2024-08-23 08:00:00,2024-08-26 07:00:00,2024-08-23 08:00:00,2024-08-26 07:00:00,True,True,72.0,13.0,refresh,False,False,"Missing values were found; The data refresh failed, please check the log; "
 414,CISO,SDGE,2024-08-26 20:22:38.323321+00:00,2024-08-25 08:00:00,2024-08-26 07:00:00,2024-08-25 08:00:00,2024-08-26 07:00:00,True,True,24.0,0.0,refresh,True,True,
 414,CISO,VEA,2024-08-26 20:22:39.950102+00:00,2024-08-25 08:00:00,2024-08-26 07:00:00,2024-08-25 08:00:00,2024-08-26 07:00:00,True,True,24.0,0.0,refresh,True,True,
+415,CISO,PGAE,2024-08-27 01:34:31.647322+00:00,2024-08-26 08:00:00,2024-08-26 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+415,CISO,SCE,2024-08-27 01:34:32.423384+00:00,2024-08-23 08:00:00,2024-08-26 07:00:00,2024-08-23 08:00:00,2024-08-26 07:00:00,True,True,72,13,refresh,False,False,"Missing values were found; The data refresh failed, please check the log; "
+415,CISO,SDGE,2024-08-27 01:34:32.426141+00:00,2024-08-26 08:00:00,2024-08-26 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+415,CISO,VEA,2024-08-27 01:34:32.428149+00:00,2024-08-26 08:00:00,2024-08-26 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
