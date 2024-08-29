@@ -1715,3 +1715,7 @@ index,parent,subba,time,start,end,start_act,end_act,start_match,end_match,n_obs,
 429,CISO,SCE,2024-08-29 08:26:19.733545+00:00,2024-08-23 08:00:00,2024-08-29 07:00:00,2024-08-23 08:00:00,2024-08-29 07:00:00,True,True,144.0,14.0,refresh,False,False,"Missing values were found; The data refresh failed, please check the log; "
 429,CISO,SDGE,2024-08-29 08:26:20.407624+00:00,2024-08-28 08:00:00,2024-08-29 07:00:00,2024-08-28 08:00:00,2024-08-29 07:00:00,True,True,24.0,0.0,refresh,True,True,
 429,CISO,VEA,2024-08-29 08:26:21.912984+00:00,2024-08-28 08:00:00,2024-08-29 07:00:00,2024-08-28 08:00:00,2024-08-29 07:00:00,True,True,24.0,0.0,refresh,True,True,
+430,CISO,PGAE,2024-08-29 12:39:14.156404+00:00,2024-08-26 08:00:00,2024-08-29 07:00:00,2024-08-26 08:00:00,2024-08-29 07:00:00,True,True,72,5,refresh,False,False,"Missing values were found; The data refresh failed, please check the log; "
+430,CISO,SCE,2024-08-29 12:39:14.825761+00:00,2024-08-23 08:00:00,2024-08-29 07:00:00,2024-08-23 08:00:00,2024-08-29 07:00:00,True,True,144,14,refresh,False,False,"Missing values were found; The data refresh failed, please check the log; "
+430,CISO,SDGE,2024-08-29 12:39:14.828209+00:00,2024-08-29 08:00:00,2024-08-29 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
+430,CISO,VEA,2024-08-29 12:39:14.830219+00:00,2024-08-29 08:00:00,2024-08-29 07:00:00,,,,,,,refresh,False,False,"No new data is available; The data refresh failed, please check the log; "
