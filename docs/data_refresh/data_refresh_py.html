@@ -117,7 +117,7 @@ require(['plotly'], function(Plotly) {
 
 <section id="load-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="load-libraries">Load libraries</h2>
-<div id="a6e20f50" class="cell" data-execution_count="1">
+<div id="79f90257" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eia_api <span class="im">as</span> api</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eia_data </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -139,7 +139,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 </div>
 </div>
 <p>API Settings:</p>
-<div id="6b8558e9" class="cell" data-execution_count="2">
+<div id="4c4a0d95" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>raw_json <span class="op">=</span> <span class="bu">open</span>(<span class="st">"../settings/series.json"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>meta_json <span class="op">=</span> json.load(raw_json)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> pd.DataFrame(meta_json[<span class="st">"series"</span>])</span>
@@ -161,56 +161,56 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>forecast_path <span class="op">=</span> meta_json[<span class="st">"forecast_path"</span>]</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>forecast_log_path <span class="op">=</span> meta_json[<span class="st">"forecast_log_path"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f0f73bf5" class="cell" data-execution_count="3">
+<div id="9835070d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meta_obj <span class="op">=</span> eia_data.get_metadata(api_key <span class="op">=</span> eia_api_key, api_path <span class="op">=</span> api_path, meta_path <span class="op">=</span> meta_path, series <span class="op">=</span> series)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_obj.request_meta,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<div id="xnuxnzuxpz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jbilcdlnyk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#xnuxnzuxpz table {
+#jbilcdlnyk table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#xnuxnzuxpz thead, tbody, tfoot, tr, td, th { border-style: none; }
+#jbilcdlnyk thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#xnuxnzuxpz p { margin: 0; padding: 0; }
- #xnuxnzuxpz .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #xnuxnzuxpz .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #xnuxnzuxpz .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #xnuxnzuxpz .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #xnuxnzuxpz .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #xnuxnzuxpz .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #xnuxnzuxpz .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #xnuxnzuxpz .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #xnuxnzuxpz .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #xnuxnzuxpz .gt_column_spanner_outer:first-child { padding-left: 0; }
- #xnuxnzuxpz .gt_column_spanner_outer:last-child { padding-right: 0; }
- #xnuxnzuxpz .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #xnuxnzuxpz .gt_spanner_row { border-bottom-style: hidden; }
- #xnuxnzuxpz .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #xnuxnzuxpz .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #xnuxnzuxpz .gt_from_md> :first-child { margin-top: 0; }
- #xnuxnzuxpz .gt_from_md> :last-child { margin-bottom: 0; }
- #xnuxnzuxpz .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #xnuxnzuxpz .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #xnuxnzuxpz .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #xnuxnzuxpz .gt_row_group_first td { border-top-width: 2px; }
- #xnuxnzuxpz .gt_row_group_first th { border-top-width: 2px; }
- #xnuxnzuxpz .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #xnuxnzuxpz .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #xnuxnzuxpz .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #xnuxnzuxpz .gt_left { text-align: left; }
- #xnuxnzuxpz .gt_center { text-align: center; }
- #xnuxnzuxpz .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #xnuxnzuxpz .gt_font_normal { font-weight: normal; }
- #xnuxnzuxpz .gt_font_bold { font-weight: bold; }
- #xnuxnzuxpz .gt_font_italic { font-style: italic; }
- #xnuxnzuxpz .gt_super { font-size: 65%; }
- #xnuxnzuxpz .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #xnuxnzuxpz .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#jbilcdlnyk p { margin: 0; padding: 0; }
+ #jbilcdlnyk .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #jbilcdlnyk .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #jbilcdlnyk .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #jbilcdlnyk .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #jbilcdlnyk .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jbilcdlnyk .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jbilcdlnyk .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jbilcdlnyk .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #jbilcdlnyk .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #jbilcdlnyk .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #jbilcdlnyk .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #jbilcdlnyk .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #jbilcdlnyk .gt_spanner_row { border-bottom-style: hidden; }
+ #jbilcdlnyk .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #jbilcdlnyk .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #jbilcdlnyk .gt_from_md> :first-child { margin-top: 0; }
+ #jbilcdlnyk .gt_from_md> :last-child { margin-bottom: 0; }
+ #jbilcdlnyk .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #jbilcdlnyk .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #jbilcdlnyk .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #jbilcdlnyk .gt_row_group_first td { border-top-width: 2px; }
+ #jbilcdlnyk .gt_row_group_first th { border-top-width: 2px; }
+ #jbilcdlnyk .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jbilcdlnyk .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jbilcdlnyk .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #jbilcdlnyk .gt_left { text-align: left; }
+ #jbilcdlnyk .gt_center { text-align: center; }
+ #jbilcdlnyk .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #jbilcdlnyk .gt_font_normal { font-weight: normal; }
+ #jbilcdlnyk .gt_font_bold { font-weight: bold; }
+ #jbilcdlnyk .gt_font_italic { font-style: italic; }
+ #jbilcdlnyk .gt_super { font-size: 65%; }
+ #jbilcdlnyk .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #jbilcdlnyk .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -231,7 +231,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_left">PGAE</td>
 <td class="gt_row gt_right">2024-08-26 07:00:00</td>
 <td class="gt_row gt_right">2024-08-26 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
 <td class="gt_row gt_center">True</td>
 </tr>
 <tr class="even">
@@ -239,7 +239,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_left">SCE</td>
 <td class="gt_row gt_right">2024-08-23 07:00:00</td>
 <td class="gt_row gt_right">2024-08-23 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
 <td class="gt_row gt_center">True</td>
 </tr>
 <tr class="odd">
@@ -247,16 +247,16 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <td class="gt_row gt_left">SDGE</td>
 <td class="gt_row gt_right">2024-08-30 07:00:00</td>
 <td class="gt_row gt_right">2024-08-30 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
-<td class="gt_row gt_center">False</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_center">True</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">VEA</td>
 <td class="gt_row gt_right">2024-08-30 07:00:00</td>
 <td class="gt_row gt_right">2024-08-30 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
-<td class="gt_row gt_center">False</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_center">True</td>
 </tr>
 </tbody>
 </table>
@@ -266,7 +266,7 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
         
 </div>
 </div>
-<div id="65db62f8" class="cell" data-execution_count="4">
+<div id="e1127d3c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> meta_obj.request_meta</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> meta_obj.last_index <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="va">None</span></span>
@@ -327,65 +327,61 @@ Using `tqdm.autonotebook.tqdm` in notebook mode. Use `tqdm.tqdm` instead to forc
 <pre><code>{'parent': 'CISO', 'subba': 'PGAE'}
 {'parent': 'CISO', 'subba': 'SCE'}
 {'parent': 'CISO', 'subba': 'SDGE'}
-No new data is available
+Append the new data
+Save the data to CSV file
 {'parent': 'CISO', 'subba': 'VEA'}
-No new data is available</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_141/2250529845.py:56: FutureWarning:
-
-The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
-</code></pre>
+Append the new data
+Save the data to CSV file</code></pre>
 </div>
 </div>
-<div id="067aa4d5" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_new,rowname_col <span class="op">=</span> <span class="st">"index"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a49475ce" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gt.GT(meta_new,rowname_col <span class="op">=</span> <span class="st">"index"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<div id="zxjmhejsbh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bmwrvguhkw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#zxjmhejsbh table {
+#bmwrvguhkw table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#zxjmhejsbh thead, tbody, tfoot, tr, td, th { border-style: none; }
+#bmwrvguhkw thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#zxjmhejsbh p { margin: 0; padding: 0; }
- #zxjmhejsbh .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #zxjmhejsbh .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #zxjmhejsbh .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #zxjmhejsbh .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #zxjmhejsbh .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #zxjmhejsbh .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #zxjmhejsbh .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #zxjmhejsbh .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #zxjmhejsbh .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #zxjmhejsbh .gt_column_spanner_outer:first-child { padding-left: 0; }
- #zxjmhejsbh .gt_column_spanner_outer:last-child { padding-right: 0; }
- #zxjmhejsbh .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #zxjmhejsbh .gt_spanner_row { border-bottom-style: hidden; }
- #zxjmhejsbh .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #zxjmhejsbh .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #zxjmhejsbh .gt_from_md> :first-child { margin-top: 0; }
- #zxjmhejsbh .gt_from_md> :last-child { margin-bottom: 0; }
- #zxjmhejsbh .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #zxjmhejsbh .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #zxjmhejsbh .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #zxjmhejsbh .gt_row_group_first td { border-top-width: 2px; }
- #zxjmhejsbh .gt_row_group_first th { border-top-width: 2px; }
- #zxjmhejsbh .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #zxjmhejsbh .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #zxjmhejsbh .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #zxjmhejsbh .gt_left { text-align: left; }
- #zxjmhejsbh .gt_center { text-align: center; }
- #zxjmhejsbh .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #zxjmhejsbh .gt_font_normal { font-weight: normal; }
- #zxjmhejsbh .gt_font_bold { font-weight: bold; }
- #zxjmhejsbh .gt_font_italic { font-style: italic; }
- #zxjmhejsbh .gt_super { font-size: 65%; }
- #zxjmhejsbh .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #zxjmhejsbh .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#bmwrvguhkw p { margin: 0; padding: 0; }
+ #bmwrvguhkw .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #bmwrvguhkw .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #bmwrvguhkw .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #bmwrvguhkw .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #bmwrvguhkw .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #bmwrvguhkw .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #bmwrvguhkw .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #bmwrvguhkw .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #bmwrvguhkw .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #bmwrvguhkw .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #bmwrvguhkw .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #bmwrvguhkw .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #bmwrvguhkw .gt_spanner_row { border-bottom-style: hidden; }
+ #bmwrvguhkw .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #bmwrvguhkw .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #bmwrvguhkw .gt_from_md> :first-child { margin-top: 0; }
+ #bmwrvguhkw .gt_from_md> :last-child { margin-bottom: 0; }
+ #bmwrvguhkw .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #bmwrvguhkw .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #bmwrvguhkw .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #bmwrvguhkw .gt_row_group_first td { border-top-width: 2px; }
+ #bmwrvguhkw .gt_row_group_first th { border-top-width: 2px; }
+ #bmwrvguhkw .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #bmwrvguhkw .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #bmwrvguhkw .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #bmwrvguhkw .gt_left { text-align: left; }
+ #bmwrvguhkw .gt_center { text-align: center; }
+ #bmwrvguhkw .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #bmwrvguhkw .gt_font_normal { font-weight: normal; }
+ #bmwrvguhkw .gt_font_bold { font-weight: bold; }
+ #bmwrvguhkw .gt_font_italic { font-style: italic; }
+ #bmwrvguhkw .gt_super { font-size: 65%; }
+ #bmwrvguhkw .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #bmwrvguhkw .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -399,8 +395,8 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <td id="end" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">end</td>
 <td id="start_act" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">start_act</td>
 <td id="end_act" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">end_act</td>
-<td id="start_match" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">start_match</td>
-<td id="end_match" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">end_match</td>
+<td id="start_match" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">start_match</td>
+<td id="end_match" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">end_match</td>
 <td id="n_obs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n_obs</td>
 <td id="na" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">na</td>
 <td id="type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">type</td>
@@ -415,14 +411,14 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">PGAE</td>
-<td class="gt_row gt_right">2024-08-31 04:25:24.317736+00:00</td>
+<td class="gt_row gt_right">2024-08-31 08:25:52.617701+00:00</td>
 <td class="gt_row gt_right">2024-08-26 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
 <td class="gt_row gt_right">2024-08-26 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
-<td class="gt_row gt_right">True</td>
-<td class="gt_row gt_right">True</td>
-<td class="gt_row gt_right">96</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">120</td>
 <td class="gt_row gt_right">5</td>
 <td class="gt_row gt_left">refresh</td>
 <td class="gt_row gt_center">False</td>
@@ -433,14 +429,14 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SCE</td>
-<td class="gt_row gt_right">2024-08-31 04:25:24.826457+00:00</td>
+<td class="gt_row gt_right">2024-08-31 08:25:53.149058+00:00</td>
 <td class="gt_row gt_right">2024-08-23 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
 <td class="gt_row gt_right">2024-08-23 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
-<td class="gt_row gt_right">True</td>
-<td class="gt_row gt_right">True</td>
-<td class="gt_row gt_right">168</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">192</td>
 <td class="gt_row gt_right">14</td>
 <td class="gt_row gt_left">refresh</td>
 <td class="gt_row gt_center">False</td>
@@ -451,37 +447,37 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">SDGE</td>
-<td class="gt_row gt_right">2024-08-31 04:25:24.828897+00:00</td>
+<td class="gt_row gt_right">2024-08-31 08:25:53.647607+00:00</td>
 <td class="gt_row gt_right">2024-08-30 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_right">2024-08-30 08:00:00</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">No new data is available; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_left"></td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right"><na></na></td>
 <td class="gt_row gt_left">CISO</td>
 <td class="gt_row gt_left">VEA</td>
-<td class="gt_row gt_right">2024-08-31 04:25:24.830745+00:00</td>
+<td class="gt_row gt_right">2024-08-31 08:25:54.901181+00:00</td>
 <td class="gt_row gt_right">2024-08-30 08:00:00</td>
-<td class="gt_row gt_right">2024-08-30 07:00:00</td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
-<td class="gt_row gt_right"><na></na></td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_right">2024-08-30 08:00:00</td>
+<td class="gt_row gt_right">2024-08-31 07:00:00</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_left">refresh</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_center">False</td>
-<td class="gt_row gt_left">No new data is available; The data refresh failed, please check the log;</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_center">True</td>
+<td class="gt_row gt_left"></td>
 </tr>
 </tbody>
 </table>
@@ -491,24 +487,24 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
         
 </div>
 </div>
-<div id="61fdcb6f" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>meta_updated <span class="op">=</span> eia_data.append_metadata(meta_path <span class="op">=</span> meta_path, meta <span class="op">=</span> meta_new, save <span class="op">=</span> <span class="va">True</span>, init <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="93a46272" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meta_updated <span class="op">=</span> eia_data.append_metadata(meta_path <span class="op">=</span> meta_path, meta <span class="op">=</span> meta_new, save <span class="op">=</span> <span class="va">True</span>, init <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="plot-the-series" class="level3">
 <h3 class="anchored" data-anchor-id="plot-the-series">Plot the Series</h3>
 <p>We will use Plotly to visualize the series:</p>
-<div id="3b21b9ad" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> data.sort_values(by <span class="op">=</span> [<span class="st">"subba"</span>, <span class="st">"period"</span>])</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> px.line(<span class="bu">input</span>, x<span class="op">=</span><span class="st">"period"</span>, y<span class="op">=</span><span class="st">"value"</span>, color<span class="op">=</span><span class="st">"subba"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    p.show()</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="51944724" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> data.sort_values(by <span class="op">=</span> [<span class="st">"subba"</span>, <span class="st">"period"</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> px.line(<span class="bu">input</span>, x<span class="op">=</span><span class="st">"period"</span>, y<span class="op">=</span><span class="st">"value"</span>, color<span class="op">=</span><span class="st">"subba"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    p.show()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span> <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>                            <div id="779f4093-89c4-4829-9b22-bf8258675a81" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("779f4093-89c4-4829-9b22-bf8258675a81")) {                    Plotly.newPlot(                        "779f4093-89c4-4829-9b22-bf8258675a81",                        [{"hovertemplate":"subba=PGAE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"PGAE","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"PGAE","orientation":"v","showlegend":true,"x":["2024-08-26T08:00:00","2024-08-26T09:00:00","2024-08-26T10:00:00","2024-08-26T11:00:00","2024-08-26T12:00:00","2024-08-26T13:00:00","2024-08-26T14:00:00","2024-08-26T15:00:00","2024-08-26T16:00:00","2024-08-26T17:00:00","2024-08-26T18:00:00","2024-08-26T19:00:00","2024-08-26T20:00:00","2024-08-26T21:00:00","2024-08-26T22:00:00","2024-08-26T23:00:00","2024-08-27T00:00:00","2024-08-27T01:00:00","2024-08-27T07:00:00","2024-08-27T08:00:00","2024-08-27T09:00:00","2024-08-27T10:00:00","2024-08-27T11:00:00","2024-08-27T12:00:00","2024-08-27T13:00:00","2024-08-27T14:00:00","2024-08-27T15:00:00","2024-08-27T16:00:00","2024-08-27T17:00:00","2024-08-27T18:00:00","2024-08-27T19:00:00","2024-08-27T20:00:00","2024-08-27T21:00:00","2024-08-27T22:00:00","2024-08-27T23:00:00","2024-08-28T00:00:00","2024-08-28T01:00:00","2024-08-28T02:00:00","2024-08-28T03:00:00","2024-08-28T04:00:00","2024-08-28T05:00:00","2024-08-28T06:00:00","2024-08-28T07:00:00","2024-08-28T08:00:00","2024-08-28T09:00:00","2024-08-28T10:00:00","2024-08-28T11:00:00","2024-08-28T12:00:00","2024-08-28T13:00:00","2024-08-28T14:00:00","2024-08-28T15:00:00","2024-08-28T16:00:00","2024-08-28T17:00:00","2024-08-28T18:00:00","2024-08-28T19:00:00","2024-08-28T20:00:00","2024-08-28T21:00:00","2024-08-28T22:00:00","2024-08-28T23:00:00","2024-08-29T00:00:00","2024-08-29T01:00:00","2024-08-29T02:00:00","2024-08-29T03:00:00","2024-08-29T04:00:00","2024-08-29T05:00:00","2024-08-29T06:00:00","2024-08-29T07:00:00","2024-08-29T08:00:00","2024-08-29T09:00:00","2024-08-29T10:00:00","2024-08-29T11:00:00","2024-08-29T12:00:00","2024-08-29T13:00:00","2024-08-29T14:00:00","2024-08-29T15:00:00","2024-08-29T16:00:00","2024-08-29T17:00:00","2024-08-29T18:00:00","2024-08-29T19:00:00","2024-08-29T20:00:00","2024-08-29T21:00:00","2024-08-29T22:00:00","2024-08-29T23:00:00","2024-08-30T00:00:00","2024-08-30T01:00:00","2024-08-30T02:00:00","2024-08-30T03:00:00","2024-08-30T04:00:00","2024-08-30T05:00:00","2024-08-30T06:00:00","2024-08-30T07:00:00"],"xaxis":"x","y":[11221.0,10823.0,10370.0,10047.0,9901.0,10013.0,10433.0,11402.0,11958.0,12020.0,11730.0,11807.0,11592.0,11763.0,12145.0,12634.0,13749.0,14757.0,13819.0,12714.0,12106.0,11505.0,11151.0,10846.0,10830.0,11308.0,12029.0,12428.0,12653.0,12314.0,12352.0,12407.0,12883.0,13629.0,14020.0,15183.0,16169.0,17304.0,17891.0,17609.0,16957.0,16008.0,14546.0,13279.0,12541.0,11913.0,11411.0,11095.0,11080.0,11500.0,12220.0,12773.0,13227.0,12835.0,13078.0,13183.0,13243.0,13161.0,13917.0,15179.0,16362.0,16897.0,17389.0,17023.0,16334.0,15423.0,14054.0,12858.0,12298.0,11952.0,11527.0,11041.0,11003.0,11434.0,12221.0,12673.0,12880.0,12428.0,11969.0,11571.0,11521.0,11784.0,12317.0,13320.0,14431.0,15518.0,16047.0,15804.0,15539.0,14812.0,13583.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SCE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SCE","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SCE","orientation":"v","showlegend":true,"x":["2024-08-23T08:00:00","2024-08-23T09:00:00","2024-08-23T10:00:00","2024-08-23T11:00:00","2024-08-23T12:00:00","2024-08-23T13:00:00","2024-08-23T14:00:00","2024-08-23T15:00:00","2024-08-23T16:00:00","2024-08-23T17:00:00","2024-08-23T18:00:00","2024-08-23T19:00:00","2024-08-23T20:00:00","2024-08-23T21:00:00","2024-08-23T22:00:00","2024-08-23T23:00:00","2024-08-24T00:00:00","2024-08-24T01:00:00","2024-08-24T02:00:00","2024-08-24T03:00:00","2024-08-24T04:00:00","2024-08-24T05:00:00","2024-08-24T06:00:00","2024-08-24T07:00:00","2024-08-24T08:00:00","2024-08-24T09:00:00","2024-08-24T10:00:00","2024-08-24T11:00:00","2024-08-24T12:00:00","2024-08-24T13:00:00","2024-08-24T14:00:00","2024-08-24T15:00:00","2024-08-24T16:00:00","2024-08-24T17:00:00","2024-08-24T18:00:00","2024-08-24T19:00:00","2024-08-24T20:00:00","2024-08-24T21:00:00","2024-08-24T22:00:00","2024-08-24T23:00:00","2024-08-25T00:00:00","2024-08-25T01:00:00","2024-08-25T02:00:00","2024-08-25T03:00:00","2024-08-25T04:00:00","2024-08-25T05:00:00","2024-08-25T06:00:00","2024-08-25T07:00:00","2024-08-25T08:00:00","2024-08-25T09:00:00","2024-08-25T10:00:00","2024-08-25T11:00:00","2024-08-25T12:00:00","2024-08-25T13:00:00","2024-08-25T14:00:00","2024-08-25T15:00:00","2024-08-25T16:00:00","2024-08-25T17:00:00","2024-08-25T18:00:00","2024-08-25T19:00:00","2024-08-25T20:00:00","2024-08-25T21:00:00","2024-08-25T22:00:00","2024-08-25T23:00:00","2024-08-26T00:00:00","2024-08-26T01:00:00","2024-08-26T02:00:00","2024-08-26T03:00:00","2024-08-26T04:00:00","2024-08-26T05:00:00","2024-08-26T06:00:00","2024-08-26T07:00:00","2024-08-26T08:00:00","2024-08-26T09:00:00","2024-08-26T10:00:00","2024-08-26T11:00:00","2024-08-26T12:00:00","2024-08-26T13:00:00","2024-08-26T14:00:00","2024-08-26T15:00:00","2024-08-26T16:00:00","2024-08-27T07:00:00","2024-08-27T08:00:00","2024-08-27T09:00:00","2024-08-27T10:00:00","2024-08-27T11:00:00","2024-08-27T12:00:00","2024-08-27T13:00:00","2024-08-27T14:00:00","2024-08-27T15:00:00","2024-08-27T16:00:00","2024-08-27T17:00:00","2024-08-27T18:00:00","2024-08-27T19:00:00","2024-08-27T20:00:00","2024-08-27T21:00:00","2024-08-27T22:00:00","2024-08-27T23:00:00","2024-08-28T00:00:00","2024-08-28T01:00:00","2024-08-28T02:00:00","2024-08-28T03:00:00","2024-08-28T04:00:00","2024-08-28T05:00:00","2024-08-28T06:00:00","2024-08-28T07:00:00","2024-08-28T08:00:00","2024-08-28T09:00:00","2024-08-28T10:00:00","2024-08-28T11:00:00","2024-08-28T12:00:00","2024-08-28T13:00:00","2024-08-28T14:00:00","2024-08-28T15:00:00","2024-08-28T16:00:00","2024-08-28T17:00:00","2024-08-28T18:00:00","2024-08-28T19:00:00","2024-08-28T20:00:00","2024-08-28T21:00:00","2024-08-28T22:00:00","2024-08-28T23:00:00","2024-08-29T00:00:00","2024-08-29T01:00:00","2024-08-29T02:00:00","2024-08-29T03:00:00","2024-08-29T04:00:00","2024-08-29T05:00:00","2024-08-29T06:00:00","2024-08-29T07:00:00","2024-08-29T08:00:00","2024-08-29T09:00:00","2024-08-29T10:00:00","2024-08-29T11:00:00","2024-08-29T12:00:00","2024-08-29T13:00:00","2024-08-29T14:00:00","2024-08-29T15:00:00","2024-08-29T16:00:00","2024-08-29T17:00:00","2024-08-29T18:00:00","2024-08-29T19:00:00","2024-08-29T20:00:00","2024-08-29T21:00:00","2024-08-29T22:00:00","2024-08-29T23:00:00","2024-08-30T00:00:00","2024-08-30T01:00:00","2024-08-30T02:00:00","2024-08-30T03:00:00","2024-08-30T04:00:00","2024-08-30T05:00:00","2024-08-30T06:00:00","2024-08-30T07:00:00"],"xaxis":"x","y":[13731.0,12629.0,11847.0,11335.0,10994.0,10823.0,11070.0,11646.0,12618.0,15028.0,15967.0,16351.0,16484.0,16124.0,15028.0,14923.0,15496.0,16019.0,16233.0,15735.0,15185.0,14796.0,14281.0,13512.0,12736.0,11924.0,11276.0,10698.0,10496.0,10423.0,10592.0,10345.0,10910.0,12570.0,12404.0,12389.0,12596.0,13471.0,14259.0,14500.0,13844.0,13812.0,14147.0,14056.0,13784.0,13564.0,13158.0,12477.0,11781.0,11223.0,10628.0,10197.0,10015.0,9911.0,9739.0,9719.0,10485.0,12373.0,12564.0,12902.0,13374.0,13677.0,12800.0,12741.0,13467.0,14519.0,15152.0,15005.0,14835.0,14791.0,14121.0,13138.0,12233.0,11575.0,10832.0,10460.0,10116.0,10490.0,10721.0,11357.0,12726.0,14583.0,13487.0,12535.0,11705.0,11147.0,11044.0,10947.0,11525.0,11889.0,13176.0,16222.0,17103.0,17102.0,16899.0,16421.0,16442.0,16883.0,17954.0,18407.0,18561.0,18126.0,17340.0,16655.0,15845.0,14634.0,13584.0,12676.0,11771.0,11220.0,11063.0,11035.0,11441.0,12032.0,13216.0,15599.0,16875.0,16797.0,16384.0,16027.0,16057.0,16391.0,16941.0,17659.0,17762.0,17194.0,16438.0,15822.0,15147.0,14073.0,13236.0,12128.0,11883.0,11226.0,10833.0,10863.0,11168.0,11972.0,12938.0,15395.0,16346.0,16214.0,16097.0,15956.0,15603.0,15569.0,16278.0,16987.0,17264.0,16708.0,16154.0,15542.0,14895.0,14049.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"period"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}},"legend":{"title":{"text":"subba"},"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="ec4bc1e9-015b-4203-bf47-b389a308b4c5" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("ec4bc1e9-015b-4203-bf47-b389a308b4c5")) {                    Plotly.newPlot(                        "ec4bc1e9-015b-4203-bf47-b389a308b4c5",                        [{"hovertemplate":"subba=PGAE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"PGAE","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"PGAE","orientation":"v","showlegend":true,"x":["2024-08-26T08:00:00","2024-08-26T09:00:00","2024-08-26T10:00:00","2024-08-26T11:00:00","2024-08-26T12:00:00","2024-08-26T13:00:00","2024-08-26T14:00:00","2024-08-26T15:00:00","2024-08-26T16:00:00","2024-08-26T17:00:00","2024-08-26T18:00:00","2024-08-26T19:00:00","2024-08-26T20:00:00","2024-08-26T21:00:00","2024-08-26T22:00:00","2024-08-26T23:00:00","2024-08-27T00:00:00","2024-08-27T01:00:00","2024-08-27T07:00:00","2024-08-27T08:00:00","2024-08-27T09:00:00","2024-08-27T10:00:00","2024-08-27T11:00:00","2024-08-27T12:00:00","2024-08-27T13:00:00","2024-08-27T14:00:00","2024-08-27T15:00:00","2024-08-27T16:00:00","2024-08-27T17:00:00","2024-08-27T18:00:00","2024-08-27T19:00:00","2024-08-27T20:00:00","2024-08-27T21:00:00","2024-08-27T22:00:00","2024-08-27T23:00:00","2024-08-28T00:00:00","2024-08-28T01:00:00","2024-08-28T02:00:00","2024-08-28T03:00:00","2024-08-28T04:00:00","2024-08-28T05:00:00","2024-08-28T06:00:00","2024-08-28T07:00:00","2024-08-28T08:00:00","2024-08-28T09:00:00","2024-08-28T10:00:00","2024-08-28T11:00:00","2024-08-28T12:00:00","2024-08-28T13:00:00","2024-08-28T14:00:00","2024-08-28T15:00:00","2024-08-28T16:00:00","2024-08-28T17:00:00","2024-08-28T18:00:00","2024-08-28T19:00:00","2024-08-28T20:00:00","2024-08-28T21:00:00","2024-08-28T22:00:00","2024-08-28T23:00:00","2024-08-29T00:00:00","2024-08-29T01:00:00","2024-08-29T02:00:00","2024-08-29T03:00:00","2024-08-29T04:00:00","2024-08-29T05:00:00","2024-08-29T06:00:00","2024-08-29T07:00:00","2024-08-29T08:00:00","2024-08-29T09:00:00","2024-08-29T10:00:00","2024-08-29T11:00:00","2024-08-29T12:00:00","2024-08-29T13:00:00","2024-08-29T14:00:00","2024-08-29T15:00:00","2024-08-29T16:00:00","2024-08-29T17:00:00","2024-08-29T18:00:00","2024-08-29T19:00:00","2024-08-29T20:00:00","2024-08-29T21:00:00","2024-08-29T22:00:00","2024-08-29T23:00:00","2024-08-30T00:00:00","2024-08-30T01:00:00","2024-08-30T02:00:00","2024-08-30T03:00:00","2024-08-30T04:00:00","2024-08-30T05:00:00","2024-08-30T06:00:00","2024-08-30T07:00:00","2024-08-30T08:00:00","2024-08-30T09:00:00","2024-08-30T10:00:00","2024-08-30T11:00:00","2024-08-30T12:00:00","2024-08-30T13:00:00","2024-08-30T14:00:00","2024-08-30T15:00:00","2024-08-30T16:00:00","2024-08-30T17:00:00","2024-08-30T18:00:00","2024-08-30T19:00:00","2024-08-30T20:00:00","2024-08-30T21:00:00","2024-08-30T22:00:00","2024-08-30T23:00:00","2024-08-31T00:00:00","2024-08-31T01:00:00","2024-08-31T02:00:00","2024-08-31T03:00:00","2024-08-31T04:00:00","2024-08-31T05:00:00","2024-08-31T06:00:00","2024-08-31T07:00:00"],"xaxis":"x","y":[11221.0,10823.0,10370.0,10047.0,9901.0,10013.0,10433.0,11402.0,11958.0,12020.0,11730.0,11807.0,11592.0,11763.0,12145.0,12634.0,13749.0,14757.0,13819.0,12714.0,12106.0,11505.0,11151.0,10846.0,10830.0,11308.0,12029.0,12428.0,12653.0,12314.0,12352.0,12407.0,12883.0,13629.0,14020.0,15183.0,16169.0,17304.0,17891.0,17609.0,16957.0,16008.0,14546.0,13279.0,12541.0,11913.0,11411.0,11095.0,11080.0,11500.0,12220.0,12773.0,13227.0,12835.0,13078.0,13183.0,13243.0,13161.0,13917.0,15179.0,16362.0,16897.0,17389.0,17023.0,16334.0,15423.0,14054.0,12858.0,12298.0,11952.0,11527.0,11041.0,11003.0,11434.0,12221.0,12673.0,12880.0,12428.0,11969.0,11571.0,11521.0,11784.0,12317.0,13320.0,14431.0,15518.0,16047.0,15804.0,15539.0,14812.0,13583.0,12528.0,11990.0,11435.0,11003.0,10789.0,10787.0,11164.0,11953.0,12392.0,12357.0,12036.0,11460.0,11207.0,11301.0,11356.0,12038.0,13038.0,14154.0,15110.0,15716.0,15475.0,15106.0,14447.0,13473.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SCE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SCE","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SCE","orientation":"v","showlegend":true,"x":["2024-08-23T08:00:00","2024-08-23T09:00:00","2024-08-23T10:00:00","2024-08-23T11:00:00","2024-08-23T12:00:00","2024-08-23T13:00:00","2024-08-23T14:00:00","2024-08-23T15:00:00","2024-08-23T16:00:00","2024-08-23T17:00:00","2024-08-23T18:00:00","2024-08-23T19:00:00","2024-08-23T20:00:00","2024-08-23T21:00:00","2024-08-23T22:00:00","2024-08-23T23:00:00","2024-08-24T00:00:00","2024-08-24T01:00:00","2024-08-24T02:00:00","2024-08-24T03:00:00","2024-08-24T04:00:00","2024-08-24T05:00:00","2024-08-24T06:00:00","2024-08-24T07:00:00","2024-08-24T08:00:00","2024-08-24T09:00:00","2024-08-24T10:00:00","2024-08-24T11:00:00","2024-08-24T12:00:00","2024-08-24T13:00:00","2024-08-24T14:00:00","2024-08-24T15:00:00","2024-08-24T16:00:00","2024-08-24T17:00:00","2024-08-24T18:00:00","2024-08-24T19:00:00","2024-08-24T20:00:00","2024-08-24T21:00:00","2024-08-24T22:00:00","2024-08-24T23:00:00","2024-08-25T00:00:00","2024-08-25T01:00:00","2024-08-25T02:00:00","2024-08-25T03:00:00","2024-08-25T04:00:00","2024-08-25T05:00:00","2024-08-25T06:00:00","2024-08-25T07:00:00","2024-08-25T08:00:00","2024-08-25T09:00:00","2024-08-25T10:00:00","2024-08-25T11:00:00","2024-08-25T12:00:00","2024-08-25T13:00:00","2024-08-25T14:00:00","2024-08-25T15:00:00","2024-08-25T16:00:00","2024-08-25T17:00:00","2024-08-25T18:00:00","2024-08-25T19:00:00","2024-08-25T20:00:00","2024-08-25T21:00:00","2024-08-25T22:00:00","2024-08-25T23:00:00","2024-08-26T00:00:00","2024-08-26T01:00:00","2024-08-26T02:00:00","2024-08-26T03:00:00","2024-08-26T04:00:00","2024-08-26T05:00:00","2024-08-26T06:00:00","2024-08-26T07:00:00","2024-08-26T08:00:00","2024-08-26T09:00:00","2024-08-26T10:00:00","2024-08-26T11:00:00","2024-08-26T12:00:00","2024-08-26T13:00:00","2024-08-26T14:00:00","2024-08-26T15:00:00","2024-08-26T16:00:00","2024-08-27T07:00:00","2024-08-27T08:00:00","2024-08-27T09:00:00","2024-08-27T10:00:00","2024-08-27T11:00:00","2024-08-27T12:00:00","2024-08-27T13:00:00","2024-08-27T14:00:00","2024-08-27T15:00:00","2024-08-27T16:00:00","2024-08-27T17:00:00","2024-08-27T18:00:00","2024-08-27T19:00:00","2024-08-27T20:00:00","2024-08-27T21:00:00","2024-08-27T22:00:00","2024-08-27T23:00:00","2024-08-28T00:00:00","2024-08-28T01:00:00","2024-08-28T02:00:00","2024-08-28T03:00:00","2024-08-28T04:00:00","2024-08-28T05:00:00","2024-08-28T06:00:00","2024-08-28T07:00:00","2024-08-28T08:00:00","2024-08-28T09:00:00","2024-08-28T10:00:00","2024-08-28T11:00:00","2024-08-28T12:00:00","2024-08-28T13:00:00","2024-08-28T14:00:00","2024-08-28T15:00:00","2024-08-28T16:00:00","2024-08-28T17:00:00","2024-08-28T18:00:00","2024-08-28T19:00:00","2024-08-28T20:00:00","2024-08-28T21:00:00","2024-08-28T22:00:00","2024-08-28T23:00:00","2024-08-29T00:00:00","2024-08-29T01:00:00","2024-08-29T02:00:00","2024-08-29T03:00:00","2024-08-29T04:00:00","2024-08-29T05:00:00","2024-08-29T06:00:00","2024-08-29T07:00:00","2024-08-29T08:00:00","2024-08-29T09:00:00","2024-08-29T10:00:00","2024-08-29T11:00:00","2024-08-29T12:00:00","2024-08-29T13:00:00","2024-08-29T14:00:00","2024-08-29T15:00:00","2024-08-29T16:00:00","2024-08-29T17:00:00","2024-08-29T18:00:00","2024-08-29T19:00:00","2024-08-29T20:00:00","2024-08-29T21:00:00","2024-08-29T22:00:00","2024-08-29T23:00:00","2024-08-30T00:00:00","2024-08-30T01:00:00","2024-08-30T02:00:00","2024-08-30T03:00:00","2024-08-30T04:00:00","2024-08-30T05:00:00","2024-08-30T06:00:00","2024-08-30T07:00:00","2024-08-30T08:00:00","2024-08-30T09:00:00","2024-08-30T10:00:00","2024-08-30T11:00:00","2024-08-30T12:00:00","2024-08-30T13:00:00","2024-08-30T14:00:00","2024-08-30T15:00:00","2024-08-30T16:00:00","2024-08-30T17:00:00","2024-08-30T18:00:00","2024-08-30T19:00:00","2024-08-30T20:00:00","2024-08-30T21:00:00","2024-08-30T22:00:00","2024-08-30T23:00:00","2024-08-31T00:00:00","2024-08-31T01:00:00","2024-08-31T02:00:00","2024-08-31T03:00:00","2024-08-31T04:00:00","2024-08-31T05:00:00","2024-08-31T06:00:00","2024-08-31T07:00:00"],"xaxis":"x","y":[13731.0,12629.0,11847.0,11335.0,10994.0,10823.0,11070.0,11646.0,12618.0,15028.0,15967.0,16351.0,16484.0,16124.0,15028.0,14923.0,15496.0,16019.0,16233.0,15735.0,15185.0,14796.0,14281.0,13512.0,12736.0,11924.0,11276.0,10698.0,10496.0,10423.0,10592.0,10345.0,10910.0,12570.0,12404.0,12389.0,12596.0,13471.0,14259.0,14500.0,13844.0,13812.0,14147.0,14056.0,13784.0,13564.0,13158.0,12477.0,11781.0,11223.0,10628.0,10197.0,10015.0,9911.0,9739.0,9719.0,10485.0,12373.0,12564.0,12902.0,13374.0,13677.0,12800.0,12741.0,13467.0,14519.0,15152.0,15005.0,14835.0,14791.0,14121.0,13138.0,12233.0,11575.0,10832.0,10460.0,10116.0,10490.0,10721.0,11357.0,12726.0,14583.0,13487.0,12535.0,11705.0,11147.0,11044.0,10947.0,11525.0,11889.0,13176.0,16222.0,17103.0,17102.0,16899.0,16421.0,16442.0,16883.0,17954.0,18407.0,18561.0,18126.0,17340.0,16655.0,15845.0,14634.0,13584.0,12676.0,11771.0,11220.0,11063.0,11035.0,11441.0,12032.0,13216.0,15599.0,16875.0,16797.0,16384.0,16027.0,16057.0,16391.0,16941.0,17659.0,17762.0,17194.0,16438.0,15822.0,15147.0,14073.0,13236.0,12128.0,11883.0,11226.0,10833.0,10863.0,11168.0,11972.0,12938.0,15395.0,16346.0,16214.0,16097.0,15956.0,15603.0,15569.0,16278.0,16987.0,17264.0,16708.0,16154.0,15542.0,14895.0,14049.0,13118.0,12054.0,11389.0,11110.0,10820.0,10805.0,11056.0,11623.0,12871.0,14767.0,16457.0,16608.0,16111.0,16431.0,15903.0,15439.0,16087.0,16916.0,16983.0,16489.0,15819.0,15286.0,14835.0,13849.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=SDGE\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"SDGE","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"SDGE","orientation":"v","showlegend":true,"x":["2024-08-30T08:00:00","2024-08-30T09:00:00","2024-08-30T10:00:00","2024-08-30T11:00:00","2024-08-30T12:00:00","2024-08-30T13:00:00","2024-08-30T14:00:00","2024-08-30T15:00:00","2024-08-30T16:00:00","2024-08-30T17:00:00","2024-08-30T18:00:00","2024-08-30T19:00:00","2024-08-30T20:00:00","2024-08-30T21:00:00","2024-08-30T22:00:00","2024-08-30T23:00:00","2024-08-31T00:00:00","2024-08-31T01:00:00","2024-08-31T02:00:00","2024-08-31T03:00:00","2024-08-31T04:00:00","2024-08-31T05:00:00","2024-08-31T06:00:00","2024-08-31T07:00:00"],"xaxis":"x","y":[2397.0,2401.0,2279.0,2167.0,2099.0,2089.0,2139.0,2302.0,2471.0,2618.0,2490.0,2366.0,2088.0,1718.0,1684.0,1786.0,2060.0,2377.0,2652.0,2833.0,2797.0,2767.0,2669.0,2524.0],"yaxis":"y","type":"scatter"},{"hovertemplate":"subba=VEA\u003cbr\u003eperiod=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"VEA","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"VEA","orientation":"v","showlegend":true,"x":["2024-08-30T08:00:00","2024-08-30T09:00:00","2024-08-30T10:00:00","2024-08-30T11:00:00","2024-08-30T12:00:00","2024-08-30T13:00:00","2024-08-30T14:00:00","2024-08-30T15:00:00","2024-08-30T16:00:00","2024-08-30T17:00:00","2024-08-30T18:00:00","2024-08-30T19:00:00","2024-08-30T20:00:00","2024-08-30T21:00:00","2024-08-30T22:00:00","2024-08-30T23:00:00","2024-08-31T00:00:00","2024-08-31T01:00:00","2024-08-31T02:00:00","2024-08-31T03:00:00","2024-08-31T04:00:00","2024-08-31T05:00:00","2024-08-31T06:00:00","2024-08-31T07:00:00"],"xaxis":"x","y":[68.0,62.0,56.0,53.0,52.0,52.0,53.0,55.0,104.0,194.0,215.0,194.0,189.0,168.0,112.0,139.0,128.0,127.0,125.0,117.0,108.0,98.0,89.0,81.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"period"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}},"legend":{"title":{"text":"subba"},"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('779f4093-89c4-4829-9b22-bf8258675a81');
+var gd = document.getElementById('ec4bc1e9-015b-4203-bf47-b389a308b4c5');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -538,35 +534,75 @@ if (outputEl) {{
 <section id="forecast-refresh" class="level2">
 <h2 class="anchored" data-anchor-id="forecast-refresh">Forecast Refresh</h2>
 <p>Check if new observations are available to refresh the forecast</p>
-<div id="b977cd6f" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    new_fc <span class="op">=</span> dev_fc.forecast_refresh(settings_path <span class="op">=</span> <span class="st">"../settings/series.json"</span>, </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                save <span class="op">=</span> <span class="va">True</span>, </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                init <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the forecast refresh process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="01eba803" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    new_fc <span class="op">=</span> dev_fc.forecast_refresh(settings_path <span class="op">=</span> <span class="st">"../settings/series.json"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                save <span class="op">=</span> <span class="va">True</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                init <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the forecast refresh process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>PGAE
 There are no new observations, skipping forecast refresh
 SCE
 There are no new observations, skipping forecast refresh
 SDGE
-There are no new observations, skipping forecast refresh
+New observations are available, starting to refreshthe forecast
+There are 53 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().
+/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev SDGE exists
+Deleting previous experiment: 924197851462697054
+Set a new experiment Forecast Dev SDGE
+Pulling the metadata
+SDGE
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file
 VEA
-There are no new observations, skipping forecast refresh</code></pre>
+New observations are available, starting to refreshthe forecast
+There are 53 missing values in the series</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You are transforming a stochastic TimeSeries (i.e., contains several samples). The resulting DataFrame is a 2D object with all samples on the columns. If this is not the expected behavior consider calling a function adapted to stochastic TimeSeries like quantile_df().</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Experiment Forecast Dev VEA exists
+Deleting previous experiment: 577170290632978098
+Set a new experiment Forecast Dev VEA
+Pulling the metadata
+VEA
+Update the forecast metadata
+Save the forecast into CSV file
+Append the new forecast
+Save the updated forecast as CSV file</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/__w/ai-dev-2024-ml-workshop/ai-dev-2024-ml-workshop/functions/dev_fc.py:349: FutureWarning:
+
+The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+</code></pre>
 </div>
 </div>
 </section>
 <section id="score-the-forecast" class="level2">
 <h2 class="anchored" data-anchor-id="score-the-forecast">Score the Forecast</h2>
-<div id="7d2654a1" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> dev_fc.score_forecast(data_path <span class="op">=</span> data_path,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    forecast_log_path <span class="op">=</span> forecast_log_path, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    forecast_path <span class="op">=</span> forecast_path, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    save <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the scoring process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ad09d9d1" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">input</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> dev_fc.score_forecast(data_path <span class="op">=</span> data_path,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    forecast_log_path <span class="op">=</span> forecast_log_path, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    forecast_path <span class="op">=</span> forecast_path, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    save <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No new data is available, skipping the scoring process"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
