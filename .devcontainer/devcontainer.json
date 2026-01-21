@@ -1,6 +1,6 @@
 {
     "name": "AI-Dev Workshop",
-    "image": "rkrispin/ai-dev:arm64.0.0.2",
+    "image": "rkrispin/ai-dev:amd64.0.0.2",
     "customizations": {
         "settings": {
             "python.defaultInterpreterPath": "/opt/ai_dev_workshop/bin/python3",
